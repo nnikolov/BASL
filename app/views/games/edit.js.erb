@@ -1,0 +1,1 @@
+$( "#game_<%= @game.id %>").html( "<%= escape_javascript( render( :partial => "edit", :locals => { :game => @game} ) ) %>" );

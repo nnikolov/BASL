@@ -1,0 +1,19 @@
+<%= form_for :user, :url => {:controller => 'login', :action => 'authenticate'} do |f| %>
+<br /><br /> <br />
+<table align="center" border="0">
+<tr>
+<td colspan="2" style="color: red" align="center"><%= flash[:notice] %></td>
+</tr>
+<tr>
+<td><%= f.label :username %></td>
+<td><%= f.text_field :username %></td>
+</tr>
+<tr>
+<td><%= f.label :password %></td>
+<td><%= f.password_field :password %></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><%= f.submit 'Login' %></td>
+</tr>
+</table>
+<% end %>

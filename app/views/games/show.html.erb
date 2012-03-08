@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Season:</b>
+  <%= @game.season_id %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @game.time %>
+</p>
+
+<p>
+  <b>Field:</b>
+  <%= @game.field_id %>
+</p>
+
+<p>
+  <b>Home team:</b>
+  <%= @game.home_team_id %>
+</p>
+
+<p>
+  <b>Home team score:</b>
+  <%= @game.home_team_score %>
+</p>
+
+<p>
+  <b>Away team:</b>
+  <%= @game.away_team_id %>
+</p>
+
+<p>
+  <b>Away team score:</b>
+  <%= @game.away_team_score %>
+</p>
+
+<p>
+  <b>Game type:</b>
+  <%= @game.game_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_season_game_path(@game.season, @game) %> |
+<%= link_to 'Back', season_games_path(@game.season, @game) %>

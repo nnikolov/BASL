@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Season:</b>
+  <%= @standing.season_id %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%= @standing.team_id %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @standing.points %>
+</p>
+
+<p>
+  <b>Goal diff:</b>
+  <%= @standing.goal_diff %>
+</p>
+
+<p>
+  <b>Goals for:</b>
+  <%= @standing.goals_for %>
+</p>
+
+<p>
+  <b>Goals against:</b>
+  <%= @standing.goals_against %>
+</p>
+
+<p>
+  <b>Wins:</b>
+  <%= @standing.wins %>
+</p>
+
+<p>
+  <b>Ties:</b>
+  <%= @standing.ties %>
+</p>
+
+<p>
+  <b>Losses:</b>
+  <%= @standing.losses %>
+</p>
+
+
+<%= link_to 'Edit', edit_standing_path(@standing) %> |
+<%= link_to 'Back', standings_path %>

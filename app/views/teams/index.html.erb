@@ -1,0 +1,85 @@
+<h1>Teams
+<% if @season %>
+for <%= @season.name -%>
+<% end %></h1>
+
+<%= render :partial => 'common/season_select' %>
+
+<% if @logged_in %>
+<table class="bordered">
+  <tr>
+    <th>Name</th>
+    <th>Color</th>
+    <th>Season</th>
+    <th>Pool</th>
+    <th></th>
+    <% if @logged_in %>
+    <th></th>
+    <th></th>
+    <th></th>
+    <% end %>
+  </tr>
+
+<% for team in @teams %>
+  <tr>
+    <td><%=h team.name %></td>
+    <td><%=h team.color %></td>
+    <td><%=h team.season.name %></td>
+    <td><%=h team.pool.respond_to?('name') ? team.pool.name : nil %></td>
+    <td>
+      <%= link_to 'Players', :controller => :players, :team_id => team.id %>
+    </td>
+    <% if @logged_in %>
+    <td>
+      <%= link_to 'Show', [team.season, team] -%>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_season_team_path(team.season, team) -%>
+    </td>
+    <td><%= link_to 'Destroy', [team.season, team], :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% else %>
+
+<table border="0" width="80%">
+<tr valign='top'>
+  <% i = 0 %>
+  <% size = @teams.size == 6 ? 33 : 25 %>
+  <% for team in @teams %>
+    <td width="<%= size %>%">
+    <table class="bordered" width="100%">
+    <tr>
+      <th><%=h team.name %> (<%=h team.color %>)</th>
+    </tr>
+    <% for player in team.players %>
+      <tr>
+        <td>
+          <%=h player.name %> <%= player.manager ? "(team manager)" : "" %> <%= player.note ? " <i>#{player.note}</i>" : "" %>
+        </td>
+      </tr> 
+    <% end %>
+    <% unless team.file_name == nil %>
+      <tr><td><%= link_to "Team photo", photo_path(:team_id => team.id) %></td></tr>
+    <% end %>
+  </table>
+  </td>
+  <% i = i + 1 %>
+  <% if i == @teams.size / 2 %>
+  </tr><tr valign='top'>
+  <% end %>
+  <% end %>
+</tr>
+</table>
+
+<% end %>
+
+<% if @season %>
+<% if @logged_in %>
+<%= link_to 'New team', :controller => :teams, :season_id => @season.id, :action => :new %> |
+<% end %>
+<%= link_to 'Back', :controller => :seasons %>
+<% end %>

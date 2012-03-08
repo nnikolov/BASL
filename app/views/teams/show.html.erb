@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @team.name %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @team.color %>
+</p>
+
+<p>
+  <b>Season:</b>
+  <%= @team.season_id %>
+</p>
+
+<p>
+  <b>Pool:</b>
+  <%= @team.pool_id %>
+</p>
+
+<p>
+  <b>Filename:</b>
+  <%= @team.filename %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%= @team.content_type %>
+</p>
+
+<p>
+  <b>File data:</b>
+  <%= @team.file_data %>
+</p>
+
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

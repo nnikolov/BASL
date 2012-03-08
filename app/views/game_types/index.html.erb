@@ -1,0 +1,23 @@
+<h1>Listing game_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @game_types.each do |game_type| %>
+  <tr>
+    <td><%= game_type.name %></td>
+    <td><%= link_to 'Show', game_type %></td>
+    <td><%= link_to 'Edit', edit_game_type_path(game_type) %></td>
+    <td><%= link_to 'Destroy', game_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Game type', new_game_type_path %>

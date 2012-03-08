@@ -1,0 +1,4 @@
+<%= form_tag request.path, :method => 'get' do %>
+<%= collection_select(:season, :id, Season.find(:all, :order => 'start_date'), :id, :name, {:prompt => false}) %>
+<%= submit_tag 'Go' %>
+<% end %>

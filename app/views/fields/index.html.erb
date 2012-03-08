@@ -1,0 +1,33 @@
+<h1>Fields</h1>
+
+<table class="bordered">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Map</th>
+    <% if @logged_in %>
+    <th></th>
+    <th></th>
+    <th></th>
+    <% end %>
+  </tr>
+
+<% for field in @fields %>
+  <tr>
+    <td><%=h field.name %></td>
+    <td><%=h field.code %></td>
+    <td><%= link_to_unless field.map_url == '', 'Map', field.map_url %></td>
+    <% if @logged_in %>
+    <td><%= link_to 'Show', field %></td>
+    <td><%= link_to 'Edit', edit_field_path(field) %></td>
+    <td><%= link_to 'Destroy', field, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if @logged_in %>
+<%= link_to 'New field', new_field_path %>
+<% end %>

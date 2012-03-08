@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @news_byte.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @news_byte.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_news_byte_path(@news_byte) %> |
+<%= link_to 'Back', news_bytes_path %>

@@ -1,0 +1,111 @@
+<h1>Standings
+<% if @season.id %>
+for <%= @season.name %>
+<% end %>
+</h1>
+
+<%= render :partial => 'common/season_select' %>
+
+<h3>Season</h3>
+
+<table class="bordered">
+<tr>
+  <th>Team</th>
+  <th>Points</th>
+  <th>Goal Diff</th>
+  <th>Goals For</th>
+  <th>Goals Against</th>
+  <th>Wins</th>
+  <th>Ties</th>
+  <th>Losses</th>
+</tr>
+<% @season_standings.each do |standing| %>
+<tr>
+  <td><%= standing.team.name %> (<%= standing.team.color %>)</td>
+  <td align="right"><%= standing.points %></td>
+  <td align="right"><%= standing.goal_diff %></td>
+  <td align="right"><%= standing.goals_for %></td>
+  <td align="right"><%= standing.goals_against %></td>
+  <td align="right"><%= standing.wins %></td>
+  <td align="right"><%= standing.ties %></td>
+  <td align="right"><%= standing.losses %></td>
+</tr>
+<% end %>
+</table>
+<p>Regular Season Rankings are calculated in order of most points to least points with the following tie-breakers, in order:</p>
+
+<ul>
+  <li>points</li>
+
+  <li>goal differential (goals for minus goals against) (over the whole season)</li>
+
+  <li>goals for (over the whole season)</li>
+
+  <li>least goals against (over the whole season)</li>
+
+  <li>most wins</li>
+
+  <li>most ties</li>
+
+  <li>least losses</li>
+</ul>
+
+<p>Constitution 2.6.2 - Tie Breaking for first place at the end of the regular season -  If 2 or more teams are still tied for first place at the end of the league season, placement shall be decided by the win, loss, tie record between the tied teams. If this fails to break the tie, goal difference in games between the tied teams shall be used.  If there is still no outright result, goals for in games between the tied teams during the entire league schedule shall be used. If still necessary,  placement will be decided by a penalty shoot-out involving the tied teams.
+<br />Note: this calculation will be performed manually</p>
+
+<h3>Playoffs</h3>
+
+<table class="bordered">
+<tr>
+  <th>Team</th>
+  <th>Pool</th>
+  <th>Points</th>
+  <th>Goal Diff</th>
+  <th>Goals For</th>
+  <th>Goals Against</th>
+  <th>Wins</th>
+  <th>Ties</th>
+  <th>Losses</th>
+</tr>
+<% @playoff_standings.each do |standing| %>
+<tr>
+  <td><%= standing.team.name %> (<%= standing.team.color %>)</td>
+  <td><%= standing.team.pool.respond_to?('name') ? standing.team.pool.name : nil %>
+  <td align="right"><%= standing.points %></td>
+  <td align="right"><%= standing.goal_diff %></td>
+  <td align="right"><%= standing.goals_for %></td>
+  <td align="right"><%= standing.goals_against %></td>
+  <td align="right"><%= standing.wins %></td>
+  <td align="right"><%= standing.ties %></td>
+  <td align="right"><%= standing.losses %></td>
+</tr>
+<% end %>
+</table>
+
+<table border="0" cellspacing="10">
+<tr><th colspan="2">TOURNAMENT SCORING</th></tr>
+<tr><td colspan="2">Teams shall be divided into two pools based on league standings, with teams one three and five in one pool and teams two four and six in the other pool.  Each team plays the other two teams in its pool, plus a crossover game (one vs two, three vs four, and five vs six)</td></tr>
+<tr><td></td><td>Teams shall be awarded points for match results as follows:</td></tr>
+<tr><td valign="top">A.</td><td>(6) points for each win. (0) points for each loss.</td></tr>
+<tr><td></td><td>(3) points for each tie. (1) point for each shutout win.</td></tr>
+<tr><td></td><td>(1) point for each goal scored, up to (3) maximum, regardless of win, tie or loss.</td></tr>
+<tr><td valign="top">B.</td><td>For a forfeited match, the winner will be credited with a 1-0 win and awarded (8) points (six for the win, one for the goal and one for the shut-out). A team abandoned by another team during a match will be awarded at least (8) points. The results of that match shall be based on the score at the time of the abandonment. No points for team abandoning the match.</td></tr>
+<tr><td valign="top">C.</td><td>No points will be awarded/deducted if neither team shows up or for cards shown in the tournament.</td></tr>
+<tr><td valign="top">D.</td><td>Any team leaving the field prior to determination of a winner shall forfeit the match.</td></tr>
+<tr><td valign="top">E.</td><td>A match is considered official upon completion of one half of play regardless of the circumstances of termination during the second half with final results based on the score at termination.</td></tr>
+<tr><td valign="top">F.</td><td>Final standings for the pool will be determined by the total number of points accumulated during pool play.
+</td></tr>
+</table>
+<table border="0" cellspacing="10">
+<tr><th colspan="2">TIE BREAKING WITHIN A POOL</th></tr>
+<tr><td colspan="2">Ties in pool standings will be broken by employing a tiebreaker. If more than two teams are involved in the tie, the first team to move ahead of the remaining teams will be awarded the highest place, and the tiebreakers continued until all ties are broken.</td></tr>
+<tr><td valign="top">A.</td><td>Head to head (if all teams played each other).</td></tr>
+<tr><td valign="top">B.</td><td>Least goals allowed during the tournament.</td></tr>
+<tr><td valign="top">C</td><td>Largest goal differential (max. of plus or minus (4) per match).</td></tr>
+<tr><td valign="top">D.</td><td>Most goals scored (maximum of (4) per match).</td></tr>
+<tr><td valign="top">E.</td><td>FIFA penalty kicks (site and time at the discretion of Tournament Director or held (1/2) hour prior to and at the site of the Championship final. (11) players from a team must be ready to participate within (5) minutes of appointed time or else that team will forfeit its opportunity to prevail in the tie breaker.)</td></tr>
+</table>
+<table border="0" cellspacing="10">
+<tr><th>TIE BREAKING IN CHAMPIONSHIP MATCH</th></tr>
+<tr><td>If the score is still tied at the conclusion of overtime play in the Championship final, both teams will take penalty kicks as described by FIFA until a winner is determined.  Only the eleven players on the field at the conclusion of overtime may participate. (Center Referee will gather all the players on the field at the end of the second overtime period and not allow them to go to their respective sidelines. They are the players who will shoot the PK's</td></tr>
+</table>

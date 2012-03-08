@@ -1,0 +1,28 @@
+<table border="0" cellspacing="0" cellpadding="5">
+
+<% for news_byte in @news_bytes %>
+  <tr>
+    <th align="left" class="news_byte_title"><%=h news_byte.title %></th>
+  </tr>
+  <tr>
+    <td class="news_byte"><%=h news_byte.title %><%= raw RedCloth.new( news_byte.body ).to_html %></td>
+    <% if @logged_in %>
+    <td><%= link_to 'Show', news_byte %></td>
+    <td><%= link_to 'Edit', edit_news_byte_path(news_byte) %></td>
+    <td><%= link_to 'Destroy', news_byte, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td align="left"><div class="news_timestamp">Posted on <%=h news_byte.created_at.strftime("%B %d, %Y") %></div></td>
+  </tr>
+  <tr>
+    <th align="left">&nbsp;</th>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if @logged_in %>
+<%= link_to_unless @logged_in.nil?, 'New news_byte', new_news_byte_path %>
+<% end %>

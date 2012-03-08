@@ -1,0 +1,25 @@
+<h1>Games
+<% if @season.id %>
+for <%= @season.name %>
+<% end %>
+</h1>
+
+<%= link_to "Edit", edit_season_game_path(@season, @season.games[0]), :remote => true %>
+<%= link_to 'New Game', new_season_game_path(@season), :remote => true %>
+
+<%= render :partial => 'common/season_select' %>
+
+<div id="games">
+  <%= render(:partial => "games", :object => @games) %>
+</div>
+
+<br />
+
+<% if @season %>
+<div id="new_game"></div>
+<% if @logged_in %>
+<%= link_to "New game", :remote => true, :update => "new_game", :url => {:action => "new", :season_id => @season.id} %> |
+<% end %>
+<%= link_to 'Back', :controller => :seasons %>
+<% end %>
+
