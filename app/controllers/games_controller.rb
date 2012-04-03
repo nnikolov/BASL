@@ -43,6 +43,15 @@ class GamesController < ApplicationController
     end
   end
 
+  def cancel_edit
+    @game = Game.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # POST /games
   # POST /games.xml
   def create
