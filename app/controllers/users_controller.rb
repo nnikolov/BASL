@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout "application"
-  verify :session => :login, :add_flash => { :notice => "You must login first." }, :redirect_to => { :controller => :news_bytes, :action => :index }
+  before_filter :is_logged_in?
 
   # GET /users
   # GET /users.xml
@@ -43,10 +43,17 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    logged_in = User.find_by_login(session[:login])
     @user = User.new(params[:user])
 
     respond_to do |format|
-      if @user.save
+      if logged_in.active and logged_in.admin and @user.save
+        @user.set_password(params[:user][:password])
+        @user.admin = params[:user][:admin]
+        @user.active = params[:user][:active]
+        @user.created_by_id = logged_in.id
+        @user.updated_by_id = logged_in.id
+        @user.save
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
@@ -63,7 +70,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user], session[:login])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
@@ -84,5 +91,11 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def is_logged_in?
+    redirect_to(news_bytes_path, :alert => "You must login first.") unless session[:login]
   end
 end
