@@ -34,7 +34,7 @@ Basl::Application.routes.draw do
 
   match 'authenticate' => 'login#authenticate'
 
-  match 'teams/:team_id/photo' => 'team#photo', :as => :photo
+  match 'teams/:team_id/photo' => 'teams#photo', :as => :photo
 
 
   # The priority is based upon order of creation:

@@ -1,4 +1,4 @@
-<%= form_for(@team) do |f| %>
+<%= form_for(@team, :url => season_team_path(@team.season_id, @team)) do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -21,23 +21,15 @@
   </div>
   <div class="field">
     <%= f.label :season_id %><br />
-    <%= f.text_field :season_id %>
+    <%= f.select "season_id", Season.all.collect {|s| [s.name, s.id]} %>
   </div>
   <div class="field">
     <%= f.label :pool_id %><br />
-    <%= f.text_field :pool_id %>
+    <%= f.select "pool_id", Pool.all.collect {|p| [p.name, p.id]} %>
   </div>
   <div class="field">
-    <%= f.label :filename %><br />
-    <%= f.text_field :filename %>
-  </div>
-  <div class="field">
-    <%= f.label :content_type %><br />
-    <%= f.text_field :content_type %>
-  </div>
-  <div class="field">
-    <%= f.label :file_data %><br />
-    <%= f.text_field :file_data %>
+    <%= f.label "Upload photo" %><br />
+    <%= f.file_field :photo %>
   </div>
   <div class="actions">
     <%= f.submit %>

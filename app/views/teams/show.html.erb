@@ -12,29 +12,19 @@
 
 <p>
   <b>Season:</b>
-  <%= @team.season_id %>
+  <%= @team.season.name %>
 </p>
 
 <p>
   <b>Pool:</b>
-  <%= @team.pool_id %>
+  <%= @team.pool.name %>
 </p>
 
 <p>
-  <b>Filename:</b>
-  <%= @team.filename %>
-</p>
-
-<p>
-  <b>Content type:</b>
-  <%= @team.content_type %>
-</p>
-
-<p>
-  <b>File data:</b>
-  <%= @team.file_data %>
+  <b>Photo:</b>
+  <%= link_to @team.file_name, photo_path(:team_id => @team.id) %>
 </p>
 
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Edit', edit_season_team_path(@team.season_id, @team) %> |
+<%= link_to 'Back', season_teams_path(@team.season_id) %>

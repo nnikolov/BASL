@@ -57,10 +57,19 @@ class TeamsController < ApplicationController
   # PUT /teams/1.xml
   def update
     @team = Team.find(params[:id])
+    if params[:team][:photo] && !params[:team][:photo].blank? then
+      params[:team][:file_name] = params[:team][:photo].original_filename
+      params[:team][:content_type] = params[:team][:photo].content_type.chomp
+      params[:team][:file_data] = params[:team][:photo].read
+      File.open( "app/assets/images/#{params[:team][:photo].original_filename}".to_s, 'w' ) do |file|
+        file.write( params[:team][:file_data] )
+      end
+      params[:team].delete('photo')
+    end
 
     respond_to do |format|
       if @team.update_attributes(params[:team])
-        format.html { redirect_to(@team, :notice => 'Team was successfully updated.') }
+        format.html { redirect_to(season_team_path(@team.season, @team), :notice => 'Team was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -79,5 +88,10 @@ class TeamsController < ApplicationController
       format.html { redirect_to(teams_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def photo
+    team = Team.find(params[:team_id])
+    send_data(team.file_data, :filename => team.file_name, :type => team.content_type, :disposition => "inline")
   end
 end
