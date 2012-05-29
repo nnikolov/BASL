@@ -25,6 +25,7 @@ class GamesController < ApplicationController
   # GET /games/new.xml
   def new
     @game = Game.new
+    @game.season_id = params[:season_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,6 +51,9 @@ class GamesController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def cancel_new
   end
 
   # POST /games

@@ -1,2 +1,1 @@
-$('#replace').html("<h1>bbb</h1>");
-
+$("#new_game").html( "<%= escape_javascript( render( :partial => "new", :locals => { :game => @game} ) ) %>" );
