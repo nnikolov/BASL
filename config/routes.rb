@@ -10,7 +10,7 @@ Basl::Application.routes.draw do
 
   resources :pools
 
-  resources :players
+  #resources :players
 
   resources :news_bytes
 
@@ -36,6 +36,7 @@ Basl::Application.routes.draw do
 
   match 'teams/:team_id/photo' => 'teams#photo', :as => :photo
 
+  match 'teams/:team_id/players' => 'players#index', :as => :players
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -58,7 +58,10 @@ for <%= @season.name -%>
     <% for player in team.players %>
       <tr>
         <td>
-          <%=h player.name %> <%= player.manager ? "(team manager)" : "" %> <%= player.note ? " <i>#{player.note}</i>" : "" %>
+          <%=h player.name %> <%= player.manager ? "(team manager)" : "" %> 
+          <% if player.note and !player.note.empty?%>
+            <i><%= player.note %></i>
+          <% end %>
         </td>
       </tr> 
     <% end %>

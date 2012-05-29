@@ -19,9 +19,9 @@
     <td><%= player.manager %></td>
     <td><%= player.active %></td>
     <td><%= player.note %></td>
-    <td><%= link_to 'Show', player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', players_path(player.team_id, player) %></td>
+    <td><%= link_to 'Edit', edit_players_path(player.team_id, player) %></td>
+    <td><%= link_to 'Destroy', team_player_path(player.team_id, player), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
