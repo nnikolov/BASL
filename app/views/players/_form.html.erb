@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :team_id %><br />
-    <%= f.text_field :team_id %>
+    <%= f.select("team_id", Team.where(:season_id => @player.team.season_id).collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => false}) %>
   </div>
   <div class="field">
     <%= f.label :manager %><br />

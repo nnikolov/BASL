@@ -7,7 +7,7 @@
 
 <p>
   <b>Team:</b>
-  <%= @player.team_id %>
+  <%= @player.team.name %> (<%= @player.team.color %>)
 </p>
 
 <p>
@@ -27,4 +27,4 @@
 
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Back', players_path %>
+<%= link_to 'Back', players_path(@player.team_id) %>

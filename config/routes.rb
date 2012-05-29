@@ -10,7 +10,7 @@ Basl::Application.routes.draw do
 
   resources :pools
 
-  #resources :players
+  resources :players
 
   resources :news_bytes
 
