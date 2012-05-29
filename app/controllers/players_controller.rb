@@ -25,6 +25,8 @@ class PlayersController < ApplicationController
   # GET /players/new.xml
   def new
     @player = Player.new
+    @player.team_id = params[:team_id]
+    @player.active = true
 
     respond_to do |format|
       format.html # new.html.erb
@@ -73,10 +75,11 @@ class PlayersController < ApplicationController
   # DELETE /players/1.xml
   def destroy
     @player = Player.find(params[:id])
+    team_id = @player.team_id
     @player.destroy
 
     respond_to do |format|
-      format.html { redirect_to(players_url) }
+      format.html { redirect_to(team_players_url(team_id)) }
       format.xml  { head :ok }
     end
   end

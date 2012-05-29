@@ -36,7 +36,9 @@ Basl::Application.routes.draw do
 
   match 'teams/:team_id/photo' => 'teams#photo', :as => :photo
 
-  match 'teams/:team_id/players' => 'players#index', :as => :players
+  match 'teams/:team_id/players' => 'players#index', :as => :team_players
+
+  match 'teams/:team_id/new_player' => 'players#new', :as => :new_team_player
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
