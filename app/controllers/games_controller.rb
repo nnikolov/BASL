@@ -54,6 +54,9 @@ class GamesController < ApplicationController
   end
 
   def cancel_new
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /games
