@@ -26,6 +26,7 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
     @game.season_id = params[:season_id]
+    @game.time = Time.now - Time.now.strftime("%M").to_i.minutes
 
     respond_to do |format|
       format.html # new.html.erb
