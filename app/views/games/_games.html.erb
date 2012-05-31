@@ -13,10 +13,10 @@
     <th></th>
     <% end %>
   </tr>
-  <% last_game_date = Date.today %>
+  <% last_game_date = nil %>
   <% tr_class = "odd_line" %>
   <% @games.each do |game| %>
-    <% tr_class = cycle("odd_line","even_line") unless game.time.to_date.to_s == last_game_date.to_date.to_s %>
+    <% tr_class = cycle("odd_line","even_line") unless last_game_date == nil or game.time.to_date.to_s == last_game_date.to_date.to_s %>
     <tr class="<%= tr_class %>" id="game_<%= game.id %>">
       <%= render :partial => "display_game", :object => game %>
     </tr>
