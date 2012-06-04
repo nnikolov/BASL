@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
     else
       @season = Season.find(:first, :conditions => ["current = ?", 1])
     end
+    rescue
+      @season = Season.find(:first, :conditions => ["current = ?", 1])
   end
 
 end

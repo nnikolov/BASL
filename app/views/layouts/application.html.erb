@@ -13,9 +13,11 @@
 <ul>
 <li><%= link_to "News", :controller => :news_bytes %></li>
 <li><%= link_to "Seasons", :controller => :seasons %></li>
+<% unless @season.id.blank? %>
 <li><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></li>
 <li><%= link_to "Games", season_games_path(:season_id => @season.id) %></li>
 <li><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></li>
+<% end %>
 <li><%= link_to "Fields", :controller => :fields %></li>
 <% if @logged_in %>
 <li><%= link_to "Game Types", :controller => :game_types %></li>
