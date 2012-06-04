@@ -32,7 +32,7 @@
     <td><%= f.select("game_type_id", GameType.find(:all).collect {|g| [g.name, g.id]}, {:include_blank => false}) %></td>
   </tr>
   <tr>
-    <td align="right"><%= f.submit "Update" %></td><td><%= link_to "Cancel", cancel_new_path, :remote => true %></td>
+    <td align="right"><%= f.submit "Create" %></td><td><%= link_to "Cancel", cancel_new_path, :remote => true %></td>
   </tr>
   </table>
 <% end %>
