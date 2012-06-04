@@ -1,4 +1,4 @@
-<%= form_for(@game, :url => season_game_path(@game.season, @game)) do |f| %>
+<%= form_for([@game.season, @game]) do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :home_team_id %><br />
-    <%= f.select("home_team_id", Season.find(params[:season_id]).teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => false}) %>
+    <%= f.select("home_team_id", Season.find(params[:season_id]).teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %>
   </div>
   <div class="field">
     <%= f.label :home_team_score %><br />
@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :away_team_id %><br />
-    <%= f.select("away_team_id", Season.find(params[:season_id]).teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => false}) %>
+    <%= f.select("away_team_id", Season.find(params[:season_id]).teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %>
   </div>
   <div class="field">
     <%= f.label :away_team_score %><br />

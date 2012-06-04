@@ -68,7 +68,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to(season_games_path(@game.season_id), :notice => 'Game was successfully created.') }
+        format.html { redirect_to(season_game_path(@game.season_id, @game), :notice => 'Game was successfully created.') }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
       else
         format.html { render :action => "new" }
