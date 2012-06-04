@@ -1,4 +1,4 @@
-<%= form_for(@game, :url => season_games_path(@game.season_id, @game), :html => {:autocomplete => 'off'}) do |f| %>
+<%= form_for(@game, :remote => true, :url => season_games_path(@game.season_id, @game), :html => {:autocomplete => 'off'}) do |f| %>
 
   <table class="bordered">
   <tr>

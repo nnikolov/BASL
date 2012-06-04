@@ -65,11 +65,13 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params[:game])
     @game.season_id = params[:season_id]
+    @games = Game.where(:season_id => @game.season_id)
 
     respond_to do |format|
       if @game.save
         format.html { redirect_to(season_game_path(@game.season_id, @game), :notice => 'Game was successfully created.') }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
