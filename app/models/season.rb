@@ -1,6 +1,6 @@
 class Season < ActiveRecord::Base
   has_many :teams
-  has_many :games
+  has_many :games, :order => "time"
 
   def before_save
     if self.current # Set all other seasons to not current
