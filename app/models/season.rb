@@ -1,5 +1,5 @@
 class Season < ActiveRecord::Base
-  has_many :teams
+  has_many :teams, :order => "name"
   has_many :games, :order => "time"
 
   def before_save
