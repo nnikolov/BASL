@@ -100,7 +100,7 @@ class GamesController < ApplicationController
     @game.destroy
 
     respond_to do |format|
-      format.html { redirect_to(games_url) }
+      format.html { redirect_to(season_games_path(params[:season_id])) }
       format.xml  { head :ok }
     end
   end
