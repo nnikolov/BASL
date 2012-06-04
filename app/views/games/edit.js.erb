@@ -1,1 +1,3 @@
+$( "#game_<%= @game.id %>").hide();
 $( "#game_<%= @game.id %>").html( "<%= escape_javascript( render( :partial => "edit", :locals => { :game => @game} ) ) %>" );
+$( "#game_<%= @game.id %>").fadeIn('slow', function() {});
