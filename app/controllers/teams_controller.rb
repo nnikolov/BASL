@@ -30,6 +30,7 @@ class TeamsController < ApplicationController
   # GET /teams/new.xml
   def new
     @team = Team.new
+    @team.season_id = params[:season_id]
 
     respond_to do |format|
       format.html # new.html.erb
