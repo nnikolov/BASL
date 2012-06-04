@@ -86,6 +86,7 @@ class GamesController < ApplicationController
       if @game.update_attributes(params[:game])
         format.html { redirect_to(season_games_path(@game.season_id), :notice => 'Game was successfully updated.') }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }

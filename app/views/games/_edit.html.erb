@@ -1,6 +1,6 @@
 <td><%= @game.id %></td>
 <td colspan="9">
-<%= form_for(@game, :url => season_game_path(@game.season, @game), :html => {:autocomplete => 'off'}) do |f| %>
+<%= form_for(@game, :remote => true, :url => season_game_path(@game.season, @game), :html => {:autocomplete => 'off'}) do |f| %>
 
   <table class="bordered">
   <tr>
