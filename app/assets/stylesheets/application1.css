@@ -1,5 +1,7 @@
 .news_byte_title {
   //color: #666;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
   color:#211d1f;
   background:lightblue;
   font-size:1.9em;
@@ -7,8 +9,15 @@
   font-weight:normal;
 }
 
+.news_byte_footer {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background:lightblue;
+}
+
 .news_byte {
   color: #666;
+  border:1px solid lightblue;
 }
 
 .news_timestamp {
