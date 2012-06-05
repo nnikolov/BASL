@@ -2,7 +2,7 @@ class FieldsController < ApplicationController
   # GET /fields
   # GET /fields.xml
   def index
-    @fields = Field.all
+    @fields = Field.order('name')
 
     respond_to do |format|
       format.html # index.html.erb
