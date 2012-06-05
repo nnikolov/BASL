@@ -15,7 +15,7 @@
 <% @players.each do |player| %>
   <tr>
     <td<%= raw(' class="manager"') if player.manager -%>><%= player.name %></td>
-    <td><%= player.team.name %> (<%= player.team.color %>)</td>
+    <td><%= player.team.display %></td>
     <td><%= player.manager %></td>
     <td><%= player.active %></td>
     <td><%= player.note %></td>

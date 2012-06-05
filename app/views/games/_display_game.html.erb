@@ -3,13 +3,13 @@
   <td><%=h link_to_unless display_game.field.map_url.blank?, display_game.field.name, display_game.field.map_url %></td>
   <td>
     <% if display_game.home_team.respond_to?('name') %>
-      <%=h display_game.home_team.name %> (<%=h display_game.home_team.color %>)
+      <%=h display_game.home_team.display %>
     <% end %>
   </td>
   <td><%=h display_game.home_team_score %></td>
   <td>
     <% if display_game.home_team.respond_to?('name') %>
-      <%=h display_game.away_team.name %> (<%=h display_game.away_team.color %>)
+      <%=h display_game.away_team.display %>
     <% end %>
   </td>
   <td><%=h display_game.away_team_score %></td>

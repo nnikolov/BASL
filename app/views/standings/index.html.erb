@@ -21,7 +21,7 @@ for <%= @season.name %>
 </tr>
 <% @season_standings.each do |standing| %>
 <tr>
-  <td><%= standing.team.name %> (<%= standing.team.color %>)</td>
+  <td><%= standing.display %></td>
   <td align="right"><%= standing.points %></td>
   <td align="right"><%= standing.goal_diff %></td>
   <td align="right"><%= standing.goals_for %></td>
@@ -69,7 +69,7 @@ for <%= @season.name %>
 </tr>
 <% @playoff_standings.each do |standing| %>
 <tr>
-  <td><%= standing.team.name %> (<%= standing.team.color %>)</td>
+  <td><%= standing.team.display %></td>
   <td><%= standing.team.pool.respond_to?('name') ? standing.team.pool.name : nil %>
   <td align="right"><%= standing.points %></td>
   <td align="right"><%= standing.goal_diff %></td>

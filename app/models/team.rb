@@ -3,6 +3,12 @@ class Team < ActiveRecord::Base
   belongs_to :pool
   has_many :players, :order => :name, :conditions => ["active = true"]
 
+  def display
+    return color if name.blank?
+    return name if color.blank?
+    "#{name} (#{color})"
+  end
+
   def games
     Game.find(:all, :conditions => ["home_team_id = ? or away_team_id = ?", id, id])
   end

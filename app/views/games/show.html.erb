@@ -18,7 +18,7 @@
 <p>
   <b>Home team:</b>
   <% unless @game.home_team.blank? %>
-  <%= @game.home_team.name %> (<%= @game.home_team.color %>)
+  <%= @game.home_team.display %>
   <% end %>
 </p>
 
@@ -30,7 +30,7 @@
 <p>
   <b>Away team:</b>
   <% unless @game.away_team.blank? %>
-  <%= @game.away_team.name %> (<%= @game.away_team.color %>)
+  <%= @game.away_team.display %>
   <% end %>
 </p>
 
