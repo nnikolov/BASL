@@ -2,7 +2,7 @@ class SeasonsController < ApplicationController
   # GET /seasons
   # GET /seasons.xml
   def index
-    @seasons = Season.all
+    @seasons = Season.order('start_date')
 
     respond_to do |format|
       format.html # index.html.erb
