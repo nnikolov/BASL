@@ -5,7 +5,7 @@
     <th align="left" class="news_byte_title"><%=h news_byte.title %></th>
   </tr>
   <tr>
-    <td class="news_byte"><%=h news_byte.title %><%= raw RedCloth.new( news_byte.body ).to_html %></td>
+    <td class="news_byte"><%= raw RedCloth.new( news_byte.body ).to_html %></td>
     <% if @logged_in %>
     <td><%= link_to 'Show', news_byte %></td>
     <td><%= link_to 'Edit', edit_news_byte_path(news_byte) %></td>
