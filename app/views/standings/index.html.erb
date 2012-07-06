@@ -21,7 +21,7 @@ for <%= @season.name %>
 </tr>
 <% @season_standings.each do |standing| %>
 <tr>
-  <td><%= standing.display %></td>
+  <td><%= standing.team.display %></td>
   <td align="right"><%= standing.points %></td>
   <td align="right"><%= standing.goal_diff %></td>
   <td align="right"><%= standing.goals_for %></td>
