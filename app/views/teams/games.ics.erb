@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+PRODID:-//ba-soccer.ca//0.0.1//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:UTC
+X-WR-CALDESC:<%= @team.display %> games
+<% @team.games.each do |game| %>
+BEGIN:VEVENT
+CREATED:<%= game.created_at.strftime("%Y%m%dT%H%M%SZ") %>
+DTEND;TZID=America/Montreal:<%= (game.time + 2.hours).strftime("%Y%m%dT%H%M%SZ") %>
+TRANSP:OPAQUE
+SUMMARY:<%= game.home_team.display %> vs. <%= game.away_team.display %> @ <%= game.field.name %>
+DTSTART;TZID=America/Montreal:<%= game.time.strftime("%Y%m%dT%H%M%SZ") %>
+DTSTAMP:<%= Time.now.strftime("%Y%m%dT%H%M%SZ") %>
+END:VEVENT
+<% end %>
+END:VCALENDAR

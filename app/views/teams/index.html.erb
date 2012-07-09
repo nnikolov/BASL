@@ -12,6 +12,7 @@ for <%= @season.name -%>
     <th>Color</th>
     <th>Season</th>
     <th>Pool</th>
+    <th>Calendar</th>
     <th></th>
     <% if @logged_in %>
     <th></th>
@@ -26,6 +27,7 @@ for <%= @season.name -%>
     <td><%=h team.color %></td>
     <td><%=h team.season.name %></td>
     <td><%=h team.pool.respond_to?('name') ? team.pool.name : nil %></td>
+    <td><%= link_to("iCal", team_games_path(team, :format => :ics)) %></td>
     <td>
       <%= link_to 'Players', :controller => :players, :team_id => team.id %>
     </td>

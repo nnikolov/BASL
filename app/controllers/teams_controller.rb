@@ -100,4 +100,14 @@ class TeamsController < ApplicationController
     team = Team.find(params[:team_id])
     send_data(team.file_data, :filename => team.file_name, :type => team.content_type, :disposition => "inline")
   end
+
+  def games
+    @team = Team.find(params[:id])
+
+    respond_to do |format|
+      format.ics # index.ics.erb
+      format.html # index.html.erb
+      format.xml  { render :xml => @teams }
+    end
+  end
 end
