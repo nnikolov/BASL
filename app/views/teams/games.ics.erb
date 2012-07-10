@@ -8,10 +8,10 @@ X-WR-CALDESC:BA Soccer League games schedule for <%= @team.display %>
 <% @team.games.each do |game| %>
 BEGIN:VEVENT
 CREATED:<%= game.created_at.strftime("%Y%m%dT%H%M%SZ") %>
-DTEND:<%= (game.time + 2.hours).strftime("%Y%m%dT%H%M%SZ") %>
+DTEND:<%= (game.time.utc + 2.hours).strftime("%Y%m%dT%H%M%SZ") %>
 TRANSP:OPAQUE
 SUMMARY:<%= game.home_team.display %> vs. <%= game.away_team.display %> @ <%= game.field.name %>
-DTSTART:<%= game.time.strftime("%Y%m%dT%H%M%SZ") %>
+DTSTART:<%= game.time.utc.strftime("%Y%m%dT%H%M%SZ") %>
 DTSTAMP:<%= Time.now.strftime("%Y%m%dT%H%M%SZ") %>
 END:VEVENT
 <% end %>
