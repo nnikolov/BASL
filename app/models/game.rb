@@ -1,4 +1,8 @@
 class Game < ActiveRecord::Base
+  validates :season_id, :presence => true, :numericality => true
+  validates :time, :presence => true
+  validates :field_id, :presence => true
+  validates :game_type_id, :presence => true
   belongs_to :game_type
   belongs_to :season
   belongs_to :field
