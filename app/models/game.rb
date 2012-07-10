@@ -10,8 +10,10 @@ class Game < ActiveRecord::Base
   belongs_to :away_team, :class_name => "Team", :foreign_key => 'away_team_id'
   after_save :clear_standings
 
-  # Force the standings to be recalculated by deleting the current standings.
+  # Force the standings for current season to be recalculated by deleting the current standings.
   def clear_standings
-    Standing.delete_all(["season_id = ? and game_type_id = ?", self.season_id, self.game_type_id])
+    if season.current
+      Standing.delete_all(["season_id = ? and game_type_id = ?", self.season_id, self.game_type_id])
+    end
   end
 end
