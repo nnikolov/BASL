@@ -1,5 +1,8 @@
 .news_byte_th {
+  background: #E8E8E8;
   background: -moz-linear-gradient(-90deg, #FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
+  background: -webkit-linear-gradient(#FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
+  background: linear-gradient(#FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
   border-color: #D3D3D3 #C7C7C7 #C2C2C2;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
