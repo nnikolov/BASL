@@ -2,7 +2,10 @@
 
 <% for news_byte in @news_bytes %>
   <tr>
-    <th align="left" class="news_byte_title"><%=h news_byte.title %></th>
+    <th class="news_byte_th" align="left">
+    <div><div class="news_byte_title"><%=h news_byte.title %></div>
+    <div class="news_byte_time"><%=h time_ago_in_words news_byte.created_at %> ago</div></div>
+    </th>
   </tr>
   <tr>
     <td class="news_byte"><%= raw RedCloth.new( news_byte.body ).to_html %></td>
@@ -11,9 +14,6 @@
     <td><%= link_to 'Edit', edit_news_byte_path(news_byte) %></td>
     <td><%= link_to 'Destroy', news_byte, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-  </tr>
-  <tr>
-    <td align="left" class="news_byte_footer"><div class="news_timestamp"><%=h time_ago_in_words news_byte.created_at %> ago</div></td>
   </tr>
   <tr>
     <th align="left">&nbsp;</th>
