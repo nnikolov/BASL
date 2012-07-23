@@ -7,7 +7,7 @@
 
 <p>
   <b>Body:</b>
-  <%= @news_byte.body %>
+  <%= raw RedCloth.new( @news_byte.body ).to_html %>
 </p>
 
 
