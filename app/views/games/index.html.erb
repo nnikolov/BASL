@@ -4,7 +4,22 @@ for <%= @season.name %>
 <% end %>
 </h1>
 
+<table>
+<tr>
+<td>
 <%= render :partial => 'common/season_select' %>
+</td>
+<td>
+<form>
+<!-- BG include this -->
+Show Team: <select id="showTeam" name="showTeam">
+<option>All Teams</option>
+</select>
+<!-- end of BG include -->
+</form>
+</td>
+</tr>
+</table>
 
 <div id="games">
   <%= render(:partial => "games", :object => @games) %>
