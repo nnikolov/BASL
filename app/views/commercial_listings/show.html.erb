@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company name:</b>
+  <%= @commercial_listing.company_name %>
+</p>
+
+<p>
+  <b>Player name:</b>
+  <%= @commercial_listing.player_name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @commercial_listing.title %>
+</p>
+
+<p>
+  <b>Business type:</b>
+  <%= @commercial_listing.business_type %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @commercial_listing.telephone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @commercial_listing.email %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @commercial_listing.website %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @commercial_listing.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_commercial_listing_path(@commercial_listing) %> |
+<%= link_to 'Back', commercial_listings_path %>

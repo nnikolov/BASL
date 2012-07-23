@@ -1,0 +1,44 @@
+<h1>Commercial listings</h1>
+
+<table>
+  <tr>
+    <th>Company name</th>
+    <th>Player name</th>
+    <th>Title</th>
+    <th>Business type</th>
+    <th>Contact</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @commercial_listings.each do |commercial_listing| %>
+  <tr>
+    <td><%= commercial_listing.company_name %></td>
+    <td><%= commercial_listing.player_name %></td>
+    <td><%= commercial_listing.title %></td>
+    <td><%= commercial_listing.business_type %></td>
+    <td>
+        <ul>
+        <% unless commercial_listing.telephone.empty? %>
+          <li>Telephone: <%= commercial_listing.telephone %></li>
+        <% end %>
+        <% unless commercial_listing.email.empty? %>
+          <li>Email: <%= commercial_listing.email %></li>
+        <% end %>
+        <% unless commercial_listing.website.empty? %>
+          <li>Website: <%= link_to commercial_listing.website, commercial_listing.website %></li>
+        <% end %>
+    </td>
+    <td><%= commercial_listing.description %></td>
+    <td><%= link_to 'Show', commercial_listing %></td>
+    <td><%= link_to 'Edit', edit_commercial_listing_path(commercial_listing) %></td>
+    <td><%= link_to 'Destroy', commercial_listing, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Commercial listing', new_commercial_listing_path %>

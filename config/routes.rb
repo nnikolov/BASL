@@ -1,5 +1,7 @@
 Basl::Application.routes.draw do
 
+  resources :commercial_listings
+
   get 'games/:id/cancel_edit' => 'games#cancel_edit', :as => :cancel_edit
 
   get 'games/cancel_new' => 'games#cancel_new', :as => :cancel_new
