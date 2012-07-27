@@ -1,4 +1,6 @@
 class NewsBytesController < ApplicationController
+  before_filter :check_authorization, :except => 'index'
+
   # GET /news_bytes
   # GET /news_bytes.xml
   def index

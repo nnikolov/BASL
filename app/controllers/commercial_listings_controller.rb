@@ -6,8 +6,8 @@ class CommercialListingsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @commercial_listings }
-      format.xml { render xml: @commercial_listings }
+      format.json { render :json => @commercial_listings }
+      format.xml { render :xml => @commercial_listings }
     end
   end
 
@@ -18,7 +18,7 @@ class CommercialListingsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @commercial_listing }
+      format.json { render :json => @commercial_listing }
     end
   end
 
@@ -29,7 +29,7 @@ class CommercialListingsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @commercial_listing }
+      format.json { render :json => @commercial_listing }
     end
   end
 
@@ -45,11 +45,11 @@ class CommercialListingsController < ApplicationController
 
     respond_to do |format|
       if @commercial_listing.save
-        format.html { redirect_to @commercial_listing, notice: 'Commercial listing was successfully created.' }
-        format.json { render json: @commercial_listing, status: :created, location: @commercial_listing }
+        format.html { redirect_to @commercial_listing, :notice => 'Commercial listing was successfully created.' }
+        format.json { render :json => @commercial_listing, :status => :created, :location => @commercial_listing }
       else
-        format.html { render action: "new" }
-        format.json { render json: @commercial_listing.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @commercial_listing.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -61,11 +61,11 @@ class CommercialListingsController < ApplicationController
 
     respond_to do |format|
       if @commercial_listing.update_attributes(params[:commercial_listing])
-        format.html { redirect_to @commercial_listing, notice: 'Commercial listing was successfully updated.' }
+        format.html { redirect_to @commercial_listing, :notice => 'Commercial listing was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @commercial_listing.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @commercial_listing.errors, :status => :unprocessable_entity }
       end
     end
   end

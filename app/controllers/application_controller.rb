@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
       @logged_in = User.find_by_login(session[:login])
     end
   end
+
+  def check_authorization
+    redirect_to login_path unless @logged_in
+  end
+
   def set_season
     if params[:season_id]
       session[:season] = params[:season_id]

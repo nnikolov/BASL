@@ -1,4 +1,6 @@
 class RulesController < ApplicationController
+  before_filter :check_authorization, :except => 'index'
+
   # GET /rules
   # GET /rules.xml
   def index

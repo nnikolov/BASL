@@ -1,4 +1,6 @@
 class FieldsController < ApplicationController
+  before_filter :check_authorization, :except => 'index'
+
   # GET /fields
   # GET /fields.xml
   def index
