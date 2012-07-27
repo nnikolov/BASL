@@ -7,7 +7,7 @@ class Standing < ActiveRecord::Base
     conditions = ["season_id = ? and game_type_id = ? and cached = TRUE", params[:season_id], game_type.id]
     standings = self.find(:all, :conditions => conditions, :order => order)
     if standings.size == 0
-      teams = Team.find(:all, :conditions => ["season_id = ?", params[:season_id]])
+      teams = Team.where :season_id => params[:season_id], :active => true
       teams.each do |team|
         standing = self.new
         standing.season_id = params[:season_id]
@@ -35,7 +35,7 @@ class Standing < ActiveRecord::Base
     conditions = ["season_id = ? and game_type_id = ? and cached = TRUE", params[:season_id], game_type.id]
     standings = self.find(:all, :conditions => conditions, :order => order)
     if standings.size == 0
-      teams = Team.find(:all, :conditions => ["season_id = ?", params[:season_id]])
+      teams = Team.where :season_id => params[:season_id], :active => true
       teams.each do |team|
         standing = self.new
         standing.season_id = params[:season_id]

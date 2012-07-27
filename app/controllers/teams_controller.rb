@@ -2,7 +2,11 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.xml
   def index
-    @teams = @season.teams #Team.all
+    if @logged_in
+      @teams = @season.teams #Team.all
+    else
+      @teams = Team.where(:active => true, :season_id => @season.id)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

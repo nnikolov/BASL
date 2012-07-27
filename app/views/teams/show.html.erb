@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <b>Active:</b>
+  <%= @team.active %>
+</p>
+
+<p>
   <b>Photo:</b>
   <%= link_to @team.file_name, photo_path(:team_id => @team.id) %>
 </p>
