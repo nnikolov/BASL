@@ -1,4 +1,6 @@
 class CommercialListingsController < ApplicationController
+  before_filter :check_authorization, :except => 'index'
+
   # GET /commercial_listings
   # GET /commercial_listings.json
   def index

@@ -32,9 +32,11 @@
         <% end %>
     </td>
     <td><%= commercial_listing.description %></td>
+    <% if @logged_in %>
     <td><%= link_to 'Show', commercial_listing %></td>
     <td><%= link_to 'Edit', edit_commercial_listing_path(commercial_listing) %></td>
-    <td><%= link_to 'Destroy', commercial_listing, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', commercial_listing, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

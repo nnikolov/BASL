@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :check_authorization
   layout "application"
-  before_filter :is_logged_in?
 
   # GET /users
   # GET /users.xml
@@ -93,9 +93,4 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def is_logged_in?
-    redirect_to(news_bytes_path, :alert => "You must login first.") unless session[:login]
-  end
 end

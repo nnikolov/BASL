@@ -1,4 +1,6 @@
 class PoolsController < ApplicationController
+  before_filter :check_authorization
+
   # GET /pools
   # GET /pools.xml
   def index
