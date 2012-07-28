@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727145104) do
+ActiveRecord::Schema.define(:version => 20120728043138) do
 
   create_table "commercial_listings", :force => true do |t|
     t.string   "company_name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120727145104) do
     t.string   "map_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "location"
   end
 
   create_table "game_types", :force => true do |t|

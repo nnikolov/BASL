@@ -13,6 +13,7 @@ TRANSP:OPAQUE
 SUMMARY:<%= game.home_team.display %> vs. <%= game.away_team.display %> @ <%= game.field.name %>
 DTSTART:<%= game.time.utc.strftime("%Y%m%dT%H%M%SZ") %>
 DTSTAMP:<%= Time.now.strftime("%Y%m%dT%H%M%SZ") %>
+LOCATION:<%= game.field.location %>
 END:VEVENT
 <% end %>
 END:VCALENDAR

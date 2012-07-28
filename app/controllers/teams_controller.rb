@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_filter :check_authorization, :except => 'index'
+  before_filter :check_authorization, :except => ['index', 'games']
 
   # GET /teams
   # GET /teams.xml
