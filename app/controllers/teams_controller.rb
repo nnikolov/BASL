@@ -70,11 +70,12 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if params[:team][:photo] && !params[:team][:photo].blank? then
-      params[:team][:file_name] = params[:team][:photo].original_filename
+      filename = sanitize_filename "teams_#{params[:id]}_#{params[:team][:photo].original_filename}"
+      params[:team][:file_name] = filename
       params[:team][:content_type] = params[:team][:photo].content_type.chomp
-      params[:team][:file_data] = params[:team][:photo].read
-      File.open( "app/assets/images/#{params[:team][:photo].original_filename}".to_s, 'w' ) do |file|
-        file.write( params[:team][:file_data] )
+      #params[:team][:file_data] = params[:team][:photo].read
+      File.open( "#{Rails.root}/public/images/#{filename}".to_s, 'wb' ) do |file|
+        file.write( params[:team][:photo].read )
       end
       params[:team].delete('photo')
     end
@@ -116,4 +117,24 @@ class TeamsController < ApplicationController
       format.xml  { render :xml => @teams }
     end
   end
+
+  private
+
+  def sanitize_filename(filename)
+    # Split the name when finding a period which is preceded by some
+    # character, and is followed by some character other than a period,
+    # if there is no following period that is followed by something
+    # other than a period (yeah, confusing, I know)
+    #fn = filename.split /(?<=.)\.(?=[^.])(?!.*\.[^.])/m
+    fn = filename.split(".")
+  
+    # We now have one or two parts (depending on whether we could find
+    # a suitable period). For each of these parts, replace any unwanted
+    # sequence of characters with an underscore
+    fn.map! { |s| s.gsub /[^a-z0-9\-]+/i, '_' }
+  
+    # Finally, join the parts with a period and return the result
+    return fn.join '.'
+  end
+
 end

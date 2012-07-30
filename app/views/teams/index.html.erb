@@ -68,7 +68,7 @@ for <%= @season.name -%>
       </tr> 
     <% end %>
     <% unless team.file_name == nil %>
-      <tr><td><%= link_to "Team photo", photo_path(:team_id => team.id) %></td></tr>
+      <tr><td><%= link_to "Team photo", "/images/#{team.file_name}" %></td></tr>
     <% end %>
   </table>
   </td>

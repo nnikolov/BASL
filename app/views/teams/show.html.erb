@@ -27,7 +27,7 @@
 
 <p>
   <b>Photo:</b>
-  <%= link_to @team.file_name, photo_path(:team_id => @team.id) %>
+  <%= link_to_if @team.file_name, @team.file_name, "/images/#{@team.file_name}" %>
 </p>
 
 
