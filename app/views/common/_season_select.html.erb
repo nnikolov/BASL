@@ -1,4 +1,5 @@
-<%= form_tag request.path, :method => 'get' do %>
+<%= form_tag season_redirect_path, :method => 'post' do %>
 <%= collection_select(:season, :id, Season.find(:all, :order => 'start_date'), :id, :name, {:prompt => false}) %>
+<%= hidden_field_tag 'last_controller', controller_name %>
 <%= submit_tag 'Go' %>
 <% end %>

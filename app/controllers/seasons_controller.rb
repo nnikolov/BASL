@@ -1,5 +1,5 @@
 class SeasonsController < ApplicationController
-  before_filter :check_authorization, :except => 'index'
+  before_filter :check_authorization, :except => ['index', 'redirect']
 
   # GET /seasons
   # GET /seasons.xml
@@ -80,6 +80,19 @@ class SeasonsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(seasons_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def redirect
+    case params[:last_controller]
+    when 'games'
+      redirect_to season_games_path(params[:season][:id].to_i)
+    when 'teams'
+      redirect_to season_teams_path(params[:season][:id].to_i)
+    when 'standings'
+      redirect_to season_standings_path(params[:season][:id].to_i)
+    else
+      redirect_to root_path
     end
   end
 end

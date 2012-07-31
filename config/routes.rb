@@ -1,4 +1,5 @@
 Basl::Application.routes.draw do
+  post 'seasons/redirect' => 'seasons#redirect', :as => :season_redirect
 
   resources :commercial_listings
 
