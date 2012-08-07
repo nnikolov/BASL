@@ -211,5 +211,20 @@ class Team < ActiveRecord::Base
       self.goals_against(game_type) < team.goals_against(game_type) ? 1 : 0
     end
   end
-
+  
+  def calendar(event_url)
+    cal = RiCal.Calendar do |cal|
+      games.each do |game|
+        cal.event do |event|
+          event.summary     = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
+          event.description     = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
+          event.dtstart     = game.time
+          event.dtend       = game.time + 2.hours
+          event.location    = game.field.location.to_s
+          event.url         = event_url
+        end
+      end
+    end
+    cal
+  end
 end
