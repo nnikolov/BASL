@@ -214,10 +214,12 @@ class Team < ActiveRecord::Base
   
   def calendar(event_url)
     cal = RiCal.Calendar do |cal|
+      cal.add_x_property 'X-WR-CALNAME', "#{display} games"
+      cal.add_x_property 'X-WR-CALDESC', "BA Soccer League games schedule for #{display}"
       games.each do |game|
         cal.event do |event|
           event.summary     = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
-          event.description     = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
+          event.description = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
           event.dtstart     = game.time
           event.dtend       = game.time + 2.hours
           event.location    = game.field.location.to_s
