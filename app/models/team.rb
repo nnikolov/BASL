@@ -221,9 +221,10 @@ class Team < ActiveRecord::Base
           event.summary     = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
           event.description = "#{game.home_team.display} vs. #{game.away_team.display} @ #{game.field.name}"
           event.dtstart     = game.time
-          event.dtend       = game.time + 2.hours
+          event.dtend       = game.until || game.time + 1.hour
           event.location    = game.field.location.to_s
           event.url         = event_url
+          event.add_attendee "nrnickolov@gmail.com"
         end
       end
     end

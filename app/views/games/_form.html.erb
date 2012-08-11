@@ -16,8 +16,12 @@
     <%= f.select("season_id", Season.all.collect {|s| [s.name, s.id]}, {:include_blank => false}) %>
   </div>
   <div class="field">
-    <%= f.label :time %><br />
+    <%= f.label :start %><br />
     <%= f.datetime_select :time %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br />
+    <%= f.datetime_select :until %>
   </div>
   <div class="field">
     <%= f.label :field_id %><br />

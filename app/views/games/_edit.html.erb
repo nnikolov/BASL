@@ -4,8 +4,12 @@
 
   <table class="bordered">
   <tr>
-    <td><%= f.label :time %></td>
+    <td><%= f.label :start %></td>
     <td><%= f.datetime_select :time %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :end %></td>
+    <td><%= f.datetime_select :until %></td>
   </tr>
   <tr>
     <td><%= f.label :field_id %></td>
