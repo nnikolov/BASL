@@ -224,7 +224,6 @@ class Team < ActiveRecord::Base
           event.dtend       = game.until || game.time + 1.hour
           event.location    = game.field.location.to_s
           event.url         = event_url
-          event.add_attendee "nrnickolov@gmail.com"
         end
       end
     end
