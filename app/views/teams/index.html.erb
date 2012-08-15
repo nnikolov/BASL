@@ -67,6 +67,7 @@ for <%= @season.name -%>
         </td>
       </tr> 
     <% end %>
+    <tr><td><%= link_to("Calendar", team_games_path(team, :format => :ics)) %></td></tr>
     <% unless team.file_name == nil %>
       <tr><td><%= link_to "Team photo", "/images/#{team.file_name}" %></td></tr>
     <% end %>
