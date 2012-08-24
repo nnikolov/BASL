@@ -12,7 +12,8 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @teams }
+      format.xml  { render :xml => @teams.to_xml(:include => :players)}
+      format.json  { render :json => @teams.to_json(:include => :players) }
     end
   end
 
