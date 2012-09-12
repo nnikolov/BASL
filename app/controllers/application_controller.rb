@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_season
   before_filter :check_authentication
+  before_filter :mobile_device?
 
   def check_authentication
     #unless session[:login] and @logged_in = User.find_by_login(session[:login])
@@ -34,4 +35,7 @@ class ApplicationController < ActionController::Base
       @season = Season.find(:first, :conditions => ["current = ?", 1])
   end
 
+  def mobile_device?
+    @mobile = request.user_agent =~ /Mobile|webOS/ ? true : false
+  end
 end

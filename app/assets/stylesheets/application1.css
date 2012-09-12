@@ -122,3 +122,14 @@ table.bordered td {
   border:1px solid #ccc;padding:2px 4px; 
 }
 
+.left_border {
+  border-left:1px solid #ccc;padding:2px 4px; 
+}
+.right_border {
+  border-right:1px solid #ccc;padding:2px 4px; 
+}
+.sides_and_bottom_border {
+  border-right:1px solid #ccc;padding:2px 4px; 
+  border-bottom:1px solid #ccc;padding:2px 4px; 
+  border-left:1px solid #ccc;padding:2px 4px; 
+}

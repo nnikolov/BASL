@@ -15,12 +15,14 @@ class CommercialListingsController < ApplicationController
 
   # GET /commercial_listings/1
   # GET /commercial_listings/1.json
+  # GET /commercial_listings/1.vcard
   def show
     @commercial_listing = CommercialListing.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @commercial_listing }
+      format.vcard # show.vcard.erb
     end
   end
 

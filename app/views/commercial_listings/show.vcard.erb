@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:4.0
+FN: <%= @commercial_listing.player_name %>
+ORG:<%= raw @commercial_listing.company_name %>
+TITLE:<%= @commercial_listing.title %>
+TEL;TYPE="work,voice";VALUE=uri:tel:<%= @commercial_listing.telephone %>
+EMAIL:<%= @commercial_listing.email %>
+URL:<%= @commercial_listing.website %>
+NOTE:<%= @commercial_listing.description %>
+REV:<%= @commercial_listing.updated_at.strftime("%Y%m%dT%H%M%SZ") %>
+END:VCARD
