@@ -4,7 +4,7 @@ class CommercialListingsController < ApplicationController
   # GET /commercial_listings
   # GET /commercial_listings.json
   def index
-    @commercial_listings = CommercialListing.all
+    @commercial_listings = CommercialListing.order(:player_name).all
 
     respond_to do |format|
       format.html # index.html.erb
