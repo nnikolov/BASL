@@ -30,7 +30,9 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2" class="sides_and_bottom_border"><%= commercial_listing.description %></td>
+    <td colspan="2" class="sides_and_bottom_border"><%= commercial_listing.description %>
+   <br /><br /><%= link_to 'vcard', commercial_listing_path(commercial_listing, :format => :vcard) %>
+    </td>
   </tr>
 <% end %>
 </table>
