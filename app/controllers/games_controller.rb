@@ -1,6 +1,14 @@
 class GamesController < ApplicationController
   before_filter :check_authorization, :except => 'index'
 
+
+  # POST /games/1/update_game_duration
+  def update_game_duration
+    season = Season.find(params[:id])
+    season.games.collect {|g| g.until = g.time + params[:duration].to_i.hours; g.save}
+    redirect_to season_games_path(season)
+  end
+
   # GET /games
   # GET /games.xml
   def index

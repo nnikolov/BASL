@@ -1,4 +1,6 @@
 Basl::Application.routes.draw do
+  post 'seasons/:id/update_game_duration' => 'games#update_game_duration', :as => :update_game_duration
+
   post 'seasons/redirect' => 'seasons#redirect', :as => :season_redirect
 
   resources :commercial_listings

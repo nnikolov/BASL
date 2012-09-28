@@ -30,7 +30,14 @@ Show Team: <select id="showTeam" name="showTeam">
 <% if @season %>
 <div id="new_game"></div>
 <% if @logged_in %>
-<%= link_to 'New Game', new_season_game_path(@season), :remote => true %> |
+<%= link_to 'New Game', new_season_game_path(@season), :remote => true %> 
+
+<%= form_tag update_game_duration_path(@season) do %>
+  Update duration of all games of this season to 
+  <%= select_tag :duration, options_for_select([['One hour', 1], ['Two hours', 2]]) %>
+  <%= submit_tag 'Update' %> 
+<% end %>
+
 <% end %>
 <%= link_to 'Back', :controller => :seasons %>
 <% end %>
