@@ -25,7 +25,7 @@
 <li><%= link_to "Users", users_path %></li>
 <% end %>
 <li><%= link_to "Constitution", "/assets/BASL_Constitution_as_amended_feb2009.pdf" %></li>
-<li><%= link_to "Discipline procedures", "/assets/DisciplineProcedures_vMarch2009.pdf" %></li>
+<li><%= link_to "Discipline procedures", "/assets/DisciplineProcedures_vSep2012.pdf" %></li>
 <li><%= link_to "Rules", rules_path %></li>
 <li><%= link_to "Law 4", "/assets/Law_4_Memo_Ontario.pdf" %></li>
 <li><%= link_to "Law 11", "/assets/Law_11___OFFSIDE-inserts.pdf" %></li>
@@ -34,8 +34,8 @@
 <li><%= link_to "GSA Web Site", "http://www.gloucesterhornets.ca/" %></li>
 <li><%= link_to "Blackburn Arms Pub", "http://www.blackburnarms.com/" %></li>
 <li><%= link_to "Contact Us", "mailto:info@ba-soccer.ca" %></li>
-<li><%= link_to "Directory", commercial_listings_path %></li>
 <% if @logged_in %>
+<li><%= link_to "Directory", commercial_listings_path %></li>
 <li><%= link_to "Logout", logout_path %></li>
 <% else %>
 <li><%= link_to "Login", login_path %></li>
