@@ -1,5 +1,5 @@
   <td><%=h display_game.id %></td>
-  <td><%=h display_game.time.to_s(:short) %></td>
+  <td><%=h display_game.game_time %></td>
   <td><%=h link_to_unless display_game.field.map_url.blank?, display_game.field.name, display_game.field.map_url %></td>
   <td>
     <% if display_game.home_team.respond_to?('name') %>

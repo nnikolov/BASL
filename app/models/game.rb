@@ -16,4 +16,13 @@ class Game < ActiveRecord::Base
       Standing.delete_all(["season_id = ? and game_type_id = ?", self.season_id, self.game_type_id])
     end
   end
+
+  def game_time
+    begin
+      game_end = time.strftime("%Y%m%d") == self.until.strftime("%Y%m%d") ? self.until.strftime("%H:%M") : self.until.to_s(:short)
+      " #{time.to_s(:short)} - #{game_end}" 
+    rescue
+      time.to_s(:short) 
+    end
+  end
 end
