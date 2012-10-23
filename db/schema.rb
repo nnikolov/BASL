@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810235612) do
+ActiveRecord::Schema.define(:version => 20121023025731) do
 
   create_table "commercial_listings", :force => true do |t|
     t.string   "company_name"
@@ -139,8 +139,9 @@ ActiveRecord::Schema.define(:version => 20120810235612) do
     t.integer  "pool_id"
     t.string   "file_name"
     t.string   "content_type"
-    t.binary   "file_data",    :limit => 16777215
-    t.boolean  "active",                           :default => true
+    t.binary   "file_data",     :limit => 16777215
+    t.boolean  "active",                            :default => true
+    t.text     "photo_caption"
   end
 
   create_table "users", :force => true do |t|

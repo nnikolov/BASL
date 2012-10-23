@@ -34,8 +34,8 @@
 <li><%= link_to "GSA Web Site", "http://www.gloucesterhornets.ca/" %></li>
 <li><%= link_to "Blackburn Arms Pub", "http://www.blackburnarms.com/" %></li>
 <li><%= link_to "Contact Us", "mailto:info@ba-soccer.ca" %></li>
-<% if @logged_in %>
 <li><%= link_to "Directory", commercial_listings_path %></li>
+<% if @logged_in %>
 <li><%= link_to "Logout", logout_path %></li>
 <% else %>
 <li><%= link_to "Login", login_path %></li>

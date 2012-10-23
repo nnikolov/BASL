@@ -133,3 +133,7 @@ table.bordered td {
   border-bottom:1px solid #ccc;padding:2px 4px; 
   border-left:1px solid #ccc;padding:2px 4px; 
 }
+#team_image{
+  max-height:600px;
+  max-width:800px;
+}

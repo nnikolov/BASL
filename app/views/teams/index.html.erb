@@ -31,6 +31,9 @@ for <%= @season.name -%>
     <td>
       <%= link_to 'Players', :controller => :players, :team_id => team.id %>
     </td>
+    <td>
+      <%= link_to 'Photo', photo_path(team) %>
+    </td>
     <% if @logged_in %>
     <td>
       <%= link_to 'Show', [team.season, team] -%>
@@ -69,7 +72,7 @@ for <%= @season.name -%>
     <% end %>
     <tr><td><%= link_to("Calendar", team_games_path(team, :format => :ics)) %></td></tr>
     <% unless team.file_name == nil %>
-      <tr><td><%= link_to "Team photo", "/images/#{team.file_name}" %></td></tr>
+      <tr><td><%= link_to "Team photo", photo_path(team) %></td></tr>
     <% end %>
   </table>
   </td>

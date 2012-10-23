@@ -105,8 +105,8 @@ class TeamsController < ApplicationController
   end
 
   def photo
-    team = Team.find(params[:team_id])
-    send_data(team.file_data, :filename => team.file_name, :type => team.content_type, :disposition => "inline")
+    @team = Team.find(params[:team_id])
+    #send_data(team.file_data, :filename => team.file_name, :type => team.content_type, :disposition => "inline")
   end
 
   def games

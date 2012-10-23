@@ -27,7 +27,12 @@
 
 <p>
   <b>Photo:</b>
-  <%= link_to_if @team.file_name, @team.file_name, "/images/#{@team.file_name}" %>
+  <br /><%= image_tag "/images/#{@team.file_name}", {:id => 'team_image'} %>
+</p>
+
+<p>
+  <b>Photo caption:</b>
+  <%= @team.photo_caption %>
 </p>
 
 
