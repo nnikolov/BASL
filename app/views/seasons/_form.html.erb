@@ -23,6 +23,12 @@
     <%= f.label :current %><br />
     <%= f.check_box :current %>
   </div>
+  <% if @seasons %>
+  <div class="field">
+    <%= f.label :copy_teams_and_games_from %><br />
+    <%= select_tag 'model_after', options_from_collection_for_select(@seasons, "id", "name"), :include_blank => true %>
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

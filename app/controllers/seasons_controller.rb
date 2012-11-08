@@ -27,6 +27,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/new.xml
   def new
     @season = Season.new
+    @seasons = Season.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +47,7 @@ class SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.save
+        @season.model_after(params[:model_after])
         format.html { redirect_to(@season, :notice => 'Season was successfully created.') }
         format.xml  { render :xml => @season, :status => :created, :location => @season }
       else
