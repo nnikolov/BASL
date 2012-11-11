@@ -21,12 +21,18 @@ class Season < ActiveRecord::Base
     time_diff = self.start_date.to_time + model.games[0].time.strftime("%H").to_i.hours - model.games[0].time
     # Create games
     model.games.each do |game|
-      home_team = Team.where(:color => game.home_team.color, :season_id => self.id)
-      away_team = Team.where(:color => game.away_team.color, :season_id => self.id)
+      begin
+        home_team = Team.where(:color => game.home_team.color, :season_id => self.id).first
+        away_team = Team.where(:color => game.away_team.color, :season_id => self.id).first
+      rescue
+        # There may be games with no teams assigned yet
+        home_team = nil
+        away_team = nil
+      end
       new_game = Game.new()
       new_game.season_id = self.id
-      new_game.home_team = home_team.first
-      new_game.away_team = away_team.first
+      new_game.home_team = home_team
+      new_game.away_team = away_team
       new_game.field_id = game.field_id
       new_game.time = game.time + time_diff
       new_game.until = game.until + time_diff
