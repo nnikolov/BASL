@@ -1,6 +1,6 @@
 class Season < ActiveRecord::Base
-  has_many :teams, :order => "name"
-  has_many :games, :order => "time, id"
+  has_many :teams, :order => "name", :dependent => :destroy
+  has_many :games, :order => "time, id", :dependent => :destroy
 
   def before_save
     if self.current # Set all other seasons to not current
@@ -22,8 +22,14 @@ class Season < ActiveRecord::Base
     # Create games
     model.games.each do |game|
       begin
-        home_team = Team.where(:color => game.home_team.color, :season_id => self.id).first
-        away_team = Team.where(:color => game.away_team.color, :season_id => self.id).first
+        game_type = GameType.find_by_name("Season") # Copy season games only
+        if game.game_type == game_type
+          home_team = Team.where(:color => game.home_team.color, :season_id => self.id).first
+          away_team = Team.where(:color => game.away_team.color, :season_id => self.id).first
+        else
+          home_team = nil
+          away_team = nil
+        end
       rescue
         # There may be games with no teams assigned yet
         home_team = nil
