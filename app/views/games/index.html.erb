@@ -34,7 +34,7 @@ Show Team: <select id="showTeam" name="showTeam">
 
 <%= form_tag update_game_duration_path(@season) do %>
   Update duration of all games of this season to 
-  <%= select_tag :duration, options_for_select([['One hour', 1], ['Two hours', 2]]) %>
+  <%= select_tag :game_duration, options_for_select([['One hour', 1], ['Two hours', 2]]) %>
   <%= submit_tag 'Update' %> 
 <% end %>
 

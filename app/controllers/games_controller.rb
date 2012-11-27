@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   # POST /games/1/update_game_duration
   def update_game_duration
     season = Season.find(params[:id])
-    season.games.collect {|g| g.until = g.time + params[:duration].to_i.hours; g.save}
+    season.update_attributes(:game_duration => params[:game_duration])
     redirect_to season_games_path(season)
   end
 

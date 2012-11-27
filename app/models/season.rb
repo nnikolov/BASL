@@ -1,11 +1,19 @@
 class Season < ActiveRecord::Base
   has_many :teams, :order => "name", :dependent => :destroy
   has_many :games, :order => "time, id", :dependent => :destroy
+  attr_accessor :game_duration
+  before_update :update_game_duration
 
   def before_save
     if self.current # Set all other seasons to not current
       sql = ActiveRecord::Base.connection();
       sql.execute("update seasons set current = 0")
+    end
+  end
+
+  def update_game_duration
+    unless self.game_duration.blank?
+      self.games.collect {|g| g.until = g.time + game_duration.to_i.hours; g.save}
     end
   end
 
