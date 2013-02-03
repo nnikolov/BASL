@@ -9,14 +9,20 @@
     <th colspan="2" align="center" class="news_byte_th"><%= commercial_listing.player_name %></th>
   </tr>
   <tr>
-    <td class="left_border" width="50%">
+    <td class="left_border" width="50%" valign="top">
       <ul>
-        <li><%= commercial_listing.company_name %></li>
-        <li><%= commercial_listing.title %></li>
-        <li><%= commercial_listing.business_type %></li>
+        <% unless commercial_listing.company_name.empty? %>
+          <li><%= commercial_listing.company_name %></li>
+        <% end %>
+        <% unless commercial_listing.title.empty? %>
+          <li><%= commercial_listing.title %></li>
+        <% end %>
+        <% unless commercial_listing.business_type.empty? %>
+          <li><%= commercial_listing.business_type %></li>
+        <% end %>
       </ul>
     </td>
-    <td class="right_border" width="50%">
+    <td class="right_border" width="50%" valign="top">
       <ul>
         <% unless commercial_listing.telephone.empty? %>
           <li>Telephone: <%= commercial_listing.telephone %></li>
@@ -26,6 +32,7 @@
         <% end %>
         <% unless commercial_listing.website.empty? %>
           <li>Website: <%= link_to commercial_listing.website, commercial_listing.website %></li>
+        <% end %>
       </ul>
     </td>
   </tr>
@@ -34,7 +41,6 @@
    <br /><br /><%= link_to 'vcard', commercial_listing_path(commercial_listing, :format => :vcard) %>
     </td>
   </tr>
-<% end %>
 </table>
     </td>
     <% if @logged_in %>
@@ -48,4 +54,6 @@
 
 <br />
 
-<%= link_to 'New Commercial listing', new_commercial_listing_path %>
+<% if @logged_in %>
+<%= link_to_unless @logged_in.nil?, 'New Commercial listing', new_commercial_listing_path %>
+<% end %>
