@@ -8,8 +8,11 @@
 </head>
 <body>
 
-<div id="columns">
-<div id="menu">
+<div id="base">
+<div id="content">
+<%= image_tag "BA.JPG", :width => "150px", :id => "basoccer_logo" %>
+
+<div id="topmenu">
 <ul>
 <li><%= link_to "News", :controller => :news_bytes %></li>
 <li><%= link_to "Seasons", :controller => :seasons %></li>
@@ -19,35 +22,17 @@
 <li><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></li>
 <% end %>
 <li><%= link_to "Fields", fields_path %></li>
-<% if @logged_in %>
-<li><%= link_to "Game Types", game_types_path %></li>
-<li><%= link_to "Playoff Pools", pools_path %></li>
-<li><%= link_to "Users", users_path %></li>
-<% end %>
-<li><%= link_to "Constitution", "/assets/BASL_Constitution_as_amended_feb2009.pdf" %></li>
-<li><%= link_to "Discipline procedures", "/assets/DisciplineProcedures_vSep2012.pdf" %></li>
-<li><%= link_to "Rules", rules_path %></li>
-<li><%= link_to "Law 4", "/assets/Law_4_Memo_Ontario.pdf" %></li>
-<li><%= link_to "Law 11", "/assets/Law_11___OFFSIDE-inserts.pdf" %></li>
-<li><%= link_to "CSA lightning policy", "/assets/CSA%20-LIGHTNING%20Policy%20July%2016%202008.pdf" %></li>
-<li><%= link_to "CSA casts policy", "/assets/CSA%20-%20Players%20wearing%20Casts%20Policy%20July16%202008.pdf" %></li>
-<li><%= link_to "GSA Web Site", "http://www.gloucesterhornets.ca/" %></li>
-<li><%= link_to "Blackburn Arms Pub", "http://www.blackburnarms.com/" %></li>
-<li><%= link_to "Contact Us", "mailto:info@ba-soccer.ca" %></li>
-<li><%= link_to "Directory", commercial_listings_path %></li>
-<% if @logged_in %>
-<li><%= link_to "Logout", logout_path %></li>
-<% else %>
-<li><%= link_to "Login", login_path %></li>
-<% end %>
+<li><%= link_to "Administrivia", administrivia_path %></li>
+<li><%= link_to "Admin", admin_path %></li>
 </ul>
-<%= image_tag "BA.JPG", :width => "150px" %>
 </div>
 
+<br />
 <div id="main">
 
 <%= yield %>
 
+</div>
 </div>
 </div>
 

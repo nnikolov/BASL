@@ -1,3 +1,89 @@
+#basoccer_logo{
+  opacity:0.6;
+}
+#base{
+  margin:auto;
+  width:980px;
+  min-height:570px;
+  //padding: 50px;
+  //background-image:url('/assets/background.jpg');
+  background-repeat:no-repeat;
+  //background-attachment:fixed;
+  //background-position:center; 
+  background-color: green;
+}
+#content{
+  margin:auto;
+  padding: 10px 0px 10px 0px;
+  background-image:url('/assets/background_feet.jpg');
+  background-repeat:no-repeat;
+  background-color: #FFFFFF;
+  max-width:1000px;
+  //border: 1px solid blue;
+}
+#topmenu {
+  margin:auto;
+  //width:90%;
+  max-width:550px;
+  min-width:530px;
+  background: #E8E8E8;
+  background: -moz-linear-gradient(-90deg, #FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
+  background: -webkit-linear-gradient(#FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradie='#fdfdfd',endColorstr='#e8e8e8')";
+  background: linear-gradient(#FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
+  border-color: #D3D3D3 #C7C7C7 #C2C2C2;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  color: #777777;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 12px;
+  padding: 12px 17px 10px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 white;
+}
+#topmenu ul {
+margin:auto;
+width:50%;
+min-width:530px;
+//border-style: solid;
+//border-width:1px;
+list-style-type:none;
+padding:0;
+//padding-top:6px;
+//padding-bottom:6px;
+//overflow:hidden;
+//font-size:1.5em;
+//font-weight:normal;
+//text-transform:uppercase;
+}
+#topmenu li {
+width:500px;
+display:inline;
+//border-style: solid;
+//border-width:1px;
+//float:left;
+//padding:0px 0px 0px 7px;
+}
+#topmenu a:link,a:visited {
+font-weight:bold;
+//color:#FFFFFF;
+color:#666;
+//background-color:#98bf21;
+text-align:center;
+text-decoration:none;
+}
+#topmenu a:hover,a:active {
+width:500px;
+//display:block;
+background-color:#000000;
+}
+
 .news_byte_th {
   background: #E8E8E8;
   background: -moz-linear-gradient(-90deg, #FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
@@ -30,6 +116,7 @@
 }
 
 .news_byte {
+  background-color:#fff;
   color: #666;
   border:1px solid #ccc;
 }
@@ -56,38 +143,46 @@ h2 {
 }
 
 /* HEADER */
-#menu h1 a, #menu h1 a:link, #menu h1 a:visited, #menu h1 a:hover {
-  color:#100;
-  text-decoration:none;
-  background:#FFF;
-}
-#menu {
-  background:#FFF;
-  margin:0;
-}
-#menu ul {
-  margin:0;
+//#menu h1 a, #menu h1 a:link, #menu h1 a:visited, #menu h1 a:hover {
+//  color:#100;
+//  text-decoration:none;
+//  background:#FFF;
+//}
+//#menu {
+//  background:#FFF;
+//  margin:0;
+//}
+//#navigation_bar {
+//  margin:0;
+//  padding:0;
+//  overflow:hidden;
   font-size:1.1em;
-  font-family:"lucida console", "monaco", "andale mono", "bitstream vera sans mono",
-    "consolas", monospace;
-  font-weight:normal;
+//  //font-family:"lucida console", "monaco", "andale mono", "bitstream vera sans mono", "consolas", monospace;
+  font-weight:bold;
   text-transform:uppercase;
-  letter-spacing:2px;
-  text-align:left;
-  padding:0 5px 0.25em 0px;
-  background:#FFF;
-  list-style-type:none;
-}
-#menu ul a, #menu ul a:link, #menu ul a:visited {
-  color:#56534f;
-  text-decoration:none;
-  background:#FFF;
-}
-#menu ul a:hover {
-  color:#000;
-  background:#FFF;
-  text-decoration:underline
-}
+//  //letter-spacing:2px;
+//  //text-align:left;
+//  //padding:0 5px 0.25em 0px;
+//  background:#FFF;
+//  list-style-type:none;
+//}
+
+//#navigation_bar li {
+//  float:left;
+//  padding:0px 0px 0px 7px;
+//}
+
+//#menu ul a, #menu ul a:link, #menu ul a:visited {
+//  color:#56534f;
+//  text-decoration:none;
+//  background:#FFF;
+//  display:block;
+//}
+//#menu ul a:hover {
+//  color:#000;
+//  background:#FFF;
+//  text-decoration:underline
+//}
 
 /* LINKS */
 a {

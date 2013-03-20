@@ -8,7 +8,7 @@ class LoginController < ApplicationController
   def authenticate
     if @logged_in = User.authenticate(params[:user])
       session[:login] = params[:user]
-      redirect_to :root
+      redirect_to :admin
     else
       flash[:notice] = 'Invalid username or password'
       render :action => 'index', :layout => false

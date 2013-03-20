@@ -1,4 +1,8 @@
 Basl::Application.routes.draw do
+  get 'admin' => 'admin#index', :as => :admin
+
+  get 'administrivia' => 'administrivia#index', :as => :administrivia
+
   post 'seasons/:id/update_game_duration' => 'games#update_game_duration', :as => :update_game_duration
 
   post 'seasons/redirect' => 'seasons#redirect', :as => :season_redirect
