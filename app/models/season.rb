@@ -1,5 +1,5 @@
 class Season < ActiveRecord::Base
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => true
   validates :start_date, :presence => true
   has_many :teams, :order => "name", :dependent => :destroy
   has_many :games, :order => "time, id", :dependent => :destroy
