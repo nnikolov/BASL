@@ -1,4 +1,6 @@
 class Season < ActiveRecord::Base
+  validates :name, :presence => true
+  validates :start_date, :presence => true
   has_many :teams, :order => "name", :dependent => :destroy
   has_many :games, :order => "time, id", :dependent => :destroy
   attr_accessor :game_duration

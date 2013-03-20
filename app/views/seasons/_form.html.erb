@@ -29,8 +29,11 @@
     <%= select_tag 'model_after', options_from_collection_for_select(@seasons, "id", "name"), :include_blank => true %>
   </div>
   <% end %>
+  <% unless @season.new_record? %>
   Update duration of all games of this season to
   <%= f.select :game_duration, options_for_select([['One hour', 1], ['Two hours', 2]]), {:include_blank => true} %>
+  <% end %>
+  <br /><br />
   <div class="actions">
     <%= f.submit %>
   </div>
