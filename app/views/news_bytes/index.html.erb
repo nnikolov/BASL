@@ -1,5 +1,8 @@
-<table border="0" cellspacing="0" cellpadding="5">
+<% if @logged_in %>
+<%= link_to_unless @logged_in.nil?, 'New news_byte', new_news_byte_path %>
+<% end %>
 
+<table border="0" cellspacing="0" cellpadding="5">
 <% for news_byte in @news_bytes %>
   <tr>
     <th class="news_byte_th" align="left">
