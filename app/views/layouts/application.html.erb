@@ -8,23 +8,24 @@
 </head>
 <body>
 
-<div id="base">
 <div id="content">
 <%= image_tag "BA.JPG", :width => "150px", :id => "basoccer_logo" %>
 
-<div id="topmenu">
-<ul>
-<li><%= link_to "News", :controller => :news_bytes %></li>
+<div id="topmenunot">
+<table border="0" cellspacing="0" cellpadding="9" id="topmenu">
+<tr>
+<td><%= link_to "News", :controller => :news_bytes %></td>
 <% unless @season.id.blank? %>
-<li><%= link_to "Games", season_games_path(:season_id => @season.id) %></li>
-<li><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></li>
-<li><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></li>
+<td><%= link_to "Games", season_games_path(:season_id => @season.id) %></td>
+<td><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></td>
+<td><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></td>
 <% end %>
-<li><%= link_to "Seasons", :controller => :seasons %></li>
-<li><%= link_to "Fields", fields_path %></li>
-<li><%= link_to "Administrivia", administrivia_path %></li>
-<li><%= link_to "Admin", admin_path %></li>
-</ul>
+<td><%= link_to "Seasons", :controller => :seasons %></td>
+<td><%= link_to "Fields", fields_path %></td>
+<td><%= link_to "Administrivia", administrivia_path %></td>
+<td><%= link_to "Admin", admin_path %></td>
+</tr>
+</table>
 </div>
 
 <br />
@@ -32,7 +33,6 @@
 
 <%= yield %>
 
-</div>
 </div>
 </div>
 

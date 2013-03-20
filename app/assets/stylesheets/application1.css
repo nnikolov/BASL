@@ -1,17 +1,18 @@
 #basoccer_logo{
   opacity:0.6;
+  margin: 0px 5px 10px 10px
 }
-#base{
-  margin:auto;
-  width:980px;
-  min-height:570px;
-  //padding: 50px;
-  //background-image:url('/assets/background.jpg');
-  background-repeat:no-repeat;
-  //background-attachment:fixed;
-  //background-position:center; 
-  background-color: green;
-}
+//#base{
+//  margin:auto;
+//  width:980px;
+//  min-height:570px;
+//  //padding: 50px;
+//  //background-image:url('/assets/background.jpg');
+//  background-repeat:no-repeat;
+//  //background-attachment:fixed;
+//  //background-position:center; 
+//  background-color: green;
+//}
 #content{
   margin:auto;
   padding: 10px 0px 10px 0px;
@@ -24,8 +25,8 @@
 #topmenu {
   margin:auto;
   //width:90%;
-  max-width:550px;
-  min-width:530px;
+  //max-width:610px;
+  //min-width:530px;
   background: #E8E8E8;
   background: -moz-linear-gradient(-90deg, #FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
   background: -webkit-linear-gradient(#FDFDFD, #E8E8E8) repeat scroll 0 0 transparent;
@@ -43,33 +44,33 @@
   font-family: Helvetica,Arial,sans-serif;
   font-size: 16px;
   line-height: 12px;
-  padding: 12px 17px 10px;
+  //padding: 10px 5px 10px;
   text-decoration: none;
   text-shadow: 0 1px 0 white;
 }
-#topmenu ul {
-margin:auto;
-width:50%;
-min-width:530px;
-//border-style: solid;
-//border-width:1px;
-list-style-type:none;
-padding:0;
-//padding-top:6px;
-//padding-bottom:6px;
-//overflow:hidden;
-//font-size:1.5em;
-//font-weight:normal;
-//text-transform:uppercase;
-}
-#topmenu li {
-width:500px;
-display:inline;
-//border-style: solid;
-//border-width:1px;
-//float:left;
-//padding:0px 0px 0px 7px;
-}
+//#topmenu ul {
+//margin:auto;
+////width:50%;
+////min-width:530px;
+////border-style: solid;
+////border-width:1px;
+//list-style-type:none;
+//padding:0;
+////padding-top:6px;
+////padding-bottom:6px;
+////overflow:hidden;
+////font-size:1.5em;
+////font-weight:normal;
+////text-transform:uppercase;
+//}
+//#topmenu li {
+////width:500px;
+//display:inline;
+////border-style: solid;
+////border-width:1px;
+////float:left;
+////padding:0px 0px 0px 7px;
+//}
 #topmenu a:link,a:visited {
 font-weight:bold;
 //color:#FFFFFF;
@@ -77,6 +78,11 @@ color:#666;
 //background-color:#98bf21;
 text-align:center;
 text-decoration:none;
+}
+#topmenu a:hover,a:active {
+  color:#000;
+  background:transparent;
+  //text-decoration:underline
 }
 //#topmenu a:hover,a:active {
 //width:500px;
@@ -178,11 +184,6 @@ h2 {
 //  background:#FFF;
 //  display:block;
 //}
-#topmenu ul a:hover {
-  color:#000;
-  background:transparent;
-  //text-decoration:underline
-}
 
 /* LINKS */
 a {
