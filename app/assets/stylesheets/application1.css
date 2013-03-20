@@ -232,6 +232,6 @@ table.bordered td {
   max-height:600px;
   max-width:800px;
 }
-ul {
+.nostyle {
 list-style-type:none;
 }
