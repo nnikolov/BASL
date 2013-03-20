@@ -11,13 +11,17 @@
 <% @rules.each do |rule| %>
   <tr>
     <td><%= raw RedCloth.new( rule.body ).to_html %></td>
+    <% if @logged_in %>
     <td><%= link_to 'Show', rule %></td>
     <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
     <td><%= link_to 'Destroy', rule, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if @logged_in %>
 <%= link_to 'New Rule', new_rule_path %>
+<% end %>
