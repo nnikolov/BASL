@@ -178,11 +178,11 @@ h2 {
 //  background:#FFF;
 //  display:block;
 //}
-//#menu ul a:hover {
-//  color:#000;
-//  background:#FFF;
-//  text-decoration:underline
-//}
+#topmenu ul a:hover {
+  color:#000;
+  background:#FFF;
+  text-decoration:underline
+}
 
 /* LINKS */
 a {
@@ -231,4 +231,7 @@ table.bordered td {
 #team_image{
   max-height:600px;
   max-width:800px;
+}
+ul {
+list-style-type:none;
 }
