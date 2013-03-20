@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>Map url:</b>
-  <%= @field.map_url %>
+  <b>Map:</b>
+  <%= link_to_unless @field.map_url == '', 'View map', @field.map_url %>
 </p>
 
 <p>
@@ -20,6 +20,9 @@
   <%= @field.location %>
 </p>
 
-
+<% if @logged_in %>
 <%= link_to 'Edit', edit_field_path(@field) %> |
 <%= link_to 'Back', fields_path %>
+<% else %>
+<%= link_to 'Back', season_games_path(:season_id => @season.id) %>
+<% end %>

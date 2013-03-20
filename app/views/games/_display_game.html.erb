@@ -1,6 +1,6 @@
   <td><%=h display_game.id %></td>
   <td><%=h display_game.game_time %></td>
-  <td><%=h link_to_unless display_game.field.map_url.blank?, display_game.field.name, display_game.field.map_url %></td>
+  <td><%=h link_to_unless display_game.field_id.blank?, display_game.field.name, field_path(display_game.field_id) %></td>
   <td>
     <% if display_game.home_team.respond_to?('name') %>
       <%=h display_game.home_team.display %>
