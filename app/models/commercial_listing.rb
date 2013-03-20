@@ -1,4 +1,7 @@
 class CommercialListing < ActiveRecord::Base
+  validates :company_name, :presence => true, :uniqueness => true
+  validates :player_name, :presence => true, :uniqueness => true
+
   def contact
     contact = []
     if telephone
