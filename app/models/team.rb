@@ -1,6 +1,9 @@
 class Team < ActiveRecord::Base
   belongs_to :season
   belongs_to :pool
+  validates :name, :presence => true , :uniqueness => { :scope => :season_id}
+  validates :color, :presence => true , :uniqueness => { :scope => :season_id}
+  validates :season_id, :presence => true
   has_many :players, :order => :name, :conditions => ["active = true"]
 
   def display
