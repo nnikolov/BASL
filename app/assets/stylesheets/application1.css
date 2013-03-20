@@ -78,11 +78,11 @@ color:#666;
 text-align:center;
 text-decoration:none;
 }
-#topmenu a:hover,a:active {
-width:500px;
+//#topmenu a:hover,a:active {
+//width:500px;
 //display:block;
-background-color:#000000;
-}
+//background-color:#000000;
+//}
 
 .news_byte_th {
   background: #E8E8E8;
@@ -180,8 +180,8 @@ h2 {
 //}
 #topmenu ul a:hover {
   color:#000;
-  background:#FFF;
-  text-decoration:underline
+  background:transparent;
+  //text-decoration:underline
 }
 
 /* LINKS */
