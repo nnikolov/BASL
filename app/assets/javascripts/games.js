@@ -2,7 +2,7 @@
 $(document).ready(function(){
 //get all the teams from the home column 
 var elementsArray = [];
-$("tr td:nth-child(4)").each(function(){
+$("#games tr td:nth-child(4)").each(function(){
 var str = $.trim($(this).text());
 if(str.length > 1 && $.inArray(str, elementsArray) == -1)
 elementsArray.push(str);
