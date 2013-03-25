@@ -25,6 +25,8 @@ Basl::Application.routes.draw do
 
   resources :news_bytes
 
+  get 'news_bytes/limit/:limit/offset/:offset' => 'news_bytes#index', :as => :news_page
+
   resources :game_types
 
   resources :fields

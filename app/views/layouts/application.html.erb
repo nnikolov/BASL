@@ -14,7 +14,7 @@
 <div id="topmenunot">
 <table border="0" cellspacing="0" cellpadding="9" id="topmenu">
 <tr>
-<td><%= link_to "News", :controller => :news_bytes %></td>
+<td><%= link_to "News", news_bytes_path %></td>
 <% unless @season.id.blank? %>
 <td><%= link_to "Games", season_games_path(:season_id => @season.id) %></td>
 <td><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></td>

@@ -4,7 +4,10 @@ class NewsBytesController < ApplicationController
   # GET /news_bytes
   # GET /news_bytes.xml
   def index
-    @news_bytes = NewsByte.find(:all, :order => 'created_at desc')
+    @limit = params[:limit] ? params[:limit].to_i : 5
+    offset = params[:offset].to_i
+    @news_bytes = NewsByte.order("updated_at DESC").limit(@limit).offset(offset)
+    @offset = @news_bytes.size == @limit ? @limit + offset : 0
 
     respond_to do |format|
       format.html # index.html.erb
