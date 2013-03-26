@@ -1,6 +1,8 @@
 <p>
   <%= image_tag "/images/#{@team.file_name}", {:id => 'team_image'} %>
+  <% if @logged_in %>
   <br /><%= @team.photo_caption %>
+  <% end %>
 </p>
 
 <%= link_to 'Back', :back %>
