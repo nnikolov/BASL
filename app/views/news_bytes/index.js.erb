@@ -1,0 +1,1 @@
+$("#more_news_<%= params[:offset] %>").replaceWith( "<%= escape_javascript( render( :partial => "news_bytes", :locals => { :news_bytes => @news_bytes, :limit => @limit, :offset => @offset} ) ) %>" );

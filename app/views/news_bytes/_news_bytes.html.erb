@@ -1,0 +1,8 @@
+<% for @news_byte in @news_bytes %>
+<%= render 'news_byte' %>
+<% end %>
+<% if @offset > 0 %>
+<tr id="more_news_<%= @offset %>">
+<td><%= link_to "More", news_page_path(@limit,@offset), :remote => true %></td>
+</tr>
+<% end %>

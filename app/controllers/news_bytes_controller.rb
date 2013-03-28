@@ -12,6 +12,7 @@ class NewsBytesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @news_bytes }
+      format.js   # index.js.erb
     end
   end
 
