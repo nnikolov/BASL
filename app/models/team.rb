@@ -6,6 +6,11 @@ class Team < ActiveRecord::Base
   validates :season_id, :presence => true
   has_many :players, :order => :name, :conditions => ["active = true"]
 
+  def <=>(other)
+    game_type = GameType.where(:name => 'Season').first
+    self.head_to_head_wins(other, game_type) <=> other.head_to_head_wins(self, game_type)
+  end
+
   def display
     return color if name.blank?
     return name if color.blank?

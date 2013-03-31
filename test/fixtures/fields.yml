@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+hn1:
+  name: Hornets Nest 1
+  code: hn1
+hn2:
+  name: Hornets Nest 2
+  code: hn2
+hn3:
+  name: Hornets Nest 3
+  code: hn3
