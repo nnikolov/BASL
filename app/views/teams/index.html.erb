@@ -29,7 +29,7 @@ for <%= @season.name -%>
     <td><%=h team.pool.respond_to?('name') ? team.pool.name : nil %></td>
     <td><%= link_to("iCal", team_games_path(team, :format => :ics)) %></td>
     <td>
-      <%= link_to 'Players', :controller => :players, :team_id => team.id %>
+      <%= link_to 'Players', team_players_path(team.id) %>
     </td>
     <td>
       <%= link_to 'Photo', photo_path(team) %>

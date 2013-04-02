@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   validates :name, :presence => true , :uniqueness => { :scope => :season_id}
   validates :color, :presence => true , :uniqueness => { :scope => :season_id}
   validates :season_id, :presence => true
-  has_many :players, :order => :name, :conditions => ["active = true"]
+  has_many :players, :order => :name, :conditions => ["players.active = true"]
 
   def <=>(other)
     game_type = GameType.where(:name => 'Season').first
