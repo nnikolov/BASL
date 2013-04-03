@@ -1,20 +1,8 @@
 <td><%= @game.id %></td>
-<td colspan="9">
+<td colspan="8">
 <%= form_for(@game, :remote => true, :url => season_game_path(@game.season, @game), :html => {:autocomplete => 'off'}) do |f| %>
 
   <table class="bordered">
-  <tr>
-    <td><%= f.label :start %></td>
-    <td><%= f.datetime_select :time %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :end %></td>
-    <td><%= f.datetime_select :until %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :field_id %></td>
-    <td><%= f.select("field_id", Field.find(:all, :order => 'name').collect {|fd| [fd.name, fd.id]}, {:include_blank => false}) %></td>
-  </tr>
   <tr>
     <td><%= f.label :home_team_id %></td>
     <td><%= f.select("home_team_id", Team.find(:all, :conditions => ["season_id = ?", @game.season_id],
@@ -32,6 +20,18 @@
   <tr>
     <td><%= f.label :away_team_score %></td>
     <td><%= f.text_field :away_team_score %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :field_id %></td>
+    <td><%= f.select("field_id", Field.find(:all, :order => 'name').collect {|fd| [fd.name, fd.id]}, {:include_blank => false}) %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :start %></td>
+    <td><%= f.datetime_select :time %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :end %></td>
+    <td><%= f.datetime_select :until %></td>
   </tr>
   <tr>
     <td><%= f.label :game_type_id %></td>

@@ -1,18 +1,17 @@
   <td><%=h display_game.id %></td>
   <td><%=h display_game.game_time %></td>
   <td><%=h link_to_unless display_game.field_id.blank?, display_game.field.name, field_path(display_game.field_id) %></td>
-  <td>
+  <td align="right">
     <% if display_game.home_team.respond_to?('name') %>
       <%=h display_game.home_team.display %>
     <% end %>
   </td>
-  <td><%=h display_game.home_team_score %></td>
+  <td align="center"><%=h display_game.home_team_score %> : <%=h display_game.away_team_score %></td>
   <td>
     <% if display_game.home_team.respond_to?('name') %>
       <%=h display_game.away_team.display %>
     <% end %>
   </td>
-  <td><%=h display_game.away_team_score %></td>
   <td><%=h display_game.game_type.name %></td>
   <% if @logged_in %>
   <td><%= link_to "Edit", edit_season_game_path(display_game.season, display_game), :remote => true %></td>
