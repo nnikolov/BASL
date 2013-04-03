@@ -10,10 +10,13 @@ for <%= @season.name %>
 <%= render :partial => 'common/season_select' %>
 </td>
 <td>
-<form>
+<form id="showTeamForm">
 <!-- BG include this -->
-Show Team: <select id="showTeam" name="showTeam">
-<option>All Teams</option>
+Show team: <select id="showTeam" name="showTeam">
+<option value=".">All teams</option>
+</select>
+vs: <select id="showVsTeam" name="showVsTeam">
+<option value=".">All teams</option>
 </select>
 <!-- end of BG include -->
 </form>
