@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023025731) do
+ActiveRecord::Schema.define(:version => 20130408171907) do
 
   create_table "commercial_listings", :force => true do |t|
     t.string   "company_name"
@@ -129,6 +129,9 @@ ActiveRecord::Schema.define(:version => 20121023025731) do
     t.boolean  "cached"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hth_wins"
+    t.integer  "hth_ties"
+    t.integer  "hth_losses"
   end
 
   create_table "teams", :force => true do |t|
