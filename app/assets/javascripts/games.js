@@ -1,8 +1,19 @@
 //when the document is loaded, get all the teams from the Home Team column, add them to the selector
 $(document).ready(function(){
+
+$(".hide").click(function (event) {
+  event.preventDefault();
+  $(this).parent().slideUp();
+});
+
+$(".bubble").click(function (event) {
+  event.preventDefault();
+  $(this).parent().children(".mybubble").slideToggle();
+});
+
 //get all the teams from the home column 
 var elementsArray = [];
-$("#games tr td:nth-child(4)").each(function(){
+$(".team").each(function(){
 var str = $.trim($(this).text());
 if(str.length > 1 && $.inArray(str, elementsArray) == -1)
 elementsArray.push(str);

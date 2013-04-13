@@ -1,0 +1,10 @@
+<div class="rel"><%=h link_to team.display, season_teams_path(season), :class => "bubble team" %>
+  <div class="mybubble" style="width:150px">
+  <strong>Team schedule</strong>
+  <br /><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=#{request.host}#{team_games_path(team, :format => :ics)}") %>
+  <br /><%= link_to("ICS download", team_games_path(team, :format => :ics)) %>
+  <br /><br /><%= link_to("Teams", season_teams_path(season)) %>
+  | <%= link_to("close", "#", :class => 'hide') %>
+  </div>
+</div>
+

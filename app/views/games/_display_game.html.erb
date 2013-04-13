@@ -1,15 +1,26 @@
   <td><%=h display_game.id %></td>
   <td><%=h display_game.game_time %></td>
-  <td><%=h link_to_unless display_game.field_id.blank?, display_game.field.name, field_path(display_game.field_id) %></td>
+  <td>
+    <div class="rel"><%=h link_to_unless display_game.field_id.blank?, display_game.field.name, field_path(display_game.field_id), :class => "bubble" %>
+      <div class="mybubble" style="width:200px">
+      <strong>Field</strong>
+      <br /><br /><%=h display_game.field.location %>
+      <br /><%= link_to "View map", display_game.field.map_url %>
+      <br /><br /><%= link_to_unless display_game.field_id.blank?, "Field info.", field_path(display_game.field_id) %>
+      | <%= link_to("close", "#", :class => 'hide') %>
+      </div>
+    </div>
+  </td>
   <td align="right">
     <% if display_game.home_team.respond_to?('name') %>
-      <%=h display_game.home_team.display %>
+      <%= render :partial => "team", :locals => {:team => display_game.home_team, :season => display_game.season} %>
     <% end %>
+    </div>
   </td>
   <td align="center"><%=h display_game.home_team_score %> : <%=h display_game.away_team_score %></td>
   <td>
-    <% if display_game.home_team.respond_to?('name') %>
-      <%=h display_game.away_team.display %>
+    <% if display_game.away_team.respond_to?('name') %>
+      <%= render :partial => "team", :locals => {:team => display_game.away_team, :season => display_game.season} %>
     <% end %>
   </td>
   <td><%=h display_game.game_type.name %></td>

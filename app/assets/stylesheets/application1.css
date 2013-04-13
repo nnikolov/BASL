@@ -236,3 +236,52 @@ table.bordered td {
 .nostyle {
 list-style-type:none;
 }
+
+/* Speech Bubble */
+ 
+/* Triangle */
+.mybubble:before {
+	border-width: 12px;
+	border-style: solid;
+	border-color: transparent transparent rgb(200,200,200) transparent;
+	content: ""; /* Forces this pseudo-element to appear on hover */
+	height: 2px; 
+	width: 2px;
+	position: absolute;
+	top: -27px;
+	//right: 30px;
+}
+
+.mybubble {
+	z-index: 1; 
+	display: none;
+        position:absolute;
+        left:0px;
+        top:20px;
+	background: rgb(250,250,250);
+	color: #000;
+
+/* Font, padding, top and right must change depending on the font size you are using on your web page */
+	font: 12px Helvetica, Arial, Georgia, sans-serif;
+	padding: 5px 10px;
+	position: absolute;
+	top: 28px;
+	right: 0;
+ 
+/* Border radii for different browsers */
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+
+/* Box shadows for different browsers */
+	-moz-box-shadow: 9px 9px 9px #999;
+	-webkit-box-shadow: 9px 9px 9px #999;
+	box-shadow: 9px 9px 9px #999;
+
+        border-style:solid;
+        border-width:2px;
+	border-color: rgb(200,200,200);
+}
+.rel {
+        position:relative;
+}
