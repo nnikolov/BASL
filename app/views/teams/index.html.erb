@@ -73,7 +73,7 @@ for <%= @season.name -%>
     <% unless team.file_name == nil %>
       <tr><td><%= link_to "Team photo", photo_path(team) %></td></tr>
     <% end %>
-    <tr><td><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=#{request.host}#{team_games_path(team, :format => :ics)}") %></td></tr>
+    <tr><td><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=http://#{request.host}#{team_games_path(team, :format => :ics)}") %></td></tr>
     <tr><td><%= link_to("ICS calendar download", team_games_path(team, :format => :ics)) %></td></tr>
   </table>
   </td>
