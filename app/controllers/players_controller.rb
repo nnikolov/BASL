@@ -45,8 +45,8 @@ class PlayersController < ApplicationController
     @player = Player.new(params[:player])
 
     respond_to do |format|
-      if @player.save
-        format.html { redirect_to(@player, :notice => 'Player was successfully created.') }
+      if @player.multi_save
+        format.html { redirect_to(team_players_path(@player.team_id), :notice => 'Player was successfully created.') }
         format.xml  { render :xml => @player, :status => :created, :location => @player }
       else
         format.html { render :action => "new" }
