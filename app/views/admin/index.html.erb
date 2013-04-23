@@ -15,7 +15,7 @@
 <li><%= link_to "Info", "administrivia" %></li>
 <li><%= link_to "Directory", commercial_listings_path %></li>
 <% if @logged_in %>
-<li><%= link_to "Logout", logout_path %></li>
+<li><%= link_to "Logout #{@logged_in.name}", logout_path %></li>
 <% else %>
 <li><%= link_to "Login", login_path %></li>
 <% end %>
