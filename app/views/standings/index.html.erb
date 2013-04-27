@@ -61,7 +61,6 @@ for <%= @season.name %>
 </ol>
 
 <p>Constitution 2.6.2 - Tie Breaking for first place at the end of the regular season -  If 2 or more teams are still tied for first place at the end of the league season, placement shall be decided by the win, loss, tie record between the tied teams. If this fails to break the tie, goal difference in games between the tied teams shall be used.  If there is still no outright result, goals for in games between the tied teams during the entire league schedule shall be used. If still necessary,  placement will be decided by a penalty shoot-out involving the tied teams.
-<br />Note: this calculation will be performed manually</p>
 
 <h3>Playoffs</h3>
 
@@ -71,8 +70,8 @@ for <%= @season.name %>
   <th>Pool</th>
   <th>Place</th>
   <th>Points</th>
-  <th>Goal diff</th>
-  <th>Goals for</th>
+  <th>Goal diff <sup>1</sup></th>
+  <th>Goals for <sup>2</sup></th>
   <th>Goals against</th>
   <th>Wins</th>
   <th>Ties</th>
@@ -100,6 +99,9 @@ for <%= @season.name %>
 <% end %>
 </table>
 
+1 Goal diff is calculated based on maximum of plus or minus (4) per match.
+<br />2 Goals for is calculated based on maximum of (4) per match.
+
 <table border="0" cellspacing="10">
 <tr><th colspan="2">TOURNAMENT SCORING</th></tr>
 <tr><td colspan="2">In summer teams shall be divided into two pools based on league standings, with teams one three and five in one pool and teams two four and six in the other pool. Each team plays the other two teams in its pool, plus a crossover game (one vs two, three vs four, and five vs six).  In winter teams shall be divided into two pools based on league standings, with teams one three five and seven in one pool and teams two four six and eight in the other pool. Each team plays the other three teams in its pool.</td></tr>
@@ -119,11 +121,11 @@ for <%= @season.name %>
 <tr><td colspan="2">Ties in pool standings will be broken by employing a tiebreaker. If more than two teams are involved in the tie, the first team to move ahead of the remaining teams will be awarded the highest place, and the tiebreakers continued until all ties are broken.</td></tr>
 <tr><td valign="top">A.</td><td>Head to head (if all teams played each other).</td></tr>
 <tr><td valign="top">B.</td><td>Least goals allowed during the tournament.</td></tr>
-<tr><td valign="top">C</td><td>Largest goal differential (max. of plus or minus (4) per match).</td></tr>
+<tr><td valign="top">C</td><td>Largest goal differential (maximum of plus or minus (4) per match).</td></tr>
 <tr><td valign="top">D.</td><td>Most goals scored (maximum of (4) per match).</td></tr>
 <tr><td valign="top">E.</td><td>FIFA penalty kicks (site and time at the discretion of Tournament Director or held (1/2) hour prior to and at the site of the Championship final. (11) players from a team must be ready to participate within (5) minutes of appointed time or else that team will forfeit its opportunity to prevail in the tie breaker.)</td></tr>
 </table>
 <table border="0" cellspacing="10">
-<tr><th>TIE BREAKING IN CHAMPIONSHIP MATCH</th></tr>
+<tr><th>TIE BREAKING IN CHAMPIONSHIP MATCH - OUTDOOR SEASON</th></tr>
 <tr><td>If the score is still tied at the conclusion of overtime play in the Championship final, both teams will take penalty kicks as described by FIFA until a winner is determined.  Only the eleven players on the field at the conclusion of overtime may participate. (Center Referee will gather all the players on the field at the end of the second overtime period and not allow them to go to their respective sidelines. They are the players who will shoot the PK's</td></tr>
 </table>
