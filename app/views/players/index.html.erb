@@ -1,9 +1,10 @@
-<h1>Listing players</h1>
+<h1>Listing players for <%= @players[0].team.display %></h1>
 
 <table>
   <tr>
     <th>Name</th>
-    <th>Team</th>
+    <th>Position</th>
+    <th>Number</th>
     <th>Manager</th>
     <th>Active</th>
     <th>Note</th>
@@ -15,7 +16,8 @@
 <% @players.each do |player| %>
   <tr>
     <td<%= raw(' class="manager"') if player.manager -%>><%= player.name %></td>
-    <td><%= player.team.display %></td>
+    <td><%= player.position %></td>
+    <td><%= player.number %></td>
     <td><%= player.manager %></td>
     <td><%= player.active %></td>
     <td><%= player.note %></td>
