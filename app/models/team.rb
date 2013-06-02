@@ -5,6 +5,7 @@ class Team < ActiveRecord::Base
   validates :color, :presence => true , :uniqueness => { :scope => :season_id}
   validates :season_id, :presence => true
   has_many :players, :order => "position, name", :conditions => ["players.active = true"]
+  has_many :nplayers, :class_name => "Player", :order => "number", :conditions => ["players.active = true"]
 
   def display
     return color if name.blank?

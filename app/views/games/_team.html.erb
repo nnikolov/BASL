@@ -1,9 +1,11 @@
-<div class="rel"><%=h link_to team.display, season_teams_path(season), :class => "bubble team" %>
+<% team = host == 'home' ? game.home_team : game.away_team %>
+<div class="rel"><%=h link_to team.display, season_teams_path(team.season), :class => "bubble team" %>
   <div class="mybubble" style="width:150px">
-  <strong>Team schedule</strong>
+  <%= link_to("Game sheet", gamesheet_path(game,host)) %>
+  <br /><br /><strong>Team schedule</strong>
   <br /><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=http://#{request.host}#{team_games_path(team, :format => :ics)}") %>
   <br /><%= link_to("ICS download", team_games_path(team, :format => :ics)) %>
-  <br /><br /><%= link_to("Teams", season_teams_path(season)) %>
+  <br /><br /><%= link_to("Teams", season_teams_path(team.season)) %>
   | <%= link_to("close", "#", :class => 'hide') %>
   </div>
 </div>

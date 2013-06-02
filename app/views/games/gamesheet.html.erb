@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Game sheet</title>
+<style>
+body
+{
+font-size:12px;
+}
+table.table_border, th, td
+{
+font-size:15px;
+border-collapse:collapse;
+border: 1px solid black;
+}
+.no_border
+{
+border-collapse:collapse;
+border: 0px;
+}
+</style>
+</head>
+<body>
+<table class="no_border" width="100%">
+<tr>
+<td width="33%" class="no_border">
+<%= image_tag "BA.JPG", :width => "150px", :id => "basoccer_logo" %>
+</td><td width="33%" align="center" class="no_border">
+<h3>Game Sheet - <%= @team.season.name %> </h3>
+</td>
+<td width="33%" class="no_border">
+</td>
+</tr>
+</table>
+
+<table class="table_border" width="100%">
+<tr>
+<td>DATE <%= @game.time.strftime("%B %d, %Y") %></td>
+<td>LOCATION <%= @game.field.name %></td>
+<td>GAME NO. <%= @game.id %></td>
+</tr>
+<tr>
+<td>THIS GAME SHEET LISTS THE PLAYERS OF TEAM</td>
+<td><%= @team.display %></td>
+<td>TODAY WE ARE [_<%= params[:team] == 'home' ? "X" : "_" %>_] HOME 
+[_<%= params[:team] == 'home' ? "_" : "X" %>_] AWAY</td>
+</table>
+
+<table class="table_border" width="100%">
+<td align="center" width="7%">PLAYER'S SHIRT NUMBER</td>
+<td align="center" width="23%">PLAYER'S NAME<br />(please print)</td>
+<td align="center" width="5%">G</td>
+<td align="center" width="5%">C</td>
+<td align="center" width="5%">X</td>
+<td align="center" width="5%">A/W</td>
+<td align="center" width="7%">PLAYER'S SHIRT NUMBER</td>
+<td align="center" width="23%">PLAYER'S NAME<br />(please print)</td>
+<td align="center" width="5%">G</td>
+<td align="center" width="5%">C</td>
+<td align="center" width="5%">X</td>
+<td align="center" width="5%">A/W</td>
+<% 11.times do |i| %>
+<tr>
+<% if @team.nplayers[i].nil? %>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<% else %>
+<% if @team.nplayers[i].number == 1 %>
+<td align="center">Keeper</td>
+<% else %>
+<td align="center"><%= @team.nplayers[i].number %></td>
+<% end %>
+<td><%= @team.nplayers[i].name %></td>
+<% end %>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<% if @team.nplayers[i+11].nil? %>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<% else %>
+<td align="center"><%= @team.nplayers[i+11].number %></td>
+<td><%= @team.nplayers[i+11].name %></td>
+<% end %>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<% end %>
+</table>
+REFEREE: Please record Goals(G), Cautions(C), Dismissals(X).  If you caution or dismiss a player, you MUST also report relevant details and reasons.
+<br />MANAGER: Please put a neat line through the name of any player not playing today.  If your player advised in advance he would ba absent, please mark A in the A/W column.  If he was absent WITHOUT informing you in advance he would be absent, please mark the A/W coumn with a W.
+
+<br /><strong>BENCH PERSONNEL:</strong>
+<table class="table_border" width="100%">
+<tr>
+<td align="center">POSITION</td>
+<td align="center">NAME (please print)</td>
+<td align="center">SIGNATURE</td>
+<td align="center">POSITION</td>
+<td align="center">NAME (please print)</td>
+<td align="center">SIGNATURE</td>
+</tr>
+<th>MANAGER</th>
+<td align="center">Nick Nikolov</td>
+<td>&nbsp;</td>
+<th>OTHER</th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<tr>
+</tr>
+</table>
+<br />
+<table class="no_border" width="70%">
+<tr>
+<td align="center" class="no_border"><strong>GAME OFFICIAL:</strong></td>
+<td align="center" class="no_border">NAME (please print)</td>
+<td width="250px" align="center" class="no_border">SIGNATURE</td>
+</tr>
+<tr>
+<td align="center">REFEREE</td>
+<td>&nbsp</td>
+<td>&nbsp</td>
+</tr>
+</table>
+
+<br />
+<center>
+<table border="0">
+<tr><th class="no_border">FINAL SCORE:</th><th class="no_border">HOME TEAM [_____]</th><td width="50px"></td><th class="no_border">AWAY TEAM [_____]</th></tr>
+<tr><td></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.home_team.display %></strong></td>
+<td></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.away_team.display %></strong></td></tr>
+</table>
+</center>
+</body>
+</html>

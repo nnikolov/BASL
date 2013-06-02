@@ -1,4 +1,8 @@
 Basl::Application.routes.draw do
+  get 'games/:id/:team/gamesheet' => 'games#gamesheet', :as => :gamesheet
+
+  get 'soccer_game' => 'soccer#index', :as => :soccer_game
+
   get 'admin' => 'admin#index', :as => :admin
 
   get 'administrivia' => 'administrivia#index', :as => :administrivia

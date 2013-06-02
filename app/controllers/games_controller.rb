@@ -2,6 +2,17 @@ class GamesController < ApplicationController
   before_filter :check_authorization, :except => 'index'
 
 
+  # GET /games/1/home/gamesheet
+  def gamesheet
+    @game = Game.find(params[:id])
+    if params[:team] == 'home'
+      @team = @game.home_team
+    else
+      @team = @game.away_team
+    end
+    render :layout => false
+  end
+
   # POST /games/1/update_game_duration
   def update_game_duration
     season = Season.find(params[:id])
