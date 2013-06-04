@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
   validates :name, :presence => true
   validates :team_id, :presence => true
+  validates :number, :numericality => { :only_integer => true }, :allow_nil => true
   belongs_to :team
   has_one :season, :through => :team
 
