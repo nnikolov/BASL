@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :check_authorization, :except => 'index'
+  before_filter :check_authorization, :except => ['index', 'gamesheet']
 
 
   # GET /games/1/home/gamesheet
