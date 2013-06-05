@@ -103,7 +103,7 @@ REFEREE: Please record Goals(G), Cautions(C), Dismissals(X).  If you caution or 
 <td align="center">SIGNATURE</td>
 </tr>
 <th>MANAGER</th>
-<td align="center">Nick Nikolov</td>
+<td align="center"><%= @team.manager.name rescue '' %></td>
 <td>&nbsp;</td>
 <th>OTHER</th>
 <td>&nbsp;</td>
@@ -128,9 +128,9 @@ REFEREE: Please record Goals(G), Cautions(C), Dismissals(X).  If you caution or 
 <br />
 <center>
 <table border="0">
-<tr><th class="no_border">FINAL SCORE:</th><th class="no_border">HOME TEAM [_____]</th><td width="50px"></td><th class="no_border">AWAY TEAM [_____]</th></tr>
-<tr><td></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.home_team.display %></strong></td>
-<td></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.away_team.display %></strong></td></tr>
+<tr><th class="no_border">FINAL SCORE:</th><th class="no_border">HOME TEAM [_____]</th><td width="50px" class="no_border"></td><th class="no_border">AWAY TEAM [_____]</th></tr>
+<tr><td class="no_border"></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.home_team.display %></strong></td>
+<td class="no_border"></td><td class="no_border">Shirt Colour/Name: <strong><%= @game.away_team.display %></strong></td></tr>
 </table>
 </center>
 </body>
