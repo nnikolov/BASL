@@ -31,7 +31,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/new.xml
   def new
     @season = Season.new
-    @seasons = Season.all
+    @seasons = Season.order('start_date desc')
 
     respond_to do |format|
       format.html # new.html.erb
