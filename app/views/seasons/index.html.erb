@@ -5,6 +5,9 @@
     <th>Name</th>
     <th>Start date</th>
     <th>Current</th>
+    <% if @logged_in %>
+    <th>Active</th>
+    <% end %>
     <th></th>
     <th></th>
     <th></th>
@@ -20,6 +23,9 @@
     <td><%=h season.name %></td>
     <td><%=h season.start_date %></td>
     <td><%=h season.current ? 'yes' : 'no' %></td>
+    <% if @logged_in %>
+    <td><%=h season.active ? 'yes' : 'no' %></td>
+    <% end %>
     <td><%= link_to 'Teams', season_teams_path(season.id) %>
     <td><%= link_to 'Games', season_games_path(season.id) %>
     <td><%= link_to 'Standings', season_standings_path(season.id) %>

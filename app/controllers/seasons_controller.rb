@@ -4,7 +4,11 @@ class SeasonsController < ApplicationController
   # GET /seasons
   # GET /seasons.xml
   def index
-    @seasons = Season.order('start_date')
+    if @logged_in
+      @seasons = Season.order('start_date desc')
+    else
+      @seasons = Season.where("active = ? or current = ?", true, true).order('start_date desc')
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,5 +1,9 @@
 <%= form_tag season_redirect_path, :method => 'post' do %>
-<%= collection_select(:season, :id, Season.find(:all, :order => 'start_date'), :id, :name, {:prompt => false}) %>
+<% if @logged_in %>
+<%= collection_select(:season, :id, Season.order('start_date desc'), :id, :name, {:prompt => false}) %>
+<% else %>
+<%= collection_select(:season, :id, Season.where("active = ? or current = ?", true, true).order('start_date desc'), :id, :name, {:prompt => false}) %>
+<% end %>
 <%= hidden_field_tag 'last_controller', controller_name %>
 <%= submit_tag 'Go' %>
 <% end %>
