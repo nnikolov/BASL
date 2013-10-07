@@ -2,7 +2,8 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-    @players = Team.find(params[:team_id]).players
+    @team = Team.find(params[:team_id])
+    @players = @team.players
 
     respond_to do |format|
       format.html # index.html.erb

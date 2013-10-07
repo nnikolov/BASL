@@ -53,7 +53,11 @@ class Season < ActiveRecord::Base
       new_game.away_team = away_team
       new_game.field_id = game.field_id
       new_game.time = game.time + time_diff
-      new_game.until = game.until + time_diff
+      begin
+        new_game.until = game.until + time_diff
+      rescue
+        new_game.until = game.time + time_diff + 1.hour
+      end
       new_game.game_type_id = game.game_type_id
       new_game.save
     end
