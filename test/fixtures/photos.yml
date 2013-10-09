@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  team_id: 
+  file_name: MyString
+  caption: MyText
+  active: false
+
+two:
+  team_id: 
+  file_name: MyString
+  caption: MyText
+  active: false

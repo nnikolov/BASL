@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605012155) do
+ActiveRecord::Schema.define(:version => 20131006145514) do
 
   create_table "commercial_listings", :force => true do |t|
     t.string   "company_name"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(:version => 20130605012155) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "team_id"
+    t.string   "file_name"
+    t.text     "caption"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -144,11 +153,9 @@ ActiveRecord::Schema.define(:version => 20130605012155) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pool_id"
-    t.string   "file_name"
     t.string   "content_type"
-    t.binary   "file_data",     :limit => 16777215
-    t.boolean  "active",                            :default => true
-    t.text     "photo_caption"
+    t.binary   "file_data",    :limit => 16777215
+    t.boolean  "active",                           :default => true
   end
 
   create_table "users", :force => true do |t|

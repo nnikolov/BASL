@@ -81,6 +81,9 @@ class TeamsController < ApplicationController
       params[:team].delete('photo')
     end
 
+    photo = @team.photos.new(file_name: filename, caption: params[:team][:photo_caption])
+    photo.save
+
     respond_to do |format|
       if @team.update_attributes(params[:team])
         format.html { redirect_to(season_team_path(@team.season, @team), :notice => 'Team was successfully updated.') }
@@ -117,6 +120,12 @@ class TeamsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @teams }
     end
+  end
+
+  def update_photo
+    photo = Photo.find(params[:id])
+    photo.update_attributes(params[:photo])
+    redirect_to(season_team_path(photo.team.season_id, photo.team))
   end
 
   private

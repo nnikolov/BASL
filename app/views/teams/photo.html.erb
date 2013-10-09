@@ -1,8 +1,10 @@
+<% @team.photos.each do |photo| %>
 <p>
-  <%= image_tag "/images/#{@team.file_name}", {:id => 'team_image'} %>
+  <%= image_tag "/images/#{photo.file_name}", {:class => 'team_image'} %>
   <% if @logged_in %>
-  <br /><%= @team.photo_caption %>
+  <br /><%= photo.caption %>
   <% end %>
 </p>
+<% end %>
 
 <%= link_to 'Back', :back %>

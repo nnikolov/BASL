@@ -1,4 +1,6 @@
 Basl::Application.routes.draw do
+  post 'photo/:id' => 'teams#update_photo', :as => :update_photo
+
   get 'games/:id/:team/gamesheet' => 'games#gamesheet', :as => :gamesheet
 
   get 'soccer_game' => 'soccer#index', :as => :soccer_game

@@ -25,15 +25,21 @@
   <%= @team.active %>
 </p>
 
+<% @team.photos.each do |photo| %>
 <p>
   <b>Photo:</b>
-  <br /><%= image_tag "/images/#{@team.file_name}", {:id => 'team_image'} %>
+  <br /><%= image_tag "/images/#{photo.file_name}", {:class => 'team_image'} %>
 </p>
 
 <p>
   <b>Photo caption:</b>
-  <%= @team.photo_caption %>
+  <%= photo.caption %>
 </p>
+<p>
+  <b>Link to this photo:</b>
+  <%= image_path("/images/#{photo.file_name}") %>
+</p>
+<% end %>
 
 
 <%= link_to 'Edit', edit_season_team_path(@team.season_id, @team) %> |

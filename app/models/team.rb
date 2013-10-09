@@ -1,9 +1,11 @@
 class Team < ActiveRecord::Base
+  attr_accessor :photo_caption, :file_name
   belongs_to :season
   belongs_to :pool
   validates :name, :presence => true , :uniqueness => { :scope => :season_id}
   validates :color, :presence => true , :uniqueness => { :scope => :season_id}
   validates :season_id, :presence => true
+  has_many :photos
   has_many :players, :order => "position, name", :conditions => ["players.active = true"]
   has_many :nplayers, :class_name => "Player", :order => "number", :conditions => ["players.active = true"]
   has_one :manager, :class_name => "Player", :conditions => ["players.manager = true"]
@@ -140,5 +142,9 @@ class Team < ActiveRecord::Base
       end
     end
     cal
+  end
+
+  def update_attributes(attributes)
+    super
   end
 end
