@@ -81,7 +81,7 @@ class TeamsController < ApplicationController
       params[:team].delete('photo')
     end
 
-    photo = @team.photos.new(file_name: filename, caption: params[:team][:photo_caption])
+    photo = @team.photos.new(:file_name => filename, :caption => params[:team][:photo_caption])
     photo.save
 
     respond_to do |format|

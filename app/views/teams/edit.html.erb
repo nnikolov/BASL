@@ -3,7 +3,7 @@
 <%= render 'form' %>
 
 <% @team.photos.each do |photo| %>
-<%= form_for(photo, url: update_photo_path(photo.id), method: 'post') do |f| %>
+<%= form_for(photo, :url => update_photo_path(photo.id), :method => 'post') do |f| %>
   <% if photo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(photo.errors.count, "error") %> prohibited this team from being saved:</h2>
