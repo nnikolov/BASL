@@ -42,7 +42,7 @@ class GameTypesController < ApplicationController
   # POST /game_types
   # POST /game_types.xml
   def create
-    @game_type = GameType.new(params[:game_type])
+    @game_type = GameType.new(game_type_params)
 
     respond_to do |format|
       if @game_type.save
@@ -61,7 +61,7 @@ class GameTypesController < ApplicationController
     @game_type = GameType.find(params[:id])
 
     respond_to do |format|
-      if @game_type.update_attributes(params[:game_type])
+      if @game_type.update_attributes(game_type_params)
         format.html { redirect_to(@game_type, :notice => 'Game type was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -82,4 +82,11 @@ class GameTypesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def game_type_params
+    params.require(:game_type).permit(:id, :name)
+  end
+
 end

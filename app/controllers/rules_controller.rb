@@ -42,7 +42,7 @@ class RulesController < ApplicationController
   # POST /rules
   # POST /rules.xml
   def create
-    @rule = Rule.new(params[:rule])
+    @rule = Rule.new(rule_params)
 
     respond_to do |format|
       if @rule.save
@@ -61,7 +61,7 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
 
     respond_to do |format|
-      if @rule.update_attributes(params[:rule])
+      if @rule.update_attributes(rule_params)
         format.html { redirect_to(@rule, :notice => 'Rule was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -82,4 +82,11 @@ class RulesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def rule_params
+    params.require(:rule).permit(:id, :body)
+  end
+
 end

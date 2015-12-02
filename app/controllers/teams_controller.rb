@@ -53,7 +53,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.xml
   def create
-    @team = Team.new(params[:team])
+    @team = Team.new(team_params)
 
     respond_to do |format|
       if @team.save
@@ -85,7 +85,7 @@ class TeamsController < ApplicationController
     photo.save
 
     respond_to do |format|
-      if @team.update_attributes(params[:team])
+      if @team.update_attributes(team_params)
         format.html { redirect_to(season_team_path(@team.season, @team), :notice => 'Team was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -145,6 +145,10 @@ class TeamsController < ApplicationController
   
     # Finally, join the parts with a period and return the result
     return fn.join '.'
+  end
+
+  def team_params
+    params.require(:team).permit(:id, :name, :color, :season_id, :pool_id, :active)
   end
 
 end

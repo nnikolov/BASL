@@ -6,9 +6,11 @@ class Team < ActiveRecord::Base
   validates :color, :presence => true , :uniqueness => { :scope => :season_id}
   validates :season_id, :presence => true
   has_many :photos
-  has_many :players, :order => "position, name", :conditions => ["players.active = true"]
-  has_many :nplayers, :class_name => "Player", :order => "number", :conditions => ["players.active = true"]
-  has_one :manager, :class_name => "Player", :conditions => ["players.manager = true"]
+  has_many :players, -> { where(active: true).order('position, name')}
+  #has_many :nplayers, :class_name => "Player", :order => "number", :conditions => ["players.active = true"]
+  has_many :nplayers, -> { where(active: true).order('number')}, class_name: 'Player'
+  #has_one :manager, :class_name => "Player", :conditions => ["players.manager = true"]
+  has_one :manager, -> { where(manager: true)}, class_name: 'Player'
 
   def display
     return color if name.blank?
@@ -109,21 +111,22 @@ class Team < ActiveRecord::Base
   end
 
   def playoff_shutouts
-    home_shutouts = Game.find(:all, 
-      :conditions => ["home_team_id = ? and home_team_score > away_team_score and away_team_score = 0 and game_type_id = 2", self.id]).size
-    away_shutouts = Game.find(:all, 
-      :conditions => ["away_team_id = ? and away_team_score > home_team_score and home_team_score = 0 and game_type_id = 2", self.id]).size
+    home_shutouts = Game.where(["home_team_id = ? and home_team_score > away_team_score and away_team_score = 0 and game_type_id = 2", self.id]).size
+    away_shutouts = Game.where(["away_team_id = ? and away_team_score > home_team_score and home_team_score = 0 and game_type_id = 2", self.id]).size
     home_shutouts + away_shutouts
   end
 
   def playoff_goals_carrying_points
-    home_goals_upto_max = Game.find(:all, :select => "sum(home_team_score) as total", 
-               :conditions => ["home_team_id = ? and home_team_score < 4 and game_type_id = 2", self.id])
-    away_goals_upto_max = Game.find(:all, :select => "sum(away_team_score) as total",
-               :conditions => ["away_team_id = ? and away_team_score < 4 and game_type_id = 2", self.id])
-    home_games_above_max_goals = Game.find(:all, :conditions => ["home_team_id = ? and home_team_score > 3 and game_type_id = 2", self.id]).size
-    away_games_above_max_goals = Game.find(:all, :conditions => ["away_team_id = ? and away_team_score > 3 and game_type_id = 2", self.id]).size
-    home_goals_upto_max[0].total.to_i + away_goals_upto_max[0].total.to_i + home_games_above_max_goals * 3 + away_games_above_max_goals * 3
+    #home_goals_upto_max = Game.find(:all, :select => "sum(home_team_score) as total", 
+    #           :conditions => ["home_team_id = ? and home_team_score < 4 and game_type_id = 2", self.id])
+    home_goals_upto_max = Game.where(["home_team_id = ? and home_team_score < 4 and game_type_id = 2", self.id]).sum(:home_team_score)
+    #away_goals_upto_max = Game.find(:all, :select => "sum(away_team_score) as total",
+    #           :conditions => ["away_team_id = ? and away_team_score < 4 and game_type_id = 2", self.id])
+    away_goals_upto_max = Game.where(["away_team_id = ? and away_team_score < 4 and game_type_id = 2", self.id]).sum(:away_team_score)
+    home_games_above_max_goals = Game.where(["home_team_id = ? and home_team_score > 3 and game_type_id = 2", self.id]).size
+    away_games_above_max_goals = Game.where(["away_team_id = ? and away_team_score > 3 and game_type_id = 2", self.id]).size
+    #home_goals_upto_max[0].total.to_i + away_goals_upto_max[0].total.to_i + home_games_above_max_goals * 3 + away_games_above_max_goals * 3
+    home_goals_upto_max + away_goals_upto_max + home_games_above_max_goals * 3 + away_games_above_max_goals * 3
   end
 
   def calendar(event_url)
@@ -144,7 +147,7 @@ class Team < ActiveRecord::Base
     cal
   end
 
-  def update_attributes(attributes)
-    super
-  end
+  #def update_attributes(attributes)
+  #  super
+  #end
 end

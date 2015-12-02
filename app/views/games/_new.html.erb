@@ -11,12 +11,11 @@
   </tr>
   <tr>
     <td><%= f.label :field_id %></td>
-    <td><%= f.select("field_id", Field.find(:all, :order => 'name').collect {|fd| [fd.name, fd.id]}, {:include_blank => false}) %></td>
+    <td><%= f.select("field_id", Field.order(:name).collect {|fd| [fd.name, fd.id]}, {:include_blank => false}) %></td>
   </tr>
   <tr>
     <td><%= f.label :home_team_id %></td>
-    <td><%= f.select("home_team_id", Team.find(:all, :conditions => ["season_id = ?", @game.season_id],
-          :order => 'name').collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %></td>
+    <td><%= f.select('home_team_id', @teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %></td>
   </tr>
   <tr>
     <td><%= f.label :home_team_score %></td>
@@ -24,8 +23,7 @@
   </tr>
   <tr>
     <td><%= f.label :away_team_id %></td>
-    <td><%= f.select("away_team_id", Team.find(:all, :conditions => ["season_id = ?", @game.season_id],
-          :order => 'name').collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %></td>
+    <td><%= f.select('away_team_id', @teams.collect {|t| ["#{t.name} (#{t.color})", t.id]}, {:include_blank => true}) %></td>
   </tr>
   <tr>
     <td><%= f.label :away_team_score %></td>
@@ -33,7 +31,7 @@
   </tr>
   <tr>
     <td><%= f.label :game_type_id %></td>
-    <td><%= f.select("game_type_id", GameType.find(:all).collect {|g| [g.name, g.id]}, {:include_blank => false}) %></td>
+    <td><%= f.select("game_type_id", @game_types.collect {|g| [g.name, g.id]}, {:include_blank => false}) %></td>
   </tr>
   <tr>
     <td align="right"><%= f.submit "Create" %></td><td><%= link_to "Cancel", cancel_new_path, :remote => true %></td>

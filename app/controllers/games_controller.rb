@@ -48,6 +48,8 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.season_id = params[:season_id]
     @game.time = Time.now - Time.now.strftime("%M").to_i.minutes
+    @teams = Team.where(season_id: @game.season_id).order(:name)
+    @game_types = GameType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -84,7 +86,8 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.xml
   def create
-    @game = Game.new(params[:game])
+    #@game = Game.new(params[:game])
+    @game = Game.new(game_params)
     @game.season_id = params[:season_id]
     @games = Game.where(:season_id => @game.season_id)
 
@@ -106,7 +109,8 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     respond_to do |format|
-      if @game.update_attributes(params[:game])
+      #if @game.update_attributes(params[:game])
+      if @game.update_attributes(game_params)
         format.html { redirect_to(season_game_path(@game.season_id, @game), :notice => 'Game was successfully updated.') }
         format.xml  { head :ok }
         format.js
@@ -127,5 +131,11 @@ class GamesController < ApplicationController
       format.html { redirect_to(season_games_path(params[:season_id])) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:id, :season_id, :time, :field_id, :home_team_id, :home_team_score, :away_team_id, :away_team_score, :game_type_id, :until)
   end
 end

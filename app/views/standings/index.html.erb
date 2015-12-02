@@ -83,7 +83,7 @@ for <%= @season.name %>
 <% @playoff_standings.each do |standing| %>
 <tr>
   <td><%= standing.team.display %></td>
-  <td><%= standing.team.pool.respond_to?('name') ? standing.team.pool.name : nil %>
+  <td><%= begin standing.team.pool.name rescue nil end %>
   <td align="right"><%= standing.rank %></td>
   <td align="right"><%= standing.points %></td>
   <td align="right"><%= standing.goal_diff %></td>

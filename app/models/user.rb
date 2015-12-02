@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :username, :presence => true, :uniqueness => true
 
-  attr_accessible :name, :username, :email
+  #attr_accessible :name, :username, :email
 
   def update_attributes(params, credentials)
     logged_in = User.find_by_login(credentials)
@@ -31,7 +31,8 @@ class User < ActiveRecord::Base
 
   def self.find_by_login(params)
     pass = self.encrypt_password(params[:username], params[:password])
-    if user = User.find(:first, :conditions => ["username = ? and password = ? and active = ?", params[:username], pass, true])
+    #if user = User.find(:first, :conditions => ["username = ? and password = ? and active = ?", params[:username], pass, true])
+    if user = User.where(["username = ? and password = ? and active = ?", params[:username], pass, true]).first
       user
     else
       false

@@ -29,10 +29,10 @@ class ApplicationController < ActionController::Base
     if session[:season]
       @season = Season.find(session[:season])
     else
-      @season = Season.find(:first, :conditions => ["current = ?", 1])
+      @season = Season.where(current: true).first
     end
     rescue
-      @season = Season.find(:first, :conditions => ["current = ?", 1])
+      @season = Season.where(current: true).first
   end
 
   def mobile_device?

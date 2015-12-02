@@ -1,9 +1,9 @@
 class Season < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :start_date, :presence => true
-  has_many :teams, :order => "name", :dependent => :destroy
-  has_many :games, :order => "time, id", :dependent => :destroy
-  has_many :players, :through => :teams, :order => :name, :conditions => ["players.active = true"]
+  has_many :teams, -> { order "name"}, :dependent => :destroy
+  has_many :games, -> {order "time, id"}, :dependent => :destroy
+  has_many :players, -> {where("players.active = true").order("name")}, :through => :teams
 
   attr_accessor :game_duration
   before_update :update_game_duration

@@ -110,7 +110,8 @@ class Standing < ActiveRecord::Base
     game_type = GameType.find_by_name("Playoff")
     order = "pool, points desc, rank, goals_against"
     conditions = ["season_id = ? and game_type_id = ? and cached = TRUE", params[:season_id], game_type.id]
-    standings = self.find(:all, :conditions => conditions, :order => order)
+    #standings = self.find(:all, :conditions => conditions, :order => order)
+    standings = self.where(conditions).order(order).all
     if standings.size == 0
       teams = Team.where :season_id => params[:season_id], :active => true
       teams.each do |team|
@@ -132,7 +133,8 @@ class Standing < ActiveRecord::Base
       end
       resolve_ties(params[:season_id], game_type)
       rank(params[:season_id], game_type)
-      standings = self.find(:all, :conditions => conditions, :order => order)
+      #standings = self.find(:all, :conditions => conditions, :order => order)
+      standings = self.where(conditions).order(order)
       #standings.each do |standing|
       #  standing.reload
       #  self.find(:all, :conditions => ["points = ? and rank = ?", standing.points, standing.rank]).each do |tie|

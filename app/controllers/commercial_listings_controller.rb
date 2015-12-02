@@ -45,7 +45,7 @@ class CommercialListingsController < ApplicationController
   # POST /commercial_listings
   # POST /commercial_listings.json
   def create
-    @commercial_listing = CommercialListing.new(params[:commercial_listing])
+    @commercial_listing = CommercialListing.new(commercial_listing_params)
 
     respond_to do |format|
       if @commercial_listing.save
@@ -64,7 +64,7 @@ class CommercialListingsController < ApplicationController
     @commercial_listing = CommercialListing.find(params[:id])
 
     respond_to do |format|
-      if @commercial_listing.update_attributes(params[:commercial_listing])
+      if @commercial_listing.update_attributes(commercial_listing_params)
         format.html { redirect_to @commercial_listing, :notice => 'Commercial listing was successfully updated.' }
         format.json { head :no_content }
       else
@@ -85,4 +85,11 @@ class CommercialListingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private 
+
+  def commercial_listing_params
+    params.require(:commercial_listing).permit(:id, :company_name, :player_name, :title, :business_type, :telephone, :email, :website, :description)
+  end
+
 end

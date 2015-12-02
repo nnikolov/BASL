@@ -46,7 +46,8 @@ class NewsBytesController < ApplicationController
   # POST /news_bytes
   # POST /news_bytes.xml
   def create
-    @news_byte = NewsByte.new(params[:news_byte])
+    #@news_byte = NewsByte.new(params[:news_byte])
+    @news_byte = NewsByte.new(news_byte_params)
 
     respond_to do |format|
       if @news_byte.save
@@ -65,7 +66,8 @@ class NewsBytesController < ApplicationController
     @news_byte = NewsByte.find(params[:id])
 
     respond_to do |format|
-      if @news_byte.update_attributes(params[:news_byte])
+      #if @news_byte.update_attributes(params[:news_byte])
+      if @news_byte.update_attributes(news_byte_params)
         format.html { redirect_to(@news_byte, :notice => 'News byte was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -85,5 +87,11 @@ class NewsBytesController < ApplicationController
       format.html { redirect_to(news_bytes_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def news_byte_params
+    params.require(:news_byte).permit(:id, :title, :body)
   end
 end

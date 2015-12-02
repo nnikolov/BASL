@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.find(:all)
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     logged_in = User.find_by_login(session[:login])
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
     respond_to do |format|
       if logged_in.active and logged_in.admin and @user.save
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user], session[:login])
+      if @user.update_attributes(user_params, session[:login])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
@@ -92,5 +92,12 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:id, :name, :username, :password, :email, :admin, :active)
+  end
+
 
 end

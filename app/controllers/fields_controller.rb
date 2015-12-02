@@ -42,7 +42,7 @@ class FieldsController < ApplicationController
   # POST /fields
   # POST /fields.xml
   def create
-    @field = Field.new(params[:field])
+    @field = Field.new(field_params)
 
     respond_to do |format|
       if @field.save
@@ -61,7 +61,7 @@ class FieldsController < ApplicationController
     @field = Field.find(params[:id])
 
     respond_to do |format|
-      if @field.update_attributes(params[:field])
+      if @field.update_attributes(field_params)
         format.html { redirect_to(@field, :notice => 'Field was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -82,4 +82,11 @@ class FieldsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def field_params
+    params.require(:field).permit(:id, :name, :code, :map_url, :location)
+  end
+
 end

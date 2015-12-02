@@ -47,19 +47,19 @@ Basl::Application.routes.draw do
 
   end
 
-  match 'login' => 'login#index'
+  get 'login' => 'login#index'
 
-  match 'logout' => 'login#logout'
+  get 'logout' => 'login#logout'
 
-  match 'authenticate' => 'login#authenticate'
+  post 'authenticate' => 'login#authenticate'
 
-  match 'teams/:team_id/photo' => 'teams#photo', :as => :photo
+  get 'teams/:team_id/photo' => 'teams#photo', :as => :photo
 
-  match 'teams/:team_id/players' => 'players#index', :as => :team_players
+  get 'teams/:team_id/players' => 'players#index', :as => :team_players
 
-  match 'teams/:team_id/new_player' => 'players#new', :as => :new_team_player
+  get 'teams/:team_id/new_player' => 'players#new', :as => :new_team_player
 
-  match 'teams/:id/games' => 'teams#games', :as => :team_games
+  get 'teams/:id/games' => 'teams#games', :as => :team_games
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

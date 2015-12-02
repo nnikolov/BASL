@@ -43,7 +43,7 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.xml
   def create
-    @player = Player.new(params[:player])
+    @player = Player.new(player_params)
 
     respond_to do |format|
       if @player.multi_save
@@ -62,7 +62,7 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
 
     respond_to do |format|
-      if @player.update_attributes(params[:player])
+      if @player.update_attributes(player_params)
         format.html { redirect_to(@player, :notice => 'Player was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -84,4 +84,11 @@ class PlayersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def player_params
+    params.require(:player).permit(:id, :name, :names, :team_id, :manager, :note, :position, :number, :active)
+  end
+
 end

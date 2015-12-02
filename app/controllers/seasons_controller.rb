@@ -47,7 +47,7 @@ class SeasonsController < ApplicationController
   # POST /seasons
   # POST /seasons.xml
   def create
-    @season = Season.new(params[:season])
+    @season = Season.new(season_params)
 
     respond_to do |format|
       if @season.save
@@ -67,7 +67,8 @@ class SeasonsController < ApplicationController
     @season = Season.find(params[:id])
 
     respond_to do |format|
-      if @season.update_attributes(params[:season])
+      #if @season.update_attributes(params[:season])
+      if @season.update_attributes(season_params)
         format.html { redirect_to(@season, :notice => 'Season was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -100,5 +101,11 @@ class SeasonsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  private
+
+  def season_params
+    params.require(:season).permit(:id, :name, :current, :active, :start_date, :game_duration)
   end
 end

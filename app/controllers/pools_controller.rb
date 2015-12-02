@@ -42,7 +42,7 @@ class PoolsController < ApplicationController
   # POST /pools
   # POST /pools.xml
   def create
-    @pool = Pool.new(params[:pool])
+    @pool = Pool.new(pool_params)
 
     respond_to do |format|
       if @pool.save
@@ -61,7 +61,7 @@ class PoolsController < ApplicationController
     @pool = Pool.find(params[:id])
 
     respond_to do |format|
-      if @pool.update_attributes(params[:pool])
+      if @pool.update_attributes(pool_params)
         format.html { redirect_to(@pool, :notice => 'Pool was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -82,4 +82,11 @@ class PoolsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def pool_params
+    params.require(:pool).permit(:id, :name)
+  end
+
 end
