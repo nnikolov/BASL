@@ -1,0 +1,25 @@
+<h1>Upcoming games on <%= @games[0].time.strftime("%A, %B %d") %></h1>
+
+<%= distance_of_time_in_words_to_now(@games[0].time) %> from now
+<table class="bordered">
+<tr><th>Time</th><th>Field</th><th>Home team</th><th>vs.</th><th>Away team</th></tr>
+<% @games.each do |game| %>
+<tr>
+<td><%= game.time.strftime("%H:%M") %></td>
+<td><%= game.field.code %></td>
+<td align="right">
+<%= game.home_team.name %> (<%= game.home_team.color %>) 
+<br>Manager: <%= game.home_team.manager_name %> 
+<br>Keeper: <%= game.home_team.keeper_name %>
+<br>Place: <%= game.home_team.season_standing %> 
+</td>
+<td> vs. </td>
+<td>
+<%= game.away_team.name %> (<%= game.away_team.color %>) 
+<br>Manager: <%= game.away_team.manager_name %> 
+<br>Keeper: <%= game.away_team.keeper_name %>
+<br>Place: <%= game.away_team.season_standing %> 
+</td>
+</tr>
+<% end %>
+</table>

@@ -11,6 +11,25 @@ class Team < ActiveRecord::Base
   has_many :nplayers, -> { where(active: true).order('number')}, class_name: 'Player'
   #has_one :manager, :class_name => "Player", :conditions => ["players.manager = true"]
   has_one :manager, -> { where(manager: true)}, class_name: 'Player'
+  has_one :keeper, -> { where(position: "GK")}, class_name: 'Player'
+
+  def season_standing
+    Standing.where(team_id: id, game_type_id: GameType.where(name: 'Season')).first.rank
+    rescue
+      0
+  end
+
+  def manager_name
+    manager.name
+    rescue
+      'No manager'
+  end
+
+  def keeper_name
+    keeper.name
+    rescue
+      'No keeper'
+  end
 
   def display
     return color if name.blank?

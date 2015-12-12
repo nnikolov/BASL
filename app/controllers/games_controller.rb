@@ -2,6 +2,10 @@ class GamesController < ApplicationController
   before_filter :check_authorization, :except => ['index', 'gamesheet']
 
 
+  def next_games
+    @games = Game.next_games
+  end
+
   # GET /games/1/home/gamesheet
   def gamesheet
     @game = Game.find(params[:id])

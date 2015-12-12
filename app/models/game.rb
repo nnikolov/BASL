@@ -12,6 +12,18 @@ class Game < ActiveRecord::Base
   belongs_to :away_team, :class_name => "Team", :foreign_key => 'away_team_id'
   after_save :clear_standings
 
+  def self.next_games
+    Game.where(["time >= ? and time <= ?", Game.next_game_time, Game.next_game_time + 1.day])
+    rescue
+      nil
+  end
+
+  def self.next_game_time
+    Game.where(["time > ?", Time.now]).order(:time).first.time
+    rescue
+      nil
+  end
+
   # Force the standings for current season to be recalculated by deleting the current standings.
   def clear_standings
     if season.current

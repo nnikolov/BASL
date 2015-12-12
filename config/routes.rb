@@ -1,4 +1,6 @@
 Basl::Application.routes.draw do
+  get 'next_games' => 'games#next_games', as: :next_games
+
   post 'photo/:id' => 'teams#update_photo', :as => :update_photo
 
   get 'games/:id/:team/gamesheet' => 'games#gamesheet', :as => :gamesheet
