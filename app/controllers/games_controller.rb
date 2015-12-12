@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :check_authorization, :except => ['index', 'gamesheet']
+  before_filter :check_authorization, :except => ['index', 'gamesheet', 'next_games']
 
 
   def next_games
