@@ -14,9 +14,27 @@ class Team < ActiveRecord::Base
   has_one :keeper, -> { where(position: "GK")}, class_name: 'Player'
 
   def season_standing
-    Standing.where(team_id: id, game_type_id: GameType.where(name: 'Season')).first.rank
+    season_standings.rank
     rescue
       0
+  end
+
+  def season_points
+    season_standings.points
+    rescue
+      0
+  end
+
+  def season_goal_diff
+    season_standings.goal_diff
+    rescue
+      0
+  end
+
+  def season_standings
+    Standing.where(team_id: id, game_type_id: GameType.where(name: 'Season')).first
+    rescue
+      nil
   end
 
   def manager_name

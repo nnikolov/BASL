@@ -12,6 +12,8 @@
 <br>Manager: <%= game.home_team.manager_name %> 
 <br>Keeper: <%= game.home_team.keeper_name %>
 <br>Place: <%= game.home_team.season_standing %> 
+<br>Points: <%= game.home_team.season_points %> 
+<br>Goal diff: <%= game.home_team.season_goal_diff %> 
 </td>
 <td> vs. </td>
 <td>
@@ -19,6 +21,8 @@
 <br>Manager: <%= game.away_team.manager_name %> 
 <br>Keeper: <%= game.away_team.keeper_name %>
 <br>Place: <%= game.away_team.season_standing %> 
+<br>Points: <%= game.away_team.season_points %> 
+<br>Goal diff: <%= game.away_team.season_goal_diff %> 
 </td>
 </tr>
 <% end %>
