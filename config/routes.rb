@@ -49,6 +49,12 @@ Basl::Application.routes.draw do
 
   end
 
+  resources :games
+  
+  resources :standings
+
+  resources :teams
+
   get 'login' => 'login#index'
 
   get 'logout' => 'login#logout'
