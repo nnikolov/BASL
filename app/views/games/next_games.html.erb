@@ -10,20 +10,20 @@
 <td><%= game.field.code %></td>
 <td align="right">
 <%= game.home_team.name %> (<%= game.home_team.color %>) 
-<br>Manager: <%= game.home_team.manager_name %> 
-<br>Keeper: <%= game.home_team.keeper_name %>
-<br>Place: <%= game.home_team.season_standing %> 
-<br>Points: <%= game.home_team.season_points %> 
-<br>Goal diff: <%= game.home_team.season_goal_diff %> 
+<br><span class="gray">Manager:</span> <%= game.home_team.manager_name %> 
+<br><span class="gray">Keeper:</span> <%= game.home_team.keeper_name %>
+<br><span class="gray">Place:</span> <%= game.home_team.season_standing %> 
+<span class="gray">Points:</span> <%= game.home_team.season_points %> 
+<span class="gray">Goal diff:</span> <%= game.home_team.season_goal_diff %> 
 </td>
 <td> vs. </td>
 <td>
 <%= game.away_team.name %> (<%= game.away_team.color %>) 
-<br>Manager: <%= game.away_team.manager_name %> 
-<br>Keeper: <%= game.away_team.keeper_name %>
-<br>Place: <%= game.away_team.season_standing %> 
-<br>Points: <%= game.away_team.season_points %> 
-<br>Goal diff: <%= game.away_team.season_goal_diff %> 
+<br><span class="gray">Manager:</span> <%= game.away_team.manager_name %> 
+<br><span class="gray">Keeper:</span> <%= game.away_team.keeper_name %>
+<br><span class="gray">Place:</span> <%= game.away_team.season_standing %> 
+<span class="gray">Points:</span> <%= game.away_team.season_points %> 
+<span class="gray">Goal diff:</span> <%= game.away_team.season_goal_diff %> 
 </td>
 </tr>
 <% end %>

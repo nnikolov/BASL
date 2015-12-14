@@ -84,3 +84,7 @@ a:hover { color: #fff; background-color:#000; }
   //background:   #e0f8f8;
   background:   #f0f0f0;
 }
+
+.gray {
+  color: #aaa;
+}
