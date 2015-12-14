@@ -1,6 +1,7 @@
-<h1>Upcoming games on <%= @games[0].time.strftime("%A, %B %d") %></h1>
+<h1>Next games are <%= distance_of_time_in_words_to_now(@games[0].time) %> from now</h1>
 
-<%= distance_of_time_in_words_to_now(@games[0].time) %> from now
+<%= @games[0].time.strftime("%A, %B %d") %>
+
 <table class="bordered">
 <tr><th>Time</th><th>Field</th><th>Home team</th><th>vs.</th><th>Away team</th></tr>
 <% @games.each do |game| %>
