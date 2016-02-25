@@ -56,7 +56,7 @@ class Team < ActiveRecord::Base
   end
 
   def games
-    Game.find(:all, :conditions => ["home_team_id = ? or away_team_id = ?", id, id])
+    Game.where(["home_team_id = ? or away_team_id = ?", id, id])
   end
 
   def after_save
