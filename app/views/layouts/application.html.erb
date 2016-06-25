@@ -16,14 +16,14 @@
 <tr>
 <td><%= link_to "News", news_bytes_path %></td>
 <% unless @season.id.blank? %>
-<td><%= link_to "Games", season_games_path(:season_id => @season.id) %></td>
+<td><%= link_to "Games", next_games_path %></td>
 <td><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></td>
 <td><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></td>
 <% end %>
 <td><%= link_to "Seasons", :controller => :seasons %></td>
 <td><%= link_to "Fields", fields_path %></td>
 <td><%= link_to "Info", administrivia_path %></td>
-<td><%= link_to "Admin", admin_path %></td>
+<td><%= link_to "Photos", 'http://hwmgt.smugmug.com/BASL' %></td>
 </tr>
 </table>
 </div>

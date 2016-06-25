@@ -1,5 +1,6 @@
 <ul class="nostyle">
 <li><%= link_to "Upcoming games", next_games_path %></li>
+<li><%= link_to "All games", season_games_path(season_id: @season.id) %>
 <li><%= link_to "Business directory", commercial_listings_path %></li>
 <li><%= link_to "Rules", rules_path %></li>
 <li><%= link_to "Constitution (pdf)", "/assets/BASL_Constitution_as_amended_feb2009.pdf" %></li>
@@ -11,4 +12,5 @@
 <li><%= link_to "GSA Web Site", "http://www.gloucesterhornets.ca/" %></li>
 <li><%= link_to "Blackburn Arms Pub", "http://www.blackburnarms.com/" %></li>
 <li><%= link_to "Contact Us", "mailto:info@ba-soccer.ca" %></li>
+<li><%= link_to "Admin", admin_path %></li>
 </ul>
