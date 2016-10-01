@@ -84,7 +84,8 @@ class Standing < ActiveRecord::Base
   def self.playoff_rank(season_id, game_type)
     pools = self.where(:season_id => season_id, :game_type_id => game_type.id, :cached => true).group(:pool).having("count(*) > 1").all
     pools.each do |pool|
-      self.where(:season_id => season_id, :game_type_id => game_type.id, :cached => true, :pool => pool.pool).order("points desc, hth_wins desc, hth_ties desc, hth_losses, goals_against, goal_diff desc, goals_for desc").each_with_index do |standing, i|
+      #self.where(:season_id => season_id, :game_type_id => game_type.id, :cached => true, :pool => pool.pool).order("points desc, hth_wins desc, hth_ties desc, hth_losses, goals_against, goal_diff desc, goals_for desc").each_with_index do |standing, i|
+      self.where(:season_id => season_id, :game_type_id => game_type.id, :cached => true, :pool => pool.pool).order("points desc, hth_wins desc, hth_ties desc, hth_losses, goal_diff desc, goals_for desc, goals_against, wins desc, ties desc, losses").each_with_index do |standing, i|
         standing.rank = i + 1
         standing.save
       end
