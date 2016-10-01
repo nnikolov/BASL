@@ -9,21 +9,25 @@
 <td><%= game.time.strftime("%H:%M") %></td>
 <td><%= game.field.code %></td>
 <td align="right">
+<% if game.home_team %>
 <%= game.home_team.name %> (<%= game.home_team.color %>) 
 <br><span class="gray">Manager:</span> <%= game.home_team.manager_name %> 
 <br><span class="gray">Keeper:</span> <%= game.home_team.keeper_name %>
 <br><span class="gray">Place:</span> <%= game.home_team.season_standing %> 
 <span class="gray">Points:</span> <%= game.home_team.season_points %> 
 <span class="gray">Goal diff:</span> <%= game.home_team.season_goal_diff %> 
+<% end %>
 </td>
 <td> vs. </td>
 <td>
+<% if game.away_team %>
 <%= game.away_team.name %> (<%= game.away_team.color %>) 
 <br><span class="gray">Manager:</span> <%= game.away_team.manager_name %> 
 <br><span class="gray">Keeper:</span> <%= game.away_team.keeper_name %>
 <br><span class="gray">Place:</span> <%= game.away_team.season_standing %> 
 <span class="gray">Points:</span> <%= game.away_team.season_points %> 
 <span class="gray">Goal diff:</span> <%= game.away_team.season_goal_diff %> 
+<% end %>
 </td>
 </tr>
 <% end %>
