@@ -1,6 +1,8 @@
 <ul class="nostyle">
 <li><%= link_to "Upcoming games", next_games_path %></li>
+<% unless @season.nil? %>
 <li><%= link_to "All games", season_games_path(season_id: @season.id) %>
+<% end %>
 <li><%= link_to "Business directory", commercial_listings_path %></li>
 <li><%= link_to "Rules", rules_path %></li>
 <li><%= link_to "Constitution (pdf)", "/assets/BASL_Constitution_as_amended_feb2009.pdf" %></li>
