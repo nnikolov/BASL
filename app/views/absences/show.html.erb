@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @absence.player.name %>
+</p>
+
+<p>
+  <strong>Game date:</strong>
+  <%= @absence.game_date %>
+</p>
+
+<%= link_to 'Edit', edit_absence_path(@absence) %> |
+<%= link_to 'Back', absences_path %>

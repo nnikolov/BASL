@@ -9,115 +9,125 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140516000328) do
+ActiveRecord::Schema.define(version: 20161123020703) do
 
-  create_table "commercial_listings", :force => true do |t|
-    t.string   "company_name"
-    t.string   "player_name"
-    t.string   "title"
-    t.string   "business_type"
-    t.string   "telephone"
-    t.string   "email"
-    t.string   "website"
-    t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "absences", force: :cascade do |t|
+    t.integer  "player_id",  limit: 4
+    t.date     "game_date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  create_table "fields", :force => true do |t|
-    t.string   "name"
-    t.string   "code"
-    t.string   "map_url"
+  add_index "absences", ["game_date"], name: "index_absences_on_game_date", using: :btree
+  add_index "absences", ["player_id"], name: "index_absences_on_player_id", using: :btree
+
+  create_table "commercial_listings", force: :cascade do |t|
+    t.string   "company_name",  limit: 255
+    t.string   "player_name",   limit: 255
+    t.string   "title",         limit: 255
+    t.string   "business_type", limit: 255
+    t.string   "telephone",     limit: 255
+    t.string   "email",         limit: 255
+    t.string   "website",       limit: 255
+    t.text     "description",   limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "fields", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.string   "map_url",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "location"
+    t.string   "location",   limit: 255
   end
 
-  create_table "game_types", :force => true do |t|
-    t.string   "name"
+  create_table "game_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", :force => true do |t|
-    t.integer  "season_id"
+  create_table "games", force: :cascade do |t|
+    t.integer  "season_id",       limit: 4
     t.datetime "time"
-    t.integer  "field_id"
-    t.integer  "home_team_id"
-    t.integer  "home_team_score"
-    t.integer  "away_team_id"
-    t.integer  "away_team_score"
-    t.integer  "game_type_id"
+    t.integer  "field_id",        limit: 4
+    t.integer  "home_team_id",    limit: 4
+    t.integer  "home_team_score", limit: 4
+    t.integer  "away_team_id",    limit: 4
+    t.integer  "away_team_score", limit: 4
+    t.integer  "game_type_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "until"
   end
 
-  create_table "news", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
+  create_table "news", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "news_bytes", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
+  create_table "news_bytes", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "photos", :force => true do |t|
-    t.integer  "team_id"
-    t.string   "file_name"
-    t.text     "caption"
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+  create_table "photos", force: :cascade do |t|
+    t.integer  "team_id",    limit: 4
+    t.string   "file_name",  limit: 255
+    t.text     "caption",    limit: 65535
+    t.boolean  "active",                   default: true
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
-  create_table "players", :force => true do |t|
-    t.string   "name"
-    t.integer  "team_id"
+  create_table "players", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "team_id",    limit: 4
     t.boolean  "manager"
     t.boolean  "active"
-    t.string   "note"
+    t.string   "note",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "position"
-    t.integer  "number"
+    t.string   "position",   limit: 255
+    t.integer  "number",     limit: 4
   end
 
-  create_table "pools", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rules", :force => true do |t|
-    t.text     "body"
+  create_table "pools", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "season_standings", :force => true do |t|
-    t.integer  "season_id"
-    t.integer  "team_id"
-    t.integer  "points"
-    t.integer  "goal_diff"
-    t.integer  "goals_for"
-    t.integer  "goals_against"
-    t.integer  "wins"
-    t.integer  "ties"
-    t.integer  "losses"
+  create_table "rules", force: :cascade do |t|
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "seasons", :force => true do |t|
-    t.string   "name"
+  create_table "season_standings", force: :cascade do |t|
+    t.integer  "season_id",     limit: 4
+    t.integer  "team_id",       limit: 4
+    t.integer  "points",        limit: 4
+    t.integer  "goal_diff",     limit: 4
+    t.integer  "goals_for",     limit: 4
+    t.integer  "goals_against", limit: 4
+    t.integer  "wins",          limit: 4
+    t.integer  "ties",          limit: 4
+    t.integer  "losses",        limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "start_date"
@@ -125,48 +135,48 @@ ActiveRecord::Schema.define(:version => 20140516000328) do
     t.boolean  "active"
   end
 
-  create_table "standings", :force => true do |t|
-    t.integer  "season_id"
-    t.integer  "team_id"
-    t.string   "pool"
-    t.integer  "rank"
-    t.integer  "points"
-    t.integer  "goal_diff"
-    t.integer  "goals_for"
-    t.integer  "goals_against"
-    t.integer  "wins"
-    t.integer  "ties"
-    t.integer  "losses"
-    t.integer  "game_type_id"
+  create_table "standings", force: :cascade do |t|
+    t.integer  "season_id",     limit: 4
+    t.integer  "team_id",       limit: 4
+    t.string   "pool",          limit: 255
+    t.integer  "rank",          limit: 4
+    t.integer  "points",        limit: 4
+    t.integer  "goal_diff",     limit: 4
+    t.integer  "goals_for",     limit: 4
+    t.integer  "goals_against", limit: 4
+    t.integer  "wins",          limit: 4
+    t.integer  "ties",          limit: 4
+    t.integer  "losses",        limit: 4
+    t.integer  "game_type_id",  limit: 4
     t.boolean  "cached"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hth_wins"
-    t.integer  "hth_ties"
-    t.integer  "hth_losses"
+    t.integer  "hth_wins",      limit: 4
+    t.integer  "hth_ties",      limit: 4
+    t.integer  "hth_losses",    limit: 4
   end
 
-  create_table "teams", :force => true do |t|
-    t.string   "name"
-    t.string   "color"
-    t.integer  "season_id"
+  create_table "teams", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.string   "color",        limit: 255
+    t.integer  "season_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pool_id"
-    t.string   "content_type"
-    t.binary   "file_data",    :limit => 16777215
-    t.boolean  "active",                           :default => true
+    t.integer  "pool_id",      limit: 4
+    t.string   "content_type", limit: 255
+    t.binary   "file_data",    limit: 16777215
+    t.boolean  "active",                        default: true
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "password"
-    t.string   "email"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "username",      limit: 255
+    t.string   "password",      limit: 255
+    t.string   "email",         limit: 255
     t.boolean  "admin"
     t.boolean  "active"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
+    t.integer  "created_by_id", limit: 4
+    t.integer  "updated_by_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

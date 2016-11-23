@@ -1,0 +1,25 @@
+<%= form_for(@absence) do |f| %>
+  <% if @absence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@absence.errors.count, "error") %> prohibited this absence from being saved:</h2>
+
+      <ul>
+      <% @absence.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :player_id %><br>
+    <%= f.select(:player_id, @season.players.sort_by {|obj| obj.name}.collect {|p| [p.name, p.id]} ) %>
+  </div>
+  <div class="field">
+    <%= f.label :game_date %><br>
+    <%= f.date_select :game_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

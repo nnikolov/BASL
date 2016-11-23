@@ -1,4 +1,5 @@
 Basl::Application.routes.draw do
+  resources :absences
   get 'next_games' => 'games#next_games', as: :next_games
 
   post 'photo/:id' => 'teams#update_photo', :as => :update_photo
