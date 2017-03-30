@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123020703) do
+ActiveRecord::Schema.define(version: 20170330033140) do
 
   create_table "absences", force: :cascade do |t|
     t.integer  "player_id",  limit: 4
@@ -106,6 +106,18 @@ ActiveRecord::Schema.define(version: 20161123020703) do
     t.datetime "updated_at"
   end
 
+  create_table "rankings", force: :cascade do |t|
+    t.integer  "player_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "rank",       limit: 4
+    t.integer  "votes",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "rankings", ["player_id"], name: "index_rankings_on_player_id", using: :btree
+  add_index "rankings", ["user_id"], name: "index_rankings_on_user_id", using: :btree
+
   create_table "rules", force: :cascade do |t|
     t.text     "body",       limit: 65535
     t.datetime "created_at"
@@ -179,6 +191,7 @@ ActiveRecord::Schema.define(version: 20161123020703) do
     t.integer  "updated_by_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "votes",         limit: 4,   default: 1
   end
 
 end

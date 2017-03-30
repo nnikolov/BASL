@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Rank players', new_ranking_path %>
+
+<h1>Player Rankings for <%= @season.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Position</th>
+      <th>Rank</th>
+      <th>Votes</th>
+      <th>People voted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @season.players.sort.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.position %></td>
+        <td align="right"><%= player.current_ranking %></td>
+        <td align="right"><%= player.total_votes %></td>
+        <td align="right"><%= player.rankings.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Rank players', new_ranking_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 1
+  user_id: 1
+  rank: 1
+  votes: 1
+
+two:
+  player_id: 1
+  user_id: 1
+  rank: 1
+  votes: 1

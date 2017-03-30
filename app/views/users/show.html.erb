@@ -23,6 +23,11 @@
   <%=h @user.active %>
 </p>
 
+<p>
+  <b>Votes:</b>
+  <%=h @user.votes %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

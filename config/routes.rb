@@ -1,4 +1,5 @@
 Basl::Application.routes.draw do
+  resources :rankings
   resources :absences
   get 'next_games' => 'games#next_games', as: :next_games
 

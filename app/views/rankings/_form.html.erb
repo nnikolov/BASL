@@ -1,0 +1,25 @@
+<% @season.players.sort.each do |player| %>
+<%= form_for(player.ranking(@logged_in)) do |f| %>
+  <% if player.ranking(@logged_in.id).errors.any? %>
+    <div id="error_explanation_#{player.id}">
+      <h2><%= pluralize(player.ranking(@logged_in).errors.count, "error") %> prohibited this ranking from being saved:</h2>
+
+      <ul>
+      <% player.ranking(@logged_in).errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="player_name"><%= player.name %></div>
+    <%= f.hidden_field :player_id, value: player.id %>
+    <%= f.hidden_field :user_id, value: @logged_in.id %>
+    <%= f.label :rank %>
+    <%= f.select :rank, (1..10) %>
+    <%= f.label :votes %>
+    <%= f.select :votes, (0..@logged_in.votes) %>
+    <%= f.submit %>
+    <br><br>
+<% end %>
+<% end %>
