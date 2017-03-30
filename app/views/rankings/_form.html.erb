@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-    <div class="player_name"><%= player.name %></div>
+    <div class="player_name"><%= player.name %> (<%= player.position %>)</div>
     <%= f.hidden_field :player_id, value: player.id %>
     <%= f.hidden_field :user_id, value: @logged_in.id %>
     <%= f.label :rank %>
