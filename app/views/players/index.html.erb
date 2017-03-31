@@ -19,13 +19,13 @@
 <% @players.each do |player| %>
   <tr>
     <td<%= raw(' class="manager"') if player.manager -%>><%= player.name %></td>
-    <td><%= player.position %></td>
+    <td align="center"><%= player.position %></td>
     <% if @logged_in %>
-    <td><%= player.current_ranking %></td>
+    <td align="right"><%= player.current_ranking %></td>
     <% end %>
-    <td><%= player.number %></td>
-    <td><%= player.manager %></td>
-    <td><%= player.active %></td>
+    <td align="right"><%= player.number %></td>
+    <td align="center"><%= player.manager %></td>
+    <td align="center"><%= player.active %></td>
     <td><%= player.note %></td>
     <td><%= link_to 'Show', player %></td>
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
