@@ -4,6 +4,9 @@
   <tr>
     <th>Name</th>
     <th>Position</th>
+    <% if @logged_in %>
+    <th>Ranking</th>
+    <% end %>
     <th>Number</th>
     <th>Manager</th>
     <th>Active</th>
@@ -17,6 +20,9 @@
   <tr>
     <td<%= raw(' class="manager"') if player.manager -%>><%= player.name %></td>
     <td><%= player.position %></td>
+    <% if @logged_in %>
+    <td><%= player.current_ranking %></td>
+    <% end %>
     <td><%= player.number %></td>
     <td><%= player.manager %></td>
     <td><%= player.active %></td>

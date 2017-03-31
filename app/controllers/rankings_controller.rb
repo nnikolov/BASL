@@ -1,6 +1,6 @@
 class RankingsController < ApplicationController
   before_filter :check_authorization
-  before_action :set_ranking, only: [:show, :edit, :update, :destroy]
+  before_action :set_ranking, only: [:show, :update, :destroy]
 
   # GET /rankings
   def index
@@ -13,7 +13,7 @@ class RankingsController < ApplicationController
 
   # GET /rankings/new
   def new
-    @ranking = Ranking.new
+    #@ranking = Ranking.new
   end
 
   # GET /rankings/1/edit
