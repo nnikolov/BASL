@@ -98,6 +98,8 @@ class SeasonsController < ApplicationController
       redirect_to season_teams_path(params[:season][:id].to_i)
     when 'standings'
       redirect_to season_standings_path(params[:season][:id].to_i)
+    when 'rankings'
+      redirect_to :back
     else
       redirect_to root_path
     end
