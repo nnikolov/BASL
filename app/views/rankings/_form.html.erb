@@ -1,3 +1,7 @@
+<p>Higher rank number indicates better player.
+<br>More votes give the ranking more weight.
+<br>Use more votes for players you know well and less for ones you don't.</p>
+
 <% @season.players.sort.each do |player| %>
 <%= form_for(player.ranking(@logged_in)) do |f| %>
   <% if player.ranking(@logged_in.id).errors.any? %>
