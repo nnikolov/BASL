@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330033140) do
+ActiveRecord::Schema.define(version: 20170826222658) do
 
   create_table "absences", force: :cascade do |t|
     t.integer  "player_id",  limit: 4
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 20170330033140) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "votes",         limit: 4,   default: 1
+    t.boolean  "website",                   default: false
   end
 
 end

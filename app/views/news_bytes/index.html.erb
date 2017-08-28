@@ -1,4 +1,4 @@
-<% if @logged_in %>
+<% if @logged_in and @logged_in.website %>
 <%= link_to_unless @logged_in.nil?, 'New news_byte', new_news_byte_path %>
 <% end %>
 
@@ -15,6 +15,6 @@
 
 <br />
 
-<% if @logged_in %>
+<% if @logged_in and @logged_in.website %>
 <%= link_to_unless @logged_in.nil?, 'New news_byte', new_news_byte_path %>
 <% end %>

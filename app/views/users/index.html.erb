@@ -6,11 +6,14 @@
     <th>Username</th>
     <th>Email</th>
     <th>Admin</th>
+    <th>Website</th>
     <th>Active</th>
     <th>Votes</th>
+    <% if @logged_in and @logged_in.admin %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% for user in @users %>
@@ -19,15 +22,20 @@
     <td><%=h user.username %></td>
     <td><%=h user.email %></td>
     <td><%=h user.admin %></td>
+    <td><%=h user.website %></td>
     <td><%=h user.active %></td>
     <td><%=h user.votes %></td>
+    <% if @logged_in and @logged_in.admin %>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if @logged_in and @logged_in.admin %>
 <%= link_to 'New user', new_user_path %>
+<% end %>

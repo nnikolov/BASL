@@ -3,21 +3,27 @@
 <table>
   <tr>
     <th>Name</th>
+    <% if @logged_in and @logged_in.website %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% @pools.each do |pool| %>
   <tr>
     <td><%= pool.name %></td>
+    <% if @logged_in and @logged_in.website %>
     <td><%= link_to 'Show', pool %></td>
     <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
     <td><%= link_to 'Destroy', pool, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if @logged_in and @logged_in.website %>
 <%= link_to 'New Pool', new_pool_path %>
+<% end %>

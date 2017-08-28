@@ -50,7 +50,7 @@ class NewsBytesController < ApplicationController
     @news_byte = NewsByte.new(news_byte_params)
 
     respond_to do |format|
-      if @news_byte.save
+      if @logged_in.active and @logged_in.website and @news_byte.save
         format.html { redirect_to(@news_byte, :notice => 'News byte was successfully created.') }
         format.xml  { render :xml => @news_byte, :status => :created, :location => @news_byte }
       else
@@ -67,7 +67,7 @@ class NewsBytesController < ApplicationController
 
     respond_to do |format|
       #if @news_byte.update_attributes(params[:news_byte])
-      if @news_byte.update_attributes(news_byte_params)
+      if @logged_in.active and @logged_in.website and @news_byte.update_attributes(news_byte_params)
         format.html { redirect_to(@news_byte, :notice => 'News byte was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -81,7 +81,9 @@ class NewsBytesController < ApplicationController
   # DELETE /news_bytes/1.xml
   def destroy
     @news_byte = NewsByte.find(params[:id])
-    @news_byte.destroy
+    if @logged_in.active and @logged_in.website
+      @news_byte.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(news_bytes_url) }

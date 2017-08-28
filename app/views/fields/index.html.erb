@@ -6,7 +6,7 @@
     <th>Code</th>
     <th>Map</th>
     <th>Location</th>
-    <% if @logged_in %>
+    <% if @logged_in and @logged_in.website %>
     <th></th>
     <th></th>
     <th></th>
@@ -19,7 +19,7 @@
     <td><%=h field.code %></td>
     <td><%= link_to_unless field.map_url == '', 'Map', field.map_url %></td>
     <td><%=h field.location %></td>
-    <% if @logged_in %>
+    <% if @logged_in and @logged_in.website %>
     <td><%= link_to 'Show', field %></td>
     <td><%= link_to 'Edit', edit_field_path(field) %></td>
     <td><%= link_to 'Destroy', field, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -30,6 +30,6 @@
 
 <br />
 
-<% if @logged_in %>
+<% if @logged_in and @logged_in.website %>
 <%= link_to 'New field', new_field_path %>
 <% end %>

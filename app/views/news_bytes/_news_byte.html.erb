@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <td class="news_byte"><%= raw RedCloth.new( @news_byte.body ).to_html %></td>
-    <% if @logged_in %>
+    <% if @logged_in and @logged_in.website %>
     <td><%= link_to 'Show', @news_byte %></td>
     <td><%= link_to 'Edit', edit_news_byte_path(@news_byte) %></td>
     <td><%= link_to 'Destroy', @news_byte, :confirm => 'Are you sure?', :method => :delete %></td>

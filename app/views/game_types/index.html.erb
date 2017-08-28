@@ -3,21 +3,27 @@
 <table>
   <tr>
     <th>Name</th>
+    <% if @logged_in and @logged_in.website %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% @game_types.each do |game_type| %>
   <tr>
     <td><%= game_type.name %></td>
+    <% if @logged_in and @logged_in.website %>
     <td><%= link_to 'Show', game_type %></td>
     <td><%= link_to 'Edit', edit_game_type_path(game_type) %></td>
     <td><%= link_to 'Destroy', game_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if @logged_in and @logged_in.website %>
 <%= link_to 'New Game type', new_game_type_path %>
+<% end %>

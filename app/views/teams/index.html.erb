@@ -5,7 +5,7 @@ for <%= @season.name -%>
 
 <%= render :partial => 'common/season_select' %>
 
-<% if @logged_in %>
+<% if @logged_in and @logged_in.website %>
 <table class="bordered">
   <tr>
     <th>Name</th>
@@ -14,7 +14,7 @@ for <%= @season.name -%>
     <th>Pool</th>
     <th>Calendar</th>
     <th></th>
-    <% if @logged_in %>
+    <% if @logged_in and @logged_in.website %>
     <th></th>
     <th></th>
     <th></th>
@@ -34,7 +34,7 @@ for <%= @season.name -%>
     <td>
       <%= link_to 'Photo', photo_path(team) %>
     </td>
-    <% if @logged_in %>
+    <% if @logged_in and @logged_in.website %>
     <td>
       <%= link_to 'Show', [team.season, team] -%>
     </td>
@@ -90,7 +90,7 @@ for <%= @season.name -%>
 <% end %>
 
 <% if @season %>
-<% if @logged_in %>
+<% if @logged_in and @logged_in.website %>
 <%= link_to 'New team', :controller => :teams, :season_id => @season.id, :action => :new %> |
 <% end %>
 <%= link_to 'Back', :controller => :seasons %>
