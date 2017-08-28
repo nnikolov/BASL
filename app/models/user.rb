@@ -7,11 +7,15 @@ class User < ActiveRecord::Base
   #attr_accessible :name, :username, :email
 
   def update_attributes(params, credentials)
+    new_pass = params[:password]
+    params.delete(:password)
     logged_in = User.find_by_login(credentials)
     return false unless super(params)
     self.updated_by_id = logged_in.id
-    if params[:password] != '' and logged_in.active and (logged_in.admin or self.username == credentials[:username])
-      self.set_password(params[:password])
+    if new_pass.size >= 4 
+      if logged_in.active and (logged_in.admin or self.username == credentials[:username])
+        self.set_password(new_pass)
+      end
     end
     if logged_in.admin and logged_in.active
       self.admin = params[:admin]
