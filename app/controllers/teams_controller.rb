@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :set_team, only: [:photo, :games, :set_team, :show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => ['index', 'games', 'photo']
 
   # GET /teams
@@ -20,7 +21,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.xml
   def show
-    @team = Team.find(params[:id])
+    #@team = Team.find(params[:id])
     if @team.pool.blank?
       @pool_name = 'N/A'
     else
@@ -47,7 +48,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
-    @team = Team.find(params[:id])
+    #@team = Team.find(params[:id])
   end
 
   # POST /teams
@@ -69,7 +70,7 @@ class TeamsController < ApplicationController
   # PUT /teams/1
   # PUT /teams/1.xml
   def update
-    @team = Team.find(params[:id])
+    #@team = Team.find(params[:id])
     if params[:team][:photo] && !params[:team][:photo].blank? then
       filename = sanitize_filename "teams_#{params[:id]}_#{params[:team][:photo].original_filename}"
       params[:team][:file_name] = filename
@@ -98,7 +99,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.xml
   def destroy
-    @team = Team.find(params[:id])
+    #@team = Team.find(params[:id])
     @team.destroy
 
     respond_to do |format|
@@ -108,12 +109,12 @@ class TeamsController < ApplicationController
   end
 
   def photo
-    @team = Team.find(params[:team_id])
+    #@team = Team.find(params[:team_id])
     #send_data(team.file_data, :filename => team.file_name, :type => team.content_type, :disposition => "inline")
   end
 
   def games
-    @team = Team.find(params[:id])
+    #@team = Team.find(params[:id])
 
     respond_to do |format|
       format.ics # index.ics.erb
@@ -146,6 +147,16 @@ class TeamsController < ApplicationController
     # Finally, join the parts with a period and return the result
     return fn.join '.'
   end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team
+    @team = Team.find(params[:id])
+    unless @logged_in.update_site?
+      @team.readonly!
+    end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
 
   def team_params
     params.require(:team).permit(:id, :name, :color, :season_id, :pool_id, :active)

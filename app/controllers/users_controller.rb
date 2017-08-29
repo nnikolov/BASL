@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization
   layout "application"
 
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
 
   # POST /users
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(user_params, session[:login])
@@ -84,7 +85,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -94,7 +95,15 @@ class UsersController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @game = User.find(params[:id])
+    unless @logged_in.update_site?
+      @user.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:id, :name, :username, :password, :email, :admin, :website, :active, :votes)
   end

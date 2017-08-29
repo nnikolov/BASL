@@ -1,4 +1,7 @@
 class PlayersController < ApplicationController
+  before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_filter :check_authorization, :except => ['index', 'redirect']
+
   # GET /players
   # GET /players.xml
   def index
@@ -14,7 +17,7 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.xml
   def show
-    @player = Player.find(params[:id])
+    #@player = Player.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +40,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1/edit
   def edit
-    @player = Player.find(params[:id])
+    #@player = Player.find(params[:id])
   end
 
   # POST /players
@@ -46,7 +49,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
 
     respond_to do |format|
-      if @player.multi_save
+      if @logged_in.update_site? and @player.multi_save
         format.html { redirect_to(team_players_path(@player.team_id), :notice => 'Player was successfully created.') }
         format.xml  { render :xml => @player, :status => :created, :location => @player }
       else
@@ -59,7 +62,7 @@ class PlayersController < ApplicationController
   # PUT /players/1
   # PUT /players/1.xml
   def update
-    @player = Player.find(params[:id])
+    #@player = Player.find(params[:id])
 
     respond_to do |format|
       if @player.update_attributes(player_params)
@@ -75,7 +78,7 @@ class PlayersController < ApplicationController
   # DELETE /players/1
   # DELETE /players/1.xml
   def destroy
-    @player = Player.find(params[:id])
+    #@player = Player.find(params[:id])
     team_id = @player.team_id
     @player.destroy
 
@@ -86,7 +89,15 @@ class PlayersController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find(params[:id])
+    unless @logged_in.update_site?
+      @player.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def player_params
     params.require(:player).permit(:id, :name, :names, :team_id, :manager, :note, :position, :number, :active)
   end

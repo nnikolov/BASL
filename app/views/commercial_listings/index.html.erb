@@ -43,7 +43,7 @@
   </tr>
 </table>
     </td>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <td><%= link_to 'Show', commercial_listing %></td>
     <td><%= link_to 'Edit', edit_commercial_listing_path(commercial_listing) %></td>
     <td><%= link_to 'Destroy', commercial_listing, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -54,6 +54,6 @@
 
 <br />
 
-<% if @logged_in and @logged_in.website %>
+<% if @logged_in and @logged_in.update_site? %>
 <%= link_to_unless @logged_in.nil?, 'New Commercial listing', new_commercial_listing_path %>
 <% end %>

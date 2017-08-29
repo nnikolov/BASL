@@ -1,4 +1,5 @@
 class CommercialListingsController < ApplicationController
+  before_action :set_commercial_listing, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => 'index'
 
   # GET /commercial_listings
@@ -17,7 +18,7 @@ class CommercialListingsController < ApplicationController
   # GET /commercial_listings/1.json
   # GET /commercial_listings/1.vcard
   def show
-    @commercial_listing = CommercialListing.find(params[:id])
+    #@commercial_listing = CommercialListing.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,7 +40,7 @@ class CommercialListingsController < ApplicationController
 
   # GET /commercial_listings/1/edit
   def edit
-    @commercial_listing = CommercialListing.find(params[:id])
+    #@commercial_listing = CommercialListing.find(params[:id])
   end
 
   # POST /commercial_listings
@@ -48,7 +49,7 @@ class CommercialListingsController < ApplicationController
     @commercial_listing = CommercialListing.new(commercial_listing_params)
 
     respond_to do |format|
-      if @commercial_listing.save
+      if @logged_in.update_site? and @commercial_listing.save
         format.html { redirect_to @commercial_listing, :notice => 'Commercial listing was successfully created.' }
         format.json { render :json => @commercial_listing, :status => :created, :location => @commercial_listing }
       else
@@ -61,7 +62,7 @@ class CommercialListingsController < ApplicationController
   # PUT /commercial_listings/1
   # PUT /commercial_listings/1.json
   def update
-    @commercial_listing = CommercialListing.find(params[:id])
+    #@commercial_listing = CommercialListing.find(params[:id])
 
     respond_to do |format|
       if @commercial_listing.update_attributes(commercial_listing_params)
@@ -77,7 +78,7 @@ class CommercialListingsController < ApplicationController
   # DELETE /commercial_listings/1
   # DELETE /commercial_listings/1.json
   def destroy
-    @commercial_listing = CommercialListing.find(params[:id])
+    #@commercial_listing = CommercialListing.find(params[:id])
     @commercial_listing.destroy
 
     respond_to do |format|
@@ -87,7 +88,15 @@ class CommercialListingsController < ApplicationController
   end
 
   private 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_commercial_listinq
+    @commercial_listing = CommercialListing.find(params[:id])
+    unless @logged_in.update_site?
+      @commercial_listing.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def commercial_listing_params
     params.require(:commercial_listing).permit(:id, :company_name, :player_name, :title, :business_type, :telephone, :email, :website, :description)
   end

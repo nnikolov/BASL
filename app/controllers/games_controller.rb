@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :set_game, only: [:cancel_edit, :gamesheet, :show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => ['index', 'gamesheet', 'next_games']
 
 
@@ -8,7 +9,7 @@ class GamesController < ApplicationController
 
   # GET /games/1/home/gamesheet
   def gamesheet
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
     if params[:team] == 'home'
       @team = @game.home_team
     else
@@ -38,7 +39,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.xml
   def show
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -64,7 +65,7 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -73,7 +74,7 @@ class GamesController < ApplicationController
   end
 
   def cancel_edit
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -96,7 +97,7 @@ class GamesController < ApplicationController
     @games = Game.where(:season_id => @game.season_id)
 
     respond_to do |format|
-      if @game.save
+      if @logged_in.update_site? and @game.save
         format.html { redirect_to(season_game_path(@game.season_id, @game), :notice => 'Game was successfully created.') }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
         format.js
@@ -110,7 +111,7 @@ class GamesController < ApplicationController
   # PUT /games/1
   # PUT /games/1.xml
   def update
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
 
     respond_to do |format|
       #if @game.update_attributes(params[:game])
@@ -128,7 +129,7 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.xml
   def destroy
-    @game = Game.find(params[:id])
+    #@game = Game.find(params[:id])
     @game.destroy
 
     respond_to do |format|
@@ -138,7 +139,15 @@ class GamesController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+    unless @logged_in.update_site?
+      @game.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
     params.require(:game).permit(:id, :season_id, :time, :field_id, :home_team_id, :home_team_score, :away_team_id, :away_team_score, :game_type_id, :until)
   end

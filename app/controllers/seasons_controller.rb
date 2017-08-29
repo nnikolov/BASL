@@ -1,4 +1,5 @@
 class SeasonsController < ApplicationController
+  before_action :set_season, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => ['index', 'redirect']
 
   # GET /seasons
@@ -19,7 +20,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/1
   # GET /seasons/1.xml
   def show
-    @season = Season.find(params[:id])
+    #@season = Season.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +42,7 @@ class SeasonsController < ApplicationController
 
   # GET /seasons/1/edit
   def edit
-    @season = Season.find(params[:id])
+    #@season = Season.find(params[:id])
   end
 
   # POST /seasons
@@ -64,7 +65,7 @@ class SeasonsController < ApplicationController
   # PUT /seasons/1
   # PUT /seasons/1.xml
   def update
-    @season = Season.find(params[:id])
+    #@season = Season.find(params[:id])
 
     respond_to do |format|
       #if @season.update_attributes(params[:season])
@@ -81,7 +82,7 @@ class SeasonsController < ApplicationController
   # DELETE /seasons/1
   # DELETE /seasons/1.xml
   def destroy
-    @season = Season.find(params[:id])
+    #@season = Season.find(params[:id])
     @season.destroy
 
     respond_to do |format|
@@ -106,7 +107,15 @@ class SeasonsController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_season
+    @season = Season.find(params[:id])
+    unless @logged_in.update_site?
+      @season.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def season_params
     params.require(:season).permit(:id, :name, :current, :active, :start_date, :game_duration)
   end

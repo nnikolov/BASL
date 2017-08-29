@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <th></th>
     <th></th>
     <th></th>
@@ -13,7 +13,7 @@
 <% @pools.each do |pool| %>
   <tr>
     <td><%= pool.name %></td>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <td><%= link_to 'Show', pool %></td>
     <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
     <td><%= link_to 'Destroy', pool, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -24,6 +24,6 @@
 
 <br />
 
-<% if @logged_in and @logged_in.website %>
+<% if @logged_in and @logged_in.update_site? %>
 <%= link_to 'New Pool', new_pool_path %>
 <% end %>

@@ -5,13 +5,13 @@
     <th>Name</th>
     <th>Start date</th>
     <th>Current</th>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <th>Active</th>
     <% end %>
     <th></th>
     <th></th>
     <th></th>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <th></th>
     <th></th>
     <th></th>
@@ -23,13 +23,13 @@
     <td><%=h season.name %></td>
     <td><%=h season.start_date %></td>
     <td><%=h season.current ? 'yes' : 'no' %></td>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <td><%=h season.active ? 'yes' : 'no' %></td>
     <% end %>
     <td><%= link_to 'Teams', season_teams_path(season.id) %>
     <td><%= link_to 'Games', season_games_path(season.id) %>
     <td><%= link_to 'Standings', season_standings_path(season.id) %>
-    <% if @logged_in and @logged_in.website %>
+    <% if @logged_in and @logged_in.update_site? %>
     <td><%= link_to 'Show', season %></td>
     <td><%= link_to 'Edit', edit_season_path(season) %></td>
     <td><%= link_to 'Destroy', season, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -40,6 +40,6 @@
 
 <br />
 
-<% if @logged_in and @logged_in.website %>
+<% if @logged_in and @logged_in.update_site? %>
 <%= link_to 'New season', new_season_path %>
 <% end %>

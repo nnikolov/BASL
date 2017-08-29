@@ -1,4 +1,5 @@
 class RulesController < ApplicationController
+  before_action :set_rule, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => 'index'
 
   # GET /rules
@@ -15,7 +16,7 @@ class RulesController < ApplicationController
   # GET /rules/1
   # GET /rules/1.xml
   def show
-    @rule = Rule.find(params[:id])
+    #@rule = Rule.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +37,7 @@ class RulesController < ApplicationController
 
   # GET /rules/1/edit
   def edit
-    @rule = Rule.find(params[:id])
+    #@rule = Rule.find(params[:id])
   end
 
   # POST /rules
@@ -45,7 +46,7 @@ class RulesController < ApplicationController
     @rule = Rule.new(rule_params)
 
     respond_to do |format|
-      if @rule.save
+      if @logged_in.update_site? and @rule.save
         format.html { redirect_to(@rule, :notice => 'Rule was successfully created.') }
         format.xml  { render :xml => @rule, :status => :created, :location => @rule }
       else
@@ -58,7 +59,7 @@ class RulesController < ApplicationController
   # PUT /rules/1
   # PUT /rules/1.xml
   def update
-    @rule = Rule.find(params[:id])
+    #@rule = Rule.find(params[:id])
 
     respond_to do |format|
       if @rule.update_attributes(rule_params)
@@ -74,7 +75,7 @@ class RulesController < ApplicationController
   # DELETE /rules/1
   # DELETE /rules/1.xml
   def destroy
-    @rule = Rule.find(params[:id])
+    #@rule = Rule.find(params[:id])
     @rule.destroy
 
     respond_to do |format|
@@ -84,7 +85,15 @@ class RulesController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @rule = Rule.find(params[:id])
+    unless @logged_in.update_site?
+      @rule.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     params.require(:rule).permit(:id, :body)
   end

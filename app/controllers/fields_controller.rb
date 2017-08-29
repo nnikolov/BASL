@@ -1,4 +1,5 @@
 class FieldsController < ApplicationController
+  before_action :set_field, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization, :except => ['index', 'show']
 
   # GET /fields
@@ -15,7 +16,7 @@ class FieldsController < ApplicationController
   # GET /fields/1
   # GET /fields/1.xml
   def show
-    @field = Field.find(params[:id])
+    #@field = Field.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +37,7 @@ class FieldsController < ApplicationController
 
   # GET /fields/1/edit
   def edit
-    @field = Field.find(params[:id])
+    #@field = Field.find(params[:id])
   end
 
   # POST /fields
@@ -45,7 +46,7 @@ class FieldsController < ApplicationController
     @field = Field.new(field_params)
 
     respond_to do |format|
-      if @field.save
+      if @logged_in.update_site and @field.save
         format.html { redirect_to(@field, :notice => 'Field was successfully created.') }
         format.xml  { render :xml => @field, :status => :created, :location => @field }
       else
@@ -58,7 +59,7 @@ class FieldsController < ApplicationController
   # PUT /fields/1
   # PUT /fields/1.xml
   def update
-    @field = Field.find(params[:id])
+    #@field = Field.find(params[:id])
 
     respond_to do |format|
       if @field.update_attributes(field_params)
@@ -74,7 +75,7 @@ class FieldsController < ApplicationController
   # DELETE /fields/1
   # DELETE /fields/1.xml
   def destroy
-    @field = Field.find(params[:id])
+    #@field = Field.find(params[:id])
     @field.destroy
 
     respond_to do |format|
@@ -84,7 +85,15 @@ class FieldsController < ApplicationController
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @field = Field.find(params[:id])
+    unless @logged_in.update_site?
+      @field.readonly!
+    end
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   def field_params
     params.require(:field).permit(:id, :name, :code, :map_url, :location)
   end

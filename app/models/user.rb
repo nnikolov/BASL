@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def update_site?
+    return false unless active
+    website
+  end
+
   def set_password(password)
     self.password = User.encrypt_password(self.username, password)
     self.save
