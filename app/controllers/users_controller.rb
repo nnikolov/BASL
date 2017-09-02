@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :check_authorization
   layout "application"
 
@@ -97,8 +97,8 @@ class UsersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @game = User.find(params[:id])
-    unless @logged_in.update_site?
+    @user = User.find(params[:id])
+    unless @logged_in.admin?
       @user.readonly!
     end
   end

@@ -21,10 +21,10 @@
     <td><%=h user.name %></td>
     <td><%=h user.username %></td>
     <td><%=h user.email %></td>
-    <td><%=h user.admin %></td>
-    <td><%=h user.website %></td>
-    <td><%=h user.active %></td>
-    <td><%=h user.votes %></td>
+    <td><%= user.admin ? "yes" : "" %></td>
+    <td><%= user.website ? "yes" : "" %></td>
+    <td><%= user.active ? "yes" : "" %></td>
+    <td align="right"><%=h user.votes %></td>
     <% if @logged_in and @logged_in.admin %>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
