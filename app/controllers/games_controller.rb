@@ -142,7 +142,7 @@ class GamesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     @game = Game.find(params[:id])
-    unless @logged_in.update_site?
+    unless @logged_in and @logged_in.update_site?
       @game.readonly!
     end
   end
