@@ -1,6 +1,6 @@
 class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization
+  before_action :check_authorization
 
   # GET /pools
   # GET /pools.xml

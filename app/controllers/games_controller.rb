@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:cancel_edit, :gamesheet, :show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'gamesheet', 'next_games']
+  before_action :check_authorization, :except => ['index', 'gamesheet', 'next_games']
 
 
   def next_games

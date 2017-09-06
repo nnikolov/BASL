@@ -1,6 +1,6 @@
 class FieldsController < ApplicationController
   before_action :set_field, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'show']
+  before_action :check_authorization, :except => ['index', 'show']
 
   # GET /fields
   # GET /fields.xml

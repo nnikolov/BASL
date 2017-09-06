@@ -1,6 +1,6 @@
 class SeasonsController < ApplicationController
   before_action :set_season, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'redirect']
+  before_action :check_authorization, :except => ['index', 'redirect']
 
   # GET /seasons
   # GET /seasons.xml

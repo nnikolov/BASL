@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:photo, :games, :set_team, :show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'games', 'photo']
+  before_action :check_authorization, :except => ['index', 'games', 'photo']
 
   # GET /teams
   # GET /teams.xml

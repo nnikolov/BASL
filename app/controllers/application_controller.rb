@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_season
-  before_filter :check_authentication
-  before_filter :mobile_device?
+  before_action :set_season
+  before_action :check_authentication
+  before_action :mobile_device?
 
   def check_authentication
     #unless session[:login] and @logged_in = User.find_by_login(session[:login])

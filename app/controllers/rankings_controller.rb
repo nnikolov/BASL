@@ -1,5 +1,5 @@
 class RankingsController < ApplicationController
-  before_filter :check_authorization
+  before_action :check_authorization
   before_action :set_ranking, only: [:show, :update, :destroy]
 
   # GET /rankings

@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'redirect']
+  before_action :check_authorization, :except => ['index', 'redirect']
 
   # GET /players
   # GET /players.xml

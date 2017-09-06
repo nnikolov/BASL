@@ -1,6 +1,6 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => 'index'
+  before_action :check_authorization, :except => 'index'
 
   # GET /rules
   # GET /rules.xml

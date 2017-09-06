@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :check_authorization
+  before_action :check_authorization
 
   def index
   end
