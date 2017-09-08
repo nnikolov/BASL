@@ -1,6 +1,6 @@
 class AbsencesController < ApplicationController
   before_action :set_absence, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'show']
+  before_action :check_authorization, :except => ['index', 'show']
 
   # GET /absences
   def index

@@ -1,6 +1,6 @@
 class CommercialListingsController < ApplicationController
   before_action :set_commercial_listing, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => 'index'
+  before_action :check_authorization, :except => 'index'
 
   # GET /commercial_listings
   # GET /commercial_listings.json

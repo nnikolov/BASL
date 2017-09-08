@@ -1,5 +1,5 @@
 class GameTypesController < ApplicationController
-  before_filter :check_authorization
+  before_action :check_authorization
 
   # GET /game_types
   # GET /game_types.xml

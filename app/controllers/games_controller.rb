@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:cancel_edit, :gamesheet, :show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'gamesheet', 'next_games']
+  before_action :check_authorization, :except => ['index', 'gamesheet', 'next_games']
 
 
   def next_games
@@ -142,7 +142,7 @@ class GamesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     @game = Game.find(params[:id])
-    unless @logged_in.update_site?
+    unless @logged_in and @logged_in.update_site?
       @game.readonly!
     end
   end

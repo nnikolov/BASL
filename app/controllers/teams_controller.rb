@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:photo, :games, :set_team, :show, :edit, :update, :destroy]
-  before_filter :check_authorization, :except => ['index', 'games', 'photo']
+  before_action :check_authorization, :except => ['index', 'games', 'photo']
 
   # GET /teams
   # GET /teams.xml
@@ -151,7 +151,7 @@ class TeamsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_team
     @team = Team.find(params[:id])
-    unless @logged_in.update_site?
+    unless @logged_in and @logged_in.update_site?
       @team.readonly!
     end
   end

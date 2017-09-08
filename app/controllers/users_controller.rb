@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :check_authorization
+  before_action :check_authorization
   layout "application"
 
   # GET /users

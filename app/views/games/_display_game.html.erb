@@ -24,7 +24,7 @@
     <% end %>
   </td>
   <td><%=h display_game.game_type.name %></td>
-  <% if @logged_in.update_site? %>
+  <% if @logged_in and @logged_in.update_site? %>
   <td><%= link_to "Edit", edit_season_game_path(display_game.season, display_game), :remote => true %></td>
   <td><%= link_to 'Destroy', [display_game.season, display_game], :confirm => 'Are you sure?', :method => :delete %></td>
   <% end %>
