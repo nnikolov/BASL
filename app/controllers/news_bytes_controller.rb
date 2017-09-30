@@ -1,5 +1,5 @@
 class NewsBytesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_news_byte, only: [:show, :edit, :update, :destroy]
   before_action :check_authorization, :except => 'index'
 
   # GET /news_bytes
