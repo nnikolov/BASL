@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
   def self.next_games
     Game.where(["time >= ? and time <= ?", Game.next_game_time, Game.next_game_time + 1.day])
     rescue
-      nil
+      []
   end
 
   def self.next_game_time

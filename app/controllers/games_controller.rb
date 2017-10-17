@@ -5,6 +5,11 @@ class GamesController < ApplicationController
 
   def next_games
     @games = Game.next_games
+    begin
+      @game_time = @games[0].time
+    rescue
+      @game_time = Time.now
+    end
   end
 
   # GET /games/1/home/gamesheet

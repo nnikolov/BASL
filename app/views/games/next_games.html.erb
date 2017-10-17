@@ -1,6 +1,6 @@
-<h1>Next games are <%= distance_of_time_in_words_to_now(@games[0].time) %> from now</h1>
+<h1>Next games are <%= distance_of_time_in_words_to_now(@game_time) %> from now</h1>
 
-<%= @games[0].time.strftime("%A, %B %d") %>
+<%= @game_time.strftime("%A, %B %d") %>
 
 <table class="bordered">
 <tr><th>Time</th><th>Field</th><th>Home team</th><th>vs.</th><th>Away team</th></tr>
