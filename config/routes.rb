@@ -44,6 +44,8 @@ Basl::Application.routes.draw do
 
   resources :seasons do
 
+    resources :rankings
+
     resources :teams
 
     resources :games

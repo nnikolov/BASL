@@ -100,7 +100,7 @@ class SeasonsController < ApplicationController
     when 'standings'
       redirect_to season_standings_path(params[:season][:id].to_i)
     when 'rankings'
-      redirect_to :back
+      redirect_to season_rankings_path(params[:season][:id].to_i)
     else
       redirect_to root_path
     end
