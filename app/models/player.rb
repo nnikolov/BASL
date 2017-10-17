@@ -16,7 +16,7 @@ class Player < ActiveRecord::Base
       rank_votes = rank_votes + r.votes
     end
     return 0 if rank_votes <= 0
-    (rank_sum.to_f / rank_votes).round
+    (rank_sum.to_f / rank_votes).round(2)
   end
 
   def total_votes
