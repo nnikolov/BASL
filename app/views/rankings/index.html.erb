@@ -23,7 +23,7 @@
       <tr>
         <td><%= player.name %></td>
         <td><%= player.position %></td>
-        <td align="right"><%= player.current_ranking %></td>
+        <td align="right"><%= number_with_precision(player.current_ranking, :precision => 2) %></td>
         <td align="right"><%= player.total_votes %></td>
         <td align="right"><%= player.rankings.count %></td>
       </tr>
