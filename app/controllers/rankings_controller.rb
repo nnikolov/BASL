@@ -3,8 +3,13 @@ class RankingsController < ApplicationController
   before_action :set_ranking, only: [:show, :update, :destroy]
 
   # GET /rankings
+  @rankings = Ranking.all
   def index
-    @rankings = Ranking.all
+    if @logged_in.website or @logged_in.admin
+      @players = @season.players.sort
+    else
+      @players = []
+    end
   end
 
   # GET /rankings/1

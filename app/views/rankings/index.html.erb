@@ -6,6 +6,7 @@
 
 <%= render :partial => 'common/season_select' %><br>
 
+<% if @players.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -19,7 +20,7 @@
   </thead>
 
   <tbody>
-    <% @season.players.sort.each do |player| %>
+    <% @players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
         <td><%= player.position %></td>
@@ -30,6 +31,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <br>
 
