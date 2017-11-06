@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
   # Force the standings for current season to be recalculated by deleting the current standings.
   def clear_standings
     if season.current
-      Standing.delete_all(["season_id = ? and game_type_id = ?", self.season_id, self.game_type_id])
+      Standing.where(["season_id = ? and game_type_id = ?", self.season_id, self.game_type_id]).delete_all
     end
   end
 
