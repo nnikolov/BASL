@@ -21,7 +21,11 @@
     <%= f.hidden_field :player_id, value: player.id %>
     <%= f.hidden_field :user_id, value: @logged_in.id %>
     <%= f.label :rank %>
+    <% if @logged_in.votes >= 100 %>
+    <%= f.text_field :rank %>
+    <% else %>
     <%= f.select :rank, (1..10) %>
+    <% end %>
     <%= f.label :votes %>
     <%= f.select :votes, (0..@logged_in.votes) %>
     <%= f.submit %>

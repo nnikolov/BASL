@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,188 +10,186 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826222658) do
+ActiveRecord::Schema.define(version: 20171116173110) do
 
-  create_table "absences", force: :cascade do |t|
-    t.integer  "player_id",  limit: 4
-    t.date     "game_date"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "absences", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "player_id"
+    t.date "game_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_date"], name: "index_absences_on_game_date"
+    t.index ["player_id"], name: "index_absences_on_player_id"
   end
 
-  add_index "absences", ["game_date"], name: "index_absences_on_game_date", using: :btree
-  add_index "absences", ["player_id"], name: "index_absences_on_player_id", using: :btree
-
-  create_table "commercial_listings", force: :cascade do |t|
-    t.string   "company_name",  limit: 255
-    t.string   "player_name",   limit: 255
-    t.string   "title",         limit: 255
-    t.string   "business_type", limit: 255
-    t.string   "telephone",     limit: 255
-    t.string   "email",         limit: 255
-    t.string   "website",       limit: 255
-    t.text     "description",   limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  create_table "commercial_listings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "company_name"
+    t.string "player_name"
+    t.string "title"
+    t.string "business_type"
+    t.string "telephone"
+    t.string "email"
+    t.string "website"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "fields", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "code",       limit: 255
-    t.string   "map_url",    limit: 255
+  create_table "fields", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "code"
+    t.string "map_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "location",   limit: 255
+    t.string "location"
   end
 
-  create_table "game_types", force: :cascade do |t|
-    t.string   "name",       limit: 255
+  create_table "game_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", force: :cascade do |t|
-    t.integer  "season_id",       limit: 4
+  create_table "games", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "season_id"
     t.datetime "time"
-    t.integer  "field_id",        limit: 4
-    t.integer  "home_team_id",    limit: 4
-    t.integer  "home_team_score", limit: 4
-    t.integer  "away_team_id",    limit: 4
-    t.integer  "away_team_score", limit: 4
-    t.integer  "game_type_id",    limit: 4
+    t.integer "field_id"
+    t.integer "home_team_id"
+    t.integer "home_team_score"
+    t.integer "away_team_id"
+    t.integer "away_team_score"
+    t.integer "game_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "until"
   end
 
-  create_table "news", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "body",       limit: 65535
+  create_table "news", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "news_bytes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "body",       limit: 65535
+  create_table "news_bytes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.integer  "team_id",    limit: 4
-    t.string   "file_name",  limit: 255
-    t.text     "caption",    limit: 65535
-    t.boolean  "active",                   default: true
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+  create_table "photos", id: :integer, force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=latin1" do |t|
+    t.integer "team_id"
+    t.string "file_name"
+    t.text "caption"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "team_id",    limit: 4
-    t.boolean  "manager"
-    t.boolean  "active"
-    t.string   "note",       limit: 255
+  create_table "players", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.integer "team_id"
+    t.boolean "manager"
+    t.boolean "active"
+    t.string "note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "position",   limit: 255
-    t.integer  "number",     limit: 4
+    t.string "position"
+    t.integer "number"
   end
 
-  create_table "pools", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rankings", force: :cascade do |t|
-    t.integer  "player_id",  limit: 4
-    t.integer  "user_id",    limit: 4
-    t.integer  "rank",       limit: 4
-    t.integer  "votes",      limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "rankings", ["player_id"], name: "index_rankings_on_player_id", using: :btree
-  add_index "rankings", ["user_id"], name: "index_rankings_on_user_id", using: :btree
-
-  create_table "rules", force: :cascade do |t|
-    t.text     "body",       limit: 65535
+  create_table "pools", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "season_standings", force: :cascade do |t|
-    t.integer  "season_id",     limit: 4
-    t.integer  "team_id",       limit: 4
-    t.integer  "points",        limit: 4
-    t.integer  "goal_diff",     limit: 4
-    t.integer  "goals_for",     limit: 4
-    t.integer  "goals_against", limit: 4
-    t.integer  "wins",          limit: 4
-    t.integer  "ties",          limit: 4
-    t.integer  "losses",        limit: 4
+  create_table "rankings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "player_id"
+    t.integer "user_id"
+    t.decimal "rank", precision: 10
+    t.integer "votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_rankings_on_player_id"
+    t.index ["user_id"], name: "index_rankings_on_user_id"
+  end
+
+  create_table "rules", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "seasons", force: :cascade do |t|
-    t.string   "name",       limit: 255
+  create_table "season_standings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "season_id"
+    t.integer "team_id"
+    t.integer "points"
+    t.integer "goal_diff"
+    t.integer "goals_for"
+    t.integer "goals_against"
+    t.integer "wins"
+    t.integer "ties"
+    t.integer "losses"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "start_date"
-    t.boolean  "current"
-    t.boolean  "active"
   end
 
-  create_table "standings", force: :cascade do |t|
-    t.integer  "season_id",     limit: 4
-    t.integer  "team_id",       limit: 4
-    t.string   "pool",          limit: 255
-    t.integer  "rank",          limit: 4
-    t.integer  "points",        limit: 4
-    t.integer  "goal_diff",     limit: 4
-    t.integer  "goals_for",     limit: 4
-    t.integer  "goals_against", limit: 4
-    t.integer  "wins",          limit: 4
-    t.integer  "ties",          limit: 4
-    t.integer  "losses",        limit: 4
-    t.integer  "game_type_id",  limit: 4
-    t.boolean  "cached"
+  create_table "seasons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hth_wins",      limit: 4
-    t.integer  "hth_ties",      limit: 4
-    t.integer  "hth_losses",    limit: 4
+    t.date "start_date"
+    t.boolean "current"
+    t.boolean "active"
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.string   "color",        limit: 255
-    t.integer  "season_id",    limit: 4
+  create_table "standings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "season_id"
+    t.integer "team_id"
+    t.string "pool"
+    t.integer "rank"
+    t.integer "points"
+    t.integer "goal_diff"
+    t.integer "goals_for"
+    t.integer "goals_against"
+    t.integer "wins"
+    t.integer "ties"
+    t.integer "losses"
+    t.integer "game_type_id"
+    t.boolean "cached"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pool_id",      limit: 4
-    t.string   "content_type", limit: 255
-    t.binary   "file_data",    limit: 16777215
-    t.boolean  "active",                        default: true
+    t.integer "hth_wins"
+    t.integer "hth_ties"
+    t.integer "hth_losses"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "username",      limit: 255
-    t.string   "password",      limit: 255
-    t.string   "email",         limit: 255
-    t.boolean  "admin"
-    t.boolean  "active"
-    t.integer  "created_by_id", limit: 4
-    t.integer  "updated_by_id", limit: 4
+  create_table "teams", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "color"
+    t.integer "season_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "votes",         limit: 4,   default: 1
-    t.boolean  "website",                   default: false
+    t.integer "pool_id"
+    t.string "content_type"
+    t.binary "file_data", limit: 16777215
+    t.boolean "active", default: true
+  end
+
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password"
+    t.string "email"
+    t.boolean "admin"
+    t.boolean "active"
+    t.integer "created_by_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "votes", default: 1
+    t.boolean "website", default: false
   end
 
 end
