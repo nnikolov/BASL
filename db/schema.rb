@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116173110) do
+ActiveRecord::Schema.define(version: 20171116175652) do
 
   create_table "absences", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "player_id"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20171116173110) do
   create_table "rankings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "player_id"
     t.integer "user_id"
-    t.decimal "rank", precision: 10
+    t.decimal "rank", precision: 4, scale: 2
     t.integer "votes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
