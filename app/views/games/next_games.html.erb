@@ -20,9 +20,9 @@
 <% if @logged_in %>
 <% missing_players = game.home_team.absent_players(game.time.to_date) %>
 <% if missing_players.size > 0 %>
-<br><span class="gray">Missing:</span>
+<br><span class="gray">Absent:</span>
 <% missing_players.each do |player| %>
-<br><%= player.name %>
+<br><%= player.name %> <%= player.position %> <%= number_with_precision(player.current_ranking, :precision => 2) %>
 <% end %>
 <% end %>
 <% end %>
@@ -42,9 +42,9 @@
 <% if @logged_in %>
 <% missing_players = game.away_team.absent_players(game.time.to_date) %>
 <% if missing_players.size > 0 %>
-<br><span class="gray">Missing:</span>
+<br><span class="gray">Absent:</span>
 <% missing_players.each do |player| %>
-<br><%= player.name %>
+<br><%= player.name %> <%= player.position %> <%= number_with_precision(player.current_ranking, :precision => 2) %>
 <% end %>
 <% end %>
 <% end %>
