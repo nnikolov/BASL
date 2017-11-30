@@ -16,6 +16,17 @@
 <br><span class="gray">Place:</span> <%= game.home_team.season_standing %> 
 <span class="gray">Points:</span> <%= game.home_team.season_points %> 
 <span class="gray">Goal diff:</span> <%= game.home_team.season_goal_diff %> 
+
+<% if @logged_in %>
+<% missing_players = game.home_team.absent_players(game.time.to_date) %>
+<% if missing_players.size > 0 %>
+<br><span class="gray">Missing:</span>
+<% missing_players.each do |player| %>
+<br><%= player.name %>
+<% end %>
+<% end %>
+<% end %>
+
 <% end %>
 </td>
 <td> vs. </td>
@@ -27,6 +38,17 @@
 <br><span class="gray">Place:</span> <%= game.away_team.season_standing %> 
 <span class="gray">Points:</span> <%= game.away_team.season_points %> 
 <span class="gray">Goal diff:</span> <%= game.away_team.season_goal_diff %> 
+
+<% if @logged_in %>
+<% missing_players = game.away_team.absent_players(game.time.to_date) %>
+<% if missing_players.size > 0 %>
+<br><span class="gray">Missing:</span>
+<% missing_players.each do |player| %>
+<br><%= player.name %>
+<% end %>
+<% end %>
+<% end %>
+
 <% end %>
 </td>
 </tr>

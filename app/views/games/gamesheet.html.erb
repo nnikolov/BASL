@@ -69,12 +69,26 @@ border: 0px;
 <% else %>
 <td align="center"><%= @team.nplayers[i].number %></td>
 <% end %>
-<td><%= @team.nplayers[i].name %></td>
+<td>
+<% if @team.nplayers[i].absent(Game.find(params[:id])) %>
+<strike>
+<% end %>
+<%= @team.nplayers[i].name %>
+<% if @team.nplayers[i].absent(Game.find(params[:id])) %>
+</strike>
+<% end %>
+</td>
 <% end %>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>
+<% if @team.nplayers[i].absent(Game.find(params[:id])) %>
+A
+<% else %>
+&nbsp;
+<% end %>
+</td>
 <% if @team.nplayers[i+11].nil? %>
 <td>&nbsp;</td>
 <td>&nbsp;</td>

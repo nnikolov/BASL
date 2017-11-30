@@ -13,6 +13,11 @@ class Team < ActiveRecord::Base
   has_one :manager, -> { where(manager: true)}, class_name: 'Player'
   has_one :keeper, -> { where(position: "GK")}, class_name: 'Player'
 
+  def absent_players(date)
+    absences = Absence.where(player_id: players.pluck(:id), game_date: date)
+    Player.where(id: absences.pluck(:player_id))
+  end
+
   def season_standing
     season_standings.rank
     rescue

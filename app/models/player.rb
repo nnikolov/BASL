@@ -5,8 +5,13 @@ class Player < ActiveRecord::Base
   belongs_to :team
   has_one :season, :through => :team
   has_many :rankings
+  has_many :absences
 
   attr_accessor :names
+
+  def absent(game)
+    !Absence.where(player_id: id, game_date: game.time.to_date).first.nil?
+  end
 
   def current_ranking
     rank_sum = 0
