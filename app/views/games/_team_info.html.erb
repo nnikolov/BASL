@@ -10,7 +10,10 @@
 <% if missing_players.size > 0 %>
 <br><span class="gray">Absent:</span>
 <% missing_players.each do |player| %>
-<br><%= player.name %> <%= player.position %> <%= number_with_precision(player.current_ranking, :precision => 2) %>
+<br><%= player.name %> <%= player.position %> 
+<% if @logged_in and @logged_in.website %>
+<%= number_with_precision(player.current_ranking, :precision => 2) %>
+<% end %>
 <% end %>
 <% end %>
 <% end %>
