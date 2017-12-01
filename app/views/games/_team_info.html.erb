@@ -16,6 +16,6 @@
 <% end %>
 <% end %>
 <% end %>
+<% end %>
 <br><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=http://#{request.host}#{team_games_path(team, :format => :ics)}") %>
 <br><%= link_to("ICS download", team_games_path(team, :format => :ics)) %>
-<% end %>
