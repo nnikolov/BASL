@@ -1,19 +1,21 @@
-<%= @team.name %> (<%= @team.color %>) 
-<br><span class="gray">Place:</span> <%= @team.season_standing %> 
-<span class="gray">Points:</span> <%= @team.season_points %> 
-<span class="gray">Goal diff:</span> <%= @team.season_goal_diff %> 
+<%= team.name %> (<%= team.color %>) 
+<br><span class="gray">Place:</span> <%= team.season_standing %> 
+<span class="gray">Points:</span> <%= team.season_points %> 
+<span class="gray">Goal diff:</span> <%= team.season_goal_diff %> 
 
 <% if @logged_in %>
-<br><span class="gray">Manager:</span> <%= @team.manager_name %> 
-<br><span class="gray">Keeper:</span> <%= @team.keeper_name %>
-<% missing_players = @team.absent_players(@game.time.to_date) %>
+<br><span class="gray">Manager:</span> <%= team.manager_name %> 
+<br><span class="gray">Keeper:</span> <%= team.keeper_name %>
+<% missing_players = team.absent_players(game.time.to_date) %>
 <% if missing_players.size > 0 %>
 <br><span class="gray">Absent:</span>
 <% missing_players.each do |player| %>
 <br><%= player.name %> <%= player.position %> 
 <% if @logged_in and @logged_in.website %>
-<%= number_with_precision(player.current_ranking, :precision => 2) %>
+&nbsp;<%= number_with_precision(player.current_ranking, :precision => 2) %>
 <% end %>
 <% end %>
 <% end %>
+<br><%= link_to("Google calendar import", "https://www.google.com/calendar/render?cid=http://#{request.host}#{team_games_path(team, :format => :ics)}") %>
+<br><%= link_to("ICS download", team_games_path(team, :format => :ics)) %>
 <% end %>

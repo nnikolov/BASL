@@ -11,9 +11,7 @@
 <td align="right">
 
 <% if game.home_team %>
-<% @team = game.home_team %>
-<% @game = game %>
-<%= render 'team_info' %>
+<%= render partial: 'team_info', locals: { game: game, team: game.home_team } %>
 <% end %>
 </td>
 
@@ -21,9 +19,7 @@
 
 <td>
 <% if game.away_team %>
-<% @team = game.away_team %>
-<% @game = game %>
-<%= render 'team_info' %>
+<%= render partial: 'team_info', locals: { game: game, team: game.away_team } %>
 <% end %>
 </td>
 </tr>
