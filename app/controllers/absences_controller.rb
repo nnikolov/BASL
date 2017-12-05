@@ -4,7 +4,7 @@ class AbsencesController < ApplicationController
 
   # GET /absences
   def index
-    @absences = Absence.all
+    @absences = Absence.where(["game_date >= ?", Date.today]).sort
   end
 
   # GET /absences/1
