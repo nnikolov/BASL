@@ -1,23 +1,22 @@
 <h1>Next games are <%= distance_of_time_in_words_to_now(@game_time) %> from now</h1>
 
-<%= @game_time.strftime("%A, %B %d") %>
-
-<table class="bordered">
-<tr><th>Time</th><th>Field</th><th>Home team</th><th>vs.</th><th>Away team</th></tr>
+<div><%= @game_time.strftime("%A, %B %d") %></div>
+<br>
+<table class="borderless">
 <% @games.each do |game| %>
 <tr>
-<td><%= game.time.strftime("%H:%M") %></td>
-<td><%= game.field.code %></td>
-<td align="right">
+<td valign="top"><div class="blue"><%= game.time.strftime("%H:%M") %></div></td>
+<td valign="top"><div class="blue"><%= game.field.code %></div></td>
+<td align="right" valign="top">
 
 <% if game.home_team %>
 <%= render partial: 'team_info', locals: { game: game, team: game.home_team, host: 'home' } %>
 <% end %>
 </td>
 
-<td> vs. </td>
+<td valign="top"><div class="blue"> vs. </div></td>
 
-<td>
+<td valign="top">
 <% if game.away_team %>
 <%= render partial: 'team_info', locals: { game: game, team: game.away_team, host: 'away' } %>
 <% end %>
