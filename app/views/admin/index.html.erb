@@ -1,6 +1,7 @@
 <ul class="nostyle">
 <li><%= link_to "News", :controller => :news_bytes %></li>
 <li><%= link_to "Player rankings", rankings_path %></li>
+<li><%= link_to "Absences", absences_path %></li>
 <li><%= link_to "Seasons", :controller => :seasons %></li>
 <% unless @season.nil? %>
 <li><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></li>

@@ -24,7 +24,7 @@ class AbsencesController < ApplicationController
   def create
     @absence = Absence.new(absence_params)
 
-    if @absence.save
+    if @logged_in.active and @logged_in.website and @absence.save
       redirect_to @absence, notice: 'Absence was successfully created.'
     else
       render :new
@@ -33,7 +33,7 @@ class AbsencesController < ApplicationController
 
   # PATCH/PUT /absences/1
   def update
-    if @absence.update(absence_params)
+    if @logged_in.active and @logged_in.website and @absence.update(absence_params)
       redirect_to @absence, notice: 'Absence was successfully updated.'
     else
       render :edit
@@ -42,8 +42,12 @@ class AbsencesController < ApplicationController
 
   # DELETE /absences/1
   def destroy
-    @absence.destroy
-    redirect_to absences_url, notice: 'Absence was successfully destroyed.'
+    if @logged_in.active and @logged_in.website
+      @absence.destroy
+      redirect_to absences_url, notice: 'Absence was successfully destroyed.'
+      return
+    end
+    redirect_to absences_url, notice: 'Absence was NOT destroyed.'
   end
 
   private
