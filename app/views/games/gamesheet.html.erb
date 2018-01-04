@@ -83,7 +83,7 @@ border: 0px;
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>
-<% if @team.nplayers[i].absent(Game.find(params[:id])) %>
+<% if @team.nplayers[i] and @team.nplayers[i].absent(Game.find(params[:id])) %>
 A
 <% else %>
 &nbsp;
