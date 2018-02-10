@@ -86,7 +86,7 @@ class RulesController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_game
+  def set_rule
     @rule = Rule.find(params[:id])
     unless @logged_in.update_site?
       @rule.readonly!
