@@ -1,21 +1,11 @@
 <ul class="nostyle">
-<li><%= link_to "News", :controller => :news_bytes %></li>
 <li><%= link_to "Player rankings", rankings_path %></li>
 <li><%= link_to "Absences", absences_path %></li>
-<li><%= link_to "Seasons", :controller => :seasons %></li>
-<% unless @season.nil? %>
-<li><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></li>
-<li><%= link_to "Games", season_games_path(:season_id => @season.id) %></li>
-<li><%= link_to "Standings", season_standings_path(:season_id => @season.id) %></li>
-<% end %>
-<li><%= link_to "Fields", fields_path %></li>
 <% if @logged_in %>
 <li><%= link_to "Game Types", game_types_path %></li>
 <li><%= link_to "Playoff Pools", pools_path %></li>
 <li><%= link_to "Users", users_path %></li>
 <% end %>
-<li><%= link_to "Info", "administrivia" %></li>
-<li><%= link_to "Directory", commercial_listings_path %></li>
 <% if @logged_in %>
 <li><%= link_to "Logout #{@logged_in.name}", logout_path %></li>
 <% else %>

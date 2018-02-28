@@ -1,0 +1,15 @@
+<ul class="nostyle">
+<% unless @season.nil? or @season.id.nil? %>
+<td><%= link_to "Teams", season_teams_path(:season_id => @season.id) %></td>
+<% end %>
+<li><%= link_to "Seasons", :controller => :seasons %></li>
+<li><%= link_to "Fields", fields_path %></li>
+<li><%= link_to "Info", administrivia_path %></li>
+<li><%= link_to "Rules", rules_path %></li>
+<li><%= link_to "GSA Web Site", "http://www.gloucesterhornets.ca/" %></li>
+<li><%= link_to "Blackburn Arms Pub", "http://www.blackburnarms.com/" %></li>
+<li><%= link_to "Contact Us", "mailto:info@ba-soccer.ca" %></li>
+<li><%= link_to "Photos", 'http://hwmgt.smugmug.com/BASL' %></li>
+<li><%= link_to "Business directory", commercial_listings_path %></li>
+<li><%= link_to "Admin", admin_path %></li>
+</ul>
