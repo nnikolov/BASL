@@ -89,7 +89,7 @@ class CommercialListingsController < ApplicationController
 
   private 
   # Use callbacks to share common setup or constraints between actions.
-  def set_commercial_listinq
+  def set_commercial_listing
     @commercial_listing = CommercialListing.find(params[:id])
     unless @logged_in.update_site?
       @commercial_listing.readonly!
