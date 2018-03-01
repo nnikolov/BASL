@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registration.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= raw RedCloth.new( @registration.description ).to_html %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @registration.active %>
+</p>
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>

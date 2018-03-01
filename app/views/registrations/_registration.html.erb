@@ -1,0 +1,17 @@
+  <tr>
+    <th class="news_byte_th" align="left">
+    <div><div class="news_byte_title"><%=h @registration.name %></div>
+    <div class="news_byte_time"><%=h time_ago_in_words @registration.updated_at %> ago</div></div>
+    </th>
+  </tr>
+  <tr>
+    <td class="news_byte"><%= raw RedCloth.new( @registration.description ).to_html %></td>
+    <% if @logged_in and @logged_in.website %>
+    <td><%= link_to 'Show', @registration %>
+    <%= link_to 'Edit', edit_registration_path(@registration) %>
+    <%= link_to 'Destroy', @registration, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th align="left">&nbsp;</th>
+  </tr>

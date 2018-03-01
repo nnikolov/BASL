@@ -1,4 +1,5 @@
 Basl::Application.routes.draw do
+  resources :registrations
   get 'about_us' => 'about_us#index', as: :about_us
 
   get 'rankings/edit' => 'rankings#edit', as: :edit_rankings
