@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<% if @logged_in and @logged_in.update_site? %>
+<%= link_to_unless @logged_in.nil?, 'New Registration Landing Page', new_registration_landing_page_path %>
+<% end %>
+
+<table border="0" cellspacing="0" cellpadding="5">
+<% for @registration_landing_page in @registration_landing_pages %>
+<%= render 'registration_landing_page' %>
+<% end %>
+</table>
+
+<br>
+
+<% if @logged_in and @logged_in.update_site? %>
+<%= link_to_unless @logged_in.nil?, 'New Registration Landing Page', new_registration_landing_page_path %>
+<% end %>

@@ -1,0 +1,2 @@
+class RegistrationLandingPage < ApplicationRecord
+end

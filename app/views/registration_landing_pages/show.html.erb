@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registration_landing_page.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= raw RedCloth.new( @registration_landing_page.description ).to_html %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @registration_landing_page.active %>
+</p>
+
+<%= link_to 'Edit', edit_registration_landing_page_path(@registration_landing_page) %> |
+<%= link_to 'Back', registration_landing_pages_path %>

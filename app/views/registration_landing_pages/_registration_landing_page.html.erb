@@ -1,0 +1,16 @@
+  <tr>
+    <th class="news_byte_th" align="left">
+    <div><div class="news_byte_title"><%=h @registration_landing_page.name %></div>
+    </th>
+  </tr>
+  <tr>
+    <td class="news_byte"><%= raw RedCloth.new( @registration_landing_page.description ).to_html %></td>
+    <% if @logged_in and @logged_in.website %>
+    <td><%= link_to 'Show', @registration_landing_page %>
+    <%= link_to 'Edit', edit_registration_landing_page_path(@registration_landing_page) %>
+    <%= link_to 'Destroy', @registration_landing_page, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th align="left">&nbsp;</th>
+  </tr>

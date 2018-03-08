@@ -1,5 +1,11 @@
 Basl::Application.routes.draw do
+
+  get 'BASLsite_FormReturn' => 'registration_landing_pages#index'
+
+  resources :registration_landing_pages
+
   resources :registrations
+
   get 'about_us' => 'about_us#index', as: :about_us
 
   get 'rankings/edit' => 'rankings#edit', as: :edit_rankings

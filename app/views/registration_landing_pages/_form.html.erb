@@ -1,0 +1,32 @@
+<%= form_with(model: registration_landing_page, local: true) do |form| %>
+  <% if registration_landing_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(registration_landing_page.errors.count, "error") %> prohibited this registration_landing_page from being saved:</h2>
+
+      <ul>
+      <% registration_landing_page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :registration_landing_page_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :registration_landing_page_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active, id: :registration_landing_page_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
