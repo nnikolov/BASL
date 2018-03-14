@@ -22,12 +22,15 @@ class AbsencesController < ApplicationController
 
   # POST /absences
   def create
-    @absence = Absence.new(absence_params)
+    #@absence = Absence.new(absence_params)
 
-    if @logged_in.active and @logged_in.website and @absence.save
-      redirect_to @absence, notice: 'Absence was successfully created.'
+    #if @logged_in.active and @logged_in.website and @absence.save
+    if @logged_in.active and @logged_in.website and Absence.create_multiple(absence_params)
+      #redirect_to @absence, notice: 'Absence was successfully created.'
+      redirect_to absences_path, notice: 'Absence was successfully created.'
     else
-      render :new
+      #render :new
+      redirect_to absences_path, notice: 'Absence was NOT successfully created.'
     end
   end
 
@@ -58,6 +61,6 @@ class AbsencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def absence_params
-      params.require(:absence).permit(:player_id, :game_date)
+      params.require(:absence).permit({player_id: []}, :game_date)
     end
 end

@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :player_id %><br>
-    <%= f.select(:player_id, @season.players.sort_by {|obj| obj.name}.collect {|p| [p.name, p.id]} ) %>
+    <%= f.select(:player_id, @season.players.sort_by {|obj| obj.name}.collect {|p| [p.name, p.id]}, {}, {multiple: true, size: 15} ) %>
   </div>
   <div class="field">
     <%= f.label :game_date %><br>
