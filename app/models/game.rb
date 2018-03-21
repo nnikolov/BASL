@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
   after_save :clear_standings
 
   def self.next_games
-    Game.where(["time >= ? and time <= ?", Game.next_game_time, Game.next_game_time + 1.day])
+    Game.where(["time >= ? and time <= ?", Game.next_game_time, Game.next_game_time + 1.day]).order(:time)
     rescue
       []
   end
