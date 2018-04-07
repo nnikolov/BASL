@@ -1,0 +1,1 @@
+$("#player_<%= @ranking.player_id %>").replaceWith('<%= raw escape_javascript render partial: "player_form", locals: {player: @ranking.player} %>');

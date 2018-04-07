@@ -4,31 +4,7 @@
 <br>Please only rank players you are familiar with.</p>
 
 <% @season.players.sort.each do |player| %>
-<%= form_for(player.ranking(@logged_in)) do |f| %>
-  <% if player.ranking(@logged_in.id).errors.any? %>
-    <div id="error_explanation_#{player.id}">
-      <h2><%= pluralize(player.ranking(@logged_in).errors.count, "error") %> prohibited this ranking from being saved:</h2>
 
-      <ul>
-      <% player.ranking(@logged_in).errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render partial: "player_form", locals: {player: player} %>
 
-    <div class="player_name"><%= player.name %> (<%= player.position %>)</div>
-    <%= f.hidden_field :player_id, value: player.id %>
-    <%= f.hidden_field :user_id, value: @logged_in.id %>
-    <%= f.label :rank %>
-    <% if @logged_in.votes >= 100 %>
-    <%= f.text_field :rank %>
-    <% else %>
-    <%= f.select :rank, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0] %>
-    <% end %>
-    <%= f.label :votes %>
-    <%= f.select :votes, (0..@logged_in.votes) %>
-    <%= f.submit %>
-    <br><br>
-<% end %>
 <% end %>

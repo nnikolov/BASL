@@ -30,19 +30,40 @@ class RankingsController < ApplicationController
   def create
     @ranking = Ranking.new(ranking_params)
 
-    if @ranking.save
-      redirect_to new_ranking_path, notice: 'Ranking was successfully created.'
-    else
-      render :new
+    #if @ranking.save
+    #  redirect_to new_ranking_path, notice: 'Ranking was successfully created.'
+    #else
+    #  render :new
+    #end
+
+    respond_to do |format|
+      if @ranking.save
+        format.js { render action: 'update' }
+        format.html { redirect_to new_ranking_path, notice: 'Ranking was successfully created.' }
+      else
+        format.html { render action: 'new' }
+      end
     end
   end
 
   # PATCH/PUT /rankings/1
   def update
-    if @ranking.update(ranking_params)
-      redirect_to new_ranking_path, notice: 'Ranking was successfully updated.'
-    else
-      render :edit
+    #if @ranking.update(ranking_params)
+    #  redirect_to new_ranking_path, notice: 'Ranking was successfully updated.'
+    #else
+    #  render :edit
+    #end
+    respond_to do |format|
+      if @ranking.update(ranking_params)
+        format.js { render action: 'update' }
+        #format.html { redirect_to lot_path(@lot), notice: 'Lot was successfully updated.' }
+        format.html { redirect_to new_ranking_path, notice: 'Ranking was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.js { render action: 'error' }
+        format.html { render action: 'edit' }
+        format.json { render json: @lot.errors, status: :unprocessable_entity }
+      end
     end
   end
 
