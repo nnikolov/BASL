@@ -25,7 +25,7 @@ class AbsencesController < ApplicationController
     #@absence = Absence.new(absence_params)
 
     #if @logged_in.active and @logged_in.website and @absence.save
-    if @logged_in.active and @logged_in.website and Absence.create_multiple(absence_params)
+    if @logged_in.active and Absence.create_multiple(absence_params)
       #redirect_to @absence, notice: 'Absence was successfully created.'
       redirect_to absences_path, notice: 'Absence was successfully created.'
     else
