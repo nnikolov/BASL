@@ -43,8 +43,9 @@ class Player < ActiveRecord::Base
     if self.names.split(/\r?\n/).size == 0
       return self.save
     end
-    self.names.split(/\r?\n/).each do |name|
-      Player.new(:name => name, :active => self.active, :note => self.note, :team_id => self.team_id, :manager => false).save
+    self.names.split(/\r?\n/).each do |line|
+      values = line.split(",")
+      Player.new(name: "#{values[0]} #{values[1]}", birthdate: values[2], position: values[3], active: self.active, note: self.note, team_id: self.team_id, manager: false).save
     end
   end
 

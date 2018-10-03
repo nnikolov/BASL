@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308203102) do
+ActiveRecord::Schema.define(version: 20181002164923) do
 
   create_table "absences", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "player_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20180308203102) do
     t.datetime "updated_at"
     t.string "position"
     t.integer "number"
+    t.date "birthdate"
   end
 
   create_table "pools", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(version: 20180308203102) do
     t.index ["user_id"], name: "index_rankings_on_user_id"
   end
 
-  create_table "registration_landing_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "registration_landing_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.text "description"
     t.boolean "active"
@@ -123,7 +124,7 @@ ActiveRecord::Schema.define(version: 20180308203102) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.text "description"
     t.boolean "active", default: false
