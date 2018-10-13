@@ -36,6 +36,29 @@ class Team < ActiveRecord::Base
       0
   end
 
+  def calc_playoff_goal_diff
+    goal_diff = 0
+    game_type = GameType.find_by_name("Playoff")
+    Game.where("home_team_id = ? and game_type_id = ?", self.id, game_type.id).each do |game|
+      curr_goal_diff = game.home_team_score.to_i - game.away_team_score.to_i
+      if curr_goal_diff.abs > 4
+        goal_diff = curr_goal_diff > 4 ? goal_diff + 4 : goal_diff - 4
+      else
+        goal_diff = goal_diff + curr_goal_diff
+      end
+    end
+
+    Game.where("away_team_id = ? and game_type_id = ?", self.id, game_type.id).each do |game|
+      curr_goal_diff = game.away_team_score.to_i - game.home_team_score.to_i
+      if curr_goal_diff.abs > 4
+        goal_diff = curr_goal_diff > 4 ? goal_diff + 4 : goal_diff - 4
+      else
+        goal_diff = goal_diff + curr_goal_diff
+      end
+    end
+    goal_diff    
+  end
+
   def season_standings
     Standing.where(team_id: id, game_type_id: GameType.where(name: 'Season')).first
     rescue
@@ -149,7 +172,10 @@ class Team < ActiveRecord::Base
   end
 
   def goal_diff(game_type)
-    goals_for(game_type) - goals_against(game_type)
+    if game_type.name == "Playoff"
+      return calc_playoff_goal_diff 
+    end
+    goals_for(game_type) - goals_against(game_type) 
   end
 
   def playoff_shutouts
