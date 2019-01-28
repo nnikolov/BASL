@@ -14,6 +14,15 @@ class AbsencesController < ApplicationController
   # GET /absences/new
   def new
     @absence = Absence.new(game_date: Game.next_games[0].time)
+    #@players = @season.players.sort_by {|obj| obj.name}
+    @players = @season.players
+    #@grouped_options = [['Europe',{"London, UK" => 3, "Stockholm, Sweden" => 5}], ['USA', ["San Francisco, USA", "Mountain View"]]]
+
+    @grouped_options = []
+    Season.current.active_teams.each do |team|
+      players = team.players.collect { |p| ["(#{p.position}) #{p.name}", p.id] }
+      @grouped_options << ["#{team.name} (#{team.color})", players]
+    end
   end
 
   # GET /absences/1/edit

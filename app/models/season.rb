@@ -3,10 +3,18 @@ class Season < ActiveRecord::Base
   validates :start_date, :presence => true
   has_many :teams, -> { order "name"}, :dependent => :destroy
   has_many :games, -> {order "time, id"}, :dependent => :destroy
-  has_many :players, -> {where("players.active = true").order("name")}, :through => :teams
+  has_many :players, -> {where("teams.active = true").where("players.active = true").order(:team_id, :name)}, :through => :teams
 
   attr_accessor :game_duration
   before_update :update_game_duration
+
+  def self.current
+    where(current: true).first
+  end
+
+  def active_teams
+    teams.where(active: true)
+  end
 
   def before_save
     if self.current # Set all other seasons to not current
