@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002164923) do
+ActiveRecord::Schema.define(version: 2020_03_16_094956) do
 
-  create_table "absences", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "absences", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "player_id"
     t.date "game_date"
     t.datetime "created_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.index ["player_id"], name: "index_absences_on_player_id"
   end
 
-  create_table "commercial_listings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+  create_table "commercial_listings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "company_name"
     t.string "player_name"
     t.string "title"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fields", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fields", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.string "map_url"
@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.string "location"
   end
 
-  create_table "game_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "game_types", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "games", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "season_id"
     t.datetime "time"
     t.integer "field_id"
@@ -63,21 +63,21 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "until"
   end
 
-  create_table "news", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "news", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "news_bytes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "news_bytes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "photos", id: :integer, force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=latin1" do |t|
+  create_table "photos", id: :integer, options: "ENGINE=MyISAM DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "team_id"
     t.string "file_name"
     t.text "caption"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "players", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "players", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "team_id"
     t.boolean "manager"
@@ -97,15 +97,16 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.string "position"
     t.integer "number"
     t.date "birthdate"
+    t.string "filename"
   end
 
-  create_table "pools", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "pools", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "rankings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "rankings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "player_id"
     t.integer "user_id"
     t.decimal "rank", precision: 4, scale: 2
@@ -116,7 +117,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.index ["user_id"], name: "index_rankings_on_user_id"
   end
 
-  create_table "registration_landing_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "registration_landing_pages", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "active"
@@ -124,7 +125,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "active", default: false
@@ -132,13 +133,13 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rules", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "rules", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "season_standings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "season_standings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "season_id"
     t.integer "team_id"
     t.integer "points"
@@ -152,7 +153,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.datetime "updated_at"
   end
 
-  create_table "seasons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "seasons", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -161,7 +162,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.boolean "active"
   end
 
-  create_table "standings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "standings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "season_id"
     t.integer "team_id"
     t.string "pool"
@@ -182,7 +183,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.integer "hth_losses"
   end
 
-  create_table "teams", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "teams", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "color"
     t.integer "season_id"
@@ -194,7 +195,7 @@ ActiveRecord::Schema.define(version: 20181002164923) do
     t.boolean "active", default: true
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "username"
     t.string "password"

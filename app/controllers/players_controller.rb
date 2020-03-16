@@ -64,8 +64,24 @@ class PlayersController < ApplicationController
   def update
     #@player = Player.find(params[:id])
 
+    if params[:player][:photo] && !params[:player][:photo].blank? then
+      #filename = sanitize_filename "players#{params[:id]}_#{params[:player][:photo].original_filename}"
+      pparams = player_params
+      pparams[:filename] = sanitize_filename params[:player][:photo].original_filename
+      #params[:player][:file_name] = filename
+      #params[:player][:content_type] = params[:player][:photo].content_type.chomp
+      #params[:team][:file_data] = params[:team][:photo].read
+      File.open( "#{Rails.root}/public/images/#{pparams[:filename]}".to_s, 'wb' ) do |file|
+        file.write( params[:player][:photo].read )
+      end
+      params[:player].delete('photo')
+    end
+
+    #photo = @player.photos.new(:file_name => filename)
+    #photo.save
+
     respond_to do |format|
-      if @player.update_attributes(player_params)
+      if @player.update_attributes(pparams)
         format.html { redirect_to(@player, :notice => 'Player was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -99,7 +115,23 @@ class PlayersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def player_params
-    params.require(:player).permit(:id, :name, :names, :team_id, :manager, :note, :position, :number, :active)
+    params.require(:player).permit(:id, :name, :names, :team_id, :manager, :note, :position, :number, :active, :filename)
   end
 
+  def sanitize_filename(filename)
+    # Split the name when finding a period which is preceded by some
+    # character, and is followed by some character other than a period,
+    # if there is no following period that is followed by something
+    # other than a period (yeah, confusing, I know)
+    #fn = filename.split /(?<=.)\.(?=[^.])(?!.*\.[^.])/m
+    fn = filename.split(".")
+
+    # We now have one or two parts (depending on whether we could find
+    # a suitable period). For each of these parts, replace any unwanted
+    # sequence of characters with an underscore
+    fn.map! { |s| s.gsub /[^a-z0-9\-]+/i, '_' }
+
+    # Finally, join the parts with a period and return the result
+    return fn.join '.'
+  end
 end

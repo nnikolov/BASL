@@ -45,6 +45,10 @@
     <%= f.text_field :number, :size => 2 %>
   </div>
   <div class="field">
+    <%= f.label "Upload photo" %><br />
+    <%= f.file_field :photo %>
+  </div>
+  <div class="field">
     <%= f.label :note %><br />
     <%= f.text_field :note %>
   </div>

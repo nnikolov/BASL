@@ -12,7 +12,11 @@
     </div>
   <% end %>
 
-    <div class="player_name"><%= player.name %> (<%= player.position %>) 
+    <div class="player_name">
+    <% if player.filename %>
+    <img src="/images/<%= player.filename %>" class="player_image">
+    <% end %>
+    <%= player.name %> (<%= player.position %>) 
     <% unless @ranking.nil? %>
     Rank: <%= @ranking.rank %>
     Votes: <%= @ranking.votes %>

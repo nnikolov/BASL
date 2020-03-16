@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+    <% if @player.filename %>
+    <img src="/images/<%= @player.filename %>" class="player_image">
+    <% end %>
+
 <p>
   <b>Name:</b>
   <%= @player.name %>
